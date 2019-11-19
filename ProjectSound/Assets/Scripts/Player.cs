@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{
+/** <summary>
+    Component controlling the entity representing the player character.
+    </summary>
+*/
+public class Player : Entity {
+
+    /** <summary>
+        Event that triggers when the player dies.
+        </summary>
+    */
     public event System.Action onPlayerDead;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    protected override void Move() {
+        //TODO Quitar esto en el merge
+        this.onPlayerDead.Invoke(); 
     }
 }
