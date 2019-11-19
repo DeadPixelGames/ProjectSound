@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/** <summary>
+    Component controlling the entity representing the player character.
+    </summary>
+*/
 public class Player : Entity
 {
+
+    /** <summary>
+        Event that triggers when the player dies.
+        </summary>
+    */
+    public event System.Action onPlayerDead;
+
+
     public float layerWidth;
     private bool grounded = false;
     private Rigidbody rigidBody;
