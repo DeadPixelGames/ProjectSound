@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class InterfaceController : MonoBehaviour
 {
+    public static InterfaceController Instance { get; private set; }
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     /* Esconde el objeto */
     public void hide(GameObject go)
