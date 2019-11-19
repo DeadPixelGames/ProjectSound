@@ -18,6 +18,14 @@ public class GameManager : MonoBehaviour {
         }
     }
     #endregion
+    
+    public Joystick joystick;
+    public ButtonController jumpButton;
+    public ButtonController actionButton;
+
+    public static bool paused = false;
+
+    public static bool operatingInMobile = false;
 
     /** <summary>
         Reference to the player entity.
@@ -47,6 +55,24 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         GameManager.InitSingleton(this);
         this.player.onPlayerDead += this.OnPlayerDead;
+        
+        
+        
+         Debug.Log(SystemInfo.operatingSystem);
+        if (SystemInfo.operatingSystem.Split(' ')[0].Equals("Android"))
+        {
+            operatingInMobile = true;
+            jumpButton.gameObject.SetActive(true);
+            actionButton.gameObject.SetActive(true);
+            joystick.gameObject.SetActive(true);
+        }
+        else
+        {
+            operatingInMobile = false;
+            jumpButton.gameObject.SetActive(false);
+            actionButton.gameObject.SetActive(false);
+            joystick.gameObject.SetActive(false);
+        }
     }
 
     void Update() {
@@ -100,4 +126,5 @@ public class GameManager : MonoBehaviour {
         //TODO Detener AudioSource de Camera.main
     }
     #endregion
+
 }

@@ -21,4 +21,20 @@ public abstract class Entity : MonoBehaviour {
         </summary>
     */
     protected abstract void Move();
+
+    //Velocidad
+    public float walkingSpeed;
+    public float jumpSpeed;
+
+    //Vida
+    private float health;
+    public float maxHealth;
+
+    private float invulnerabilityTime;
+
+    public float getHealth() { return health; }
+    public void setHealth(float h) { Mathf.Clamp(h, 0, maxHealth); }
+    public void addHealth(float h) { health += h; }
+
+    public void jump() { }
 }
