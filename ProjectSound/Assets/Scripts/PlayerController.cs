@@ -34,13 +34,15 @@ public class PlayerController : MonoBehaviour
         if (GameManager.operatingInMobile)
         {
             move = joystick.Horizontal;
-            //moveZ = joystick.Vertical;
+            moveZ = joystick.Vertical;
             jump = jumpButton.pressed;
         }
         else
         {
             move = Input.GetAxisRaw("Horizontal");
+            if (Input.GetButtonDown("Vertical"))
             moveZ = Input.GetAxisRaw("Vertical");
+            
             
             jump = Input.GetButton("Jump");
         }
@@ -48,8 +50,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        behaviour.move(move * Time.fixedDeltaTime);
+        behaviour.Move(move * Time.fixedDeltaTime);
+        
         behaviour.changeLayer(moveZ);
+        moveZ = 0;
         if (jump)
         {
             behaviour.jump();

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3399583050304430234}
   - component: {fileID: 3399583050304430235}
   - component: {fileID: 3399583050304430232}
-  - component: {fileID: 3399583050304430233}
+  - component: {fileID: 198640563378168858}
   - component: {fileID: 3399583050304430214}
   m_Layer: 9
   m_Name: Player
@@ -114,7 +114,7 @@ CapsuleCollider:
   m_Height: 1.05
   m_Direction: 1
   m_Center: {x: 0, y: 0.18, z: 0}
---- !u!114 &3399583050304430233
+--- !u!114 &198640563378168858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,12 +123,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3399583050304430215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b11a14a4ace6e74faa273bb8484f9ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 44321b1c0e21c4a48adeea58412cdb38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 30
   jumpSpeed: 400
-  maxHealth: 0.34
+  maxHealth: 0
   layerWidth: 0.5
   groundCheck: {fileID: 3399583050449663178}
   whatIsGround:
@@ -152,7 +152,7 @@ MonoBehaviour:
   joystick: {fileID: 0}
   jumpButton: {fileID: 0}
   actionButton: {fileID: 0}
-  behaviour: {fileID: 3399583050304430233}
+  behaviour: {fileID: 198640563378168858}
 --- !u!1 &3399583050449663179
 GameObject:
   m_ObjectHideFlags: 0

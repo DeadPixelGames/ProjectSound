@@ -24,7 +24,7 @@ public class ItemEntity : Entity {
         GameObject.Destroy(this);
     }
 
-    protected override void Move() {
+    public override void Move(float move) {
         // Nothing. The point of this overriding is to remove the requirement to add an
         // implementation of this method, as it should be optional for any ItemEntity-derived class
     }

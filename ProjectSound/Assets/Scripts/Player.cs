@@ -17,7 +17,8 @@ public class Player : Entity
     public event System.Action onPlayerDead;
 
 
-    public float layerWidth;
+    private int layer = 0;
+
     private bool grounded = false;
     private Rigidbody rigidBody;
     private float movementSmoothing = .05f;
@@ -47,7 +48,7 @@ public class Player : Entity
         }
     }
 
-    public new void move(float move)
+    public override void Move(float move)
     {
         Vector3 targetVelocity = new Vector3(move * walkingSpeed * 10f, rigidBody.velocity.y);
         rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, targetVelocity, ref velocity, movementSmoothing);
@@ -63,16 +64,17 @@ public class Player : Entity
 
     public void changeLayer(float change)
     {
-        Vector3 pos = transform.position;
+        
         if (change > 0)
         {
-            pos.z += layerWidth;
+            layer = GameManager.instance.ClampLayer(layer-1);
+            
         }
         else if(change < 0)
         {
-            pos.z -= layerWidth;
+            layer = GameManager.instance.ClampLayer(layer+1);
         }
-        transform.position = pos;
+        
     }
 
     /* Método para dar la vuelta al sprite del personaje */
@@ -87,11 +89,17 @@ public class Player : Entity
     }
 
     /* Método para usar una onomatopeya */
-    public void useOnomatopeia() { }
+    public void useBubble() { }
 
 
     private void FixedUpdate()
     {
+        #region Set Z layer
+        Vector3 pos = transform.position;
+        pos.z = GameManager.instance.GetLayer(layer);
+        transform.position = pos;
+        #endregion
+
         bool wasGrounded = grounded;
 
         grounded = false;

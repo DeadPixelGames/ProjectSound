@@ -22,9 +22,11 @@ public class GameManager : MonoBehaviour {
     public Joystick joystick;
     public ButtonController jumpButton;
     public ButtonController actionButton;
-
-    public static bool paused = false;
-
+    
+    /** <summary>
+     * Represents if operating in a handheld device
+     * </summary>
+    */
     public static bool operatingInMobile = false;
 
     /** <summary>
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour {
         List containing the Z-coordinate of all layers available in the stage.
         </summary>
     */
-    public List<float> layers;
+    public List<GameObject> layers;
 
     /** <summary>
         Event that triggers whenever transitioning into or out of the pause state.
@@ -58,7 +60,9 @@ public class GameManager : MonoBehaviour {
         
         
         
-         Debug.Log(SystemInfo.operatingSystem);
+         
+        #region Joystick and Buttons in Mobile
+
         if (SystemInfo.operatingSystem.Split(' ')[0].Equals("Android"))
         {
             operatingInMobile = true;
@@ -73,6 +77,7 @@ public class GameManager : MonoBehaviour {
             actionButton.gameObject.SetActive(false);
             joystick.gameObject.SetActive(false);
         }
+        #endregion
     }
 
     void Update() {
@@ -108,13 +113,18 @@ public class GameManager : MonoBehaviour {
         </summary>
     */
     public float GetLayer(int layer) {
-        var listIndex = Mathf.Clamp(layer, 0, this.layers.Count - 1);
-        return this.layers[listIndex];
+        var listIndex = ClampLayer(layer);
+        return this.layers[listIndex].transform.position.z;
     }
     #endregion
 
     private void OnPlayerDead() {
         //TODO Ir al menú de selección de niveles
+    }
+
+    public int ClampLayer(int layer)
+    {
+        return Mathf.Clamp(layer, 0, this.layers.Count - 1);
     }
 
     #region Music

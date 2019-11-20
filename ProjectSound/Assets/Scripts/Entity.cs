@@ -11,7 +11,7 @@ public abstract class Entity : MonoBehaviour {
     #region Unity
     void Update() {
         if(!GameManager.instance.IsPaused()) {
-            this.Move();
+            this.Move(0);
         }
     }
     #endregion
@@ -20,7 +20,7 @@ public abstract class Entity : MonoBehaviour {
         Describes how the entity should behave while the game is running.
         </summary>
     */
-    protected abstract void Move();
+    public abstract void Move(float move);
 
     //Velocidad
     public float walkingSpeed;
