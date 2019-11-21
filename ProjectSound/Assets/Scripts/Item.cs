@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 /** <summary>
     Class that represents an item as part of the inventory. This is different from an ItemEntity
@@ -15,7 +15,7 @@ public class Item : ScriptableObject {
         Image to use in the inventory to represent this item.
         </summary>
     */
-    public Image inventoryImage;
+    public Sprite inventoryImage;
 
     /** <summary>
         Prefab to instantiate whenever this item is brought to the game world.

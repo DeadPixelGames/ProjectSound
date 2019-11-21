@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /** <summary>
     Singleton component controlling the item inventory.
@@ -24,6 +25,13 @@ public class Inventory : MonoBehaviour {
         </summary>
     */
     public GameObject inventoryUI;
+
+
+    /** <summary>
+        Reference to the HUD slot of an item in the inventory.
+        </summary>
+    */
+    public GameObject inventorySlot;
 
     /** <summary>
         Maximum amount of items that can be held at any given time.
@@ -50,6 +58,7 @@ public class Inventory : MonoBehaviour {
         // No item selected at first
         this.activeItemIndex = null;
         this.items = new List<Item>();
+        Refresh();
     }
     #endregion
 
@@ -58,8 +67,17 @@ public class Inventory : MonoBehaviour {
         </summary>
     */
     private void Refresh() {
-        //TODO Actualización del HUD
-        // La interfaz gráfica del inventario se podría ocultar si this.items.Count == 0
+        //This doesn't work in this version cuz of the list
+        for(int i = 0; i < maxItems; i++)
+        {
+            GameObject slot = GameObject.Instantiate(inventorySlot);
+            slot.transform.parent = inventoryUI.transform;
+            if(items[i] != null)
+            {
+                slot.GetComponent<Image>().sprite = items[i].inventoryImage;
+            }
+
+        }
     }
 
     #region Getters & setters
