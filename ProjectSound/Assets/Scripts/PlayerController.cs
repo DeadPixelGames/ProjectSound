@@ -21,10 +21,13 @@ public class PlayerController : MonoBehaviour
     //Intancia del comportamiento del personaje
     public Player behaviour;
 
+
+    private Inventory inventory;
+
     // Start is called before the first frame update
     void Start()
     {
-     
+        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
         
     }
 
@@ -42,6 +45,17 @@ public class PlayerController : MonoBehaviour
             move = Input.GetAxisRaw("Horizontal");
             if (Input.GetButtonDown("Vertical"))
             moveZ = Input.GetAxisRaw("Vertical");
+            if (Input.GetButtonDown("InventoryScroll"))
+            {
+                if(Input.GetAxisRaw("InventoryScroll") > 0)
+                {
+                    inventory.SetActiveItem(inventory.GetActiveItemIndex() + 1);
+                }
+                else if(Input.GetAxisRaw("InventoryScroll") < 0)
+                {
+                    inventory.SetActiveItem(inventory.GetActiveItemIndex() - 1);
+                }
+            }
             
             
             jump = Input.GetButton("Jump");

@@ -9,7 +9,7 @@ using UnityEngine;
     at all times.
     </summary>
     */
-[CreateAssetMenu(menuName = "Item")]
+[CreateAssetMenu(fileName = "New Item", menuName = "Item")]
 public class Item : ScriptableObject {
     /** <summary>
         Image to use in the inventory to represent this item.

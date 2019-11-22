@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &15704060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3758141678514819658, guid: 263406d5a047f374ab72c0d8d3a45af1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8771555795389214432}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &269111782 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1438850509915584393, guid: cf5c6ffeb06c2d0478943a15063032f4,
@@ -132,7 +144,7 @@ GameObject:
   - component: {fileID: 334010132}
   m_Layer: 5
   m_Name: Inventory
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,6 +184,7 @@ MonoBehaviour:
   inventorySlot: {fileID: 3014880267574675238, guid: 74f5dd38fe753174795cabcb652cbe69,
     type: 3}
   maxItems: 4
+  bubble: {fileID: 11400000, guid: 874e004bf2d6d3546af5a413fe3a565b, type: 2}
 --- !u!114 &334010131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +356,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1438850509646734959}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1099671314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7429920590587554070, guid: 263406d5a047f374ab72c0d8d3a45af1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8771555795389214432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1099671318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099671314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95432f78ca425a4ab624ee62d82c71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressed: 0
 --- !u!1 &1128848782 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1438850508619709409, guid: cf5c6ffeb06c2d0478943a15063032f4,
@@ -527,6 +559,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1851811664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8735015277296548704, guid: 263406d5a047f374ab72c0d8d3a45af1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8771555795389214432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1851811668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851811664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95432f78ca425a4ab624ee62d82c71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressed: 0
 --- !u!1001 &1438850509646734959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -851,17 +902,17 @@ PrefabInstance:
         type: 3}
       propertyPath: joystick
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 15704060}
     - target: {fileID: 3908827433773627401, guid: a008167372aeeaf4285e44ca488d2c32,
         type: 3}
       propertyPath: jumpButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1099671318}
     - target: {fileID: 3908827433773627401, guid: a008167372aeeaf4285e44ca488d2c32,
         type: 3}
       propertyPath: actionButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1851811668}
     - target: {fileID: 3908827433773627401, guid: a008167372aeeaf4285e44ca488d2c32,
         type: 3}
       propertyPath: player

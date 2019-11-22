@@ -5,11 +5,11 @@ using UnityEngine;
 public class ToonLight : MonoBehaviour
 {
 
-    private Light light = null;
+    private Light lightF = null;
     // Start is called before the first frame update
     void Start()
     {
-        light = this.GetComponent<Light>();
+        lightF = this.GetComponent<Light>();
     }
 
     // Update is called once per frame

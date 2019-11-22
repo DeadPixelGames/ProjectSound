@@ -20,18 +20,29 @@ public class Inventory : MonoBehaviour {
     }
     #endregion
 
+
+    //Constant inputs for DEBUG
+    private const string ADD_DEFAULT_ITEM = "r";
+    private const string REMOVE_DEFAULT_ITEM = "y";
+    private const string ADD_ITEM_SLOT = "i";
+    private const string REMOVE_ITEM_SLOT = "o";
+
+
+
     /** <summary>
         Reference to the HUD area displaying the inventory, so it can be updated.
         </summary>
     */
-    public GameObject inventoryUI;
+    [SerializeField]
+    private GameObject inventoryUI;
 
 
     /** <summary>
         Reference to the HUD slot of an item in the inventory.
         </summary>
     */
-    public GameObject inventorySlot;
+    [SerializeField]
+    private GameObject inventorySlot;
 
     /** <summary>
         Maximum amount of items that can be held at any given time.
@@ -39,12 +50,18 @@ public class Inventory : MonoBehaviour {
     */
    [SerializeField]
     private int maxItems;
+    /** <summary>
+        Test Bubble. For Debug purposes only
+        </summary>
+    */
+    [SerializeField]
+    private Item bubble;
 
     /** <summary>
         Index of the active item in the list, or `null` if no item is selected.
         </summary>
     */
-    private int? activeItemIndex;
+    private int activeItemIndex;
 
     /** <summary>
         List of items held in the inventory.
@@ -56,9 +73,35 @@ public class Inventory : MonoBehaviour {
     void Awake() {
         Inventory.InitSingleton(this);
         // No item selected at first
-        this.activeItemIndex = null;
+        this.activeItemIndex = 0;
         this.items = new List<Item>();
+        for(int i = 0; i < maxItems; i++)
+        {
+            this.items.Add(null);
+        }
         Refresh();
+        
+    }
+    //For Debug Purposes Only
+    void Update()
+    {
+        if (Input.GetKeyDown(ADD_DEFAULT_ITEM))
+        {
+            AddItem(bubble);
+            
+        }
+        if (Input.GetKeyDown(REMOVE_DEFAULT_ITEM))
+        {
+            RemoveActiveItem();
+        }
+        if (Input.GetKeyDown(REMOVE_ITEM_SLOT))
+        {
+            SetMaxItems(GetMaxItems() - 1);
+        }
+        if (Input.GetKeyDown(ADD_ITEM_SLOT))
+        {
+            SetMaxItems(GetMaxItems() + 1);
+        }
     }
     #endregion
 
@@ -67,14 +110,54 @@ public class Inventory : MonoBehaviour {
         </summary>
     */
     private void Refresh() {
-        //This doesn't work in this version cuz of the list
-        for(int i = 0; i < maxItems; i++)
+        List<GameObject> children = new List<GameObject>();
+        //Initiate the children list with the invetory's children gameObjects
+        for(int i = 0; i < this.inventoryUI.transform.childCount; i++)
         {
-            GameObject slot = GameObject.Instantiate(inventorySlot);
-            slot.transform.parent = inventoryUI.transform;
-            if(items[i] != null)
+            children.Add(this.inventoryUI.transform.GetChild(i).gameObject);
+        }
+        //In case the inventory's children are more than the item count the surplus objects are destroyed
+        if(inventoryUI.transform.childCount > this.items.Count)
+        {
+            for(int i = this.items.Count; i < inventoryUI.transform.childCount; i++)
             {
-                slot.GetComponent<Image>().sprite = items[i].inventoryImage;
+                Destroy(children[i].gameObject);
+            }
+        }
+        //In case the inventory's children are less than the item count the remaining objects are added
+        else if(inventoryUI.transform.childCount < this.items.Count)
+        {
+            for(int i = inventoryUI.transform.childCount; i < this.items.Count; i++)
+            {
+                GameObject slot = GameObject.Instantiate(inventorySlot);
+                slot.transform.SetParent(inventoryUI.transform);
+                //The scale is set to 1 because if not when more objects are added the scale gets bigger (?)
+                slot.transform.localScale = new Vector3(1, 1, 1);
+                //Set the Id of the Slot the same as the index of the Item in the List
+                slot.GetComponent<InventoryButtonController>().id = i;
+
+            }
+        }
+        children = new List<GameObject>();
+        //Resets the list with the new GameObjects, just in case some of them are destroyed or some are added
+        for (int i = 0; i < this.inventoryUI.transform.childCount; i++)
+        {
+            children.Add(this.inventoryUI.transform.GetChild(i).gameObject);
+            
+        }
+        //Update the visuals of the inventory
+        for (int i = 0; i < this.items.Count; i++)
+        {
+            //If there is an Item
+            if(this.items[i] != null)
+            {
+                //Show the item sprite   
+                children[i].GetComponentsInChildren<Image>()[1].sprite = this.items[i].inventoryImage;
+            }
+            else
+            {
+                //If not show the slot sprite (which is the default)
+                children[i].GetComponentsInChildren<Image>()[1].sprite = this.inventorySlot.GetComponentsInChildren<Image>()[1].sprite;
             }
 
         }
@@ -95,8 +178,8 @@ public class Inventory : MonoBehaviour {
     */
     public Item GetActiveItem() {
         Item ret = null;
-        if(this.activeItemIndex.HasValue && this.activeItemIndex < this.items.Count) {
-            ret = this.items[this.activeItemIndex.Value];
+        if(this.activeItemIndex < this.items.Count) {
+            ret = this.items[this.activeItemIndex];
         }
         return ret;
     }
@@ -116,21 +199,33 @@ public class Inventory : MonoBehaviour {
         // Remove any item beyond the limit
         if(this.items.Count > this.maxItems) {
             var overflowingItems = this.items.Count - this.maxItems;
+            
             this.items.RemoveRange(this.items.Count - overflowingItems, overflowingItems);
+        }else if(this.items.Count < this.maxItems)
+        {
+            while(this.items.Count < this.maxItems)
+            {
+                this.items.Add(null);
+            }
         }
+        Refresh();
     }
-
     /** <summary>
-        Marks the item located at `index` position as active, or deactivates the currently
-        active item if `index` is `null`.
+        Returns the index in the list of the active Item
         </summary>
     */
-    public void SetActiveItem(int? index) {
-        if(index.HasValue) {
-            this.activeItemIndex = Mathf.Clamp(index.Value, 0, this.maxItems - 1);
-        } else {
-            this.activeItemIndex = null;
-        }
+    public int GetActiveItemIndex()
+    {
+        return this.activeItemIndex;
+    }
+
+
+    /** <summary>
+        Marks the item located at `index` position as active.
+        </summary>
+    */
+    public void SetActiveItem(int index) {        
+        this.activeItemIndex = Mathf.Clamp(index, 0, this.maxItems - 1);
     }
     #endregion
 
@@ -142,32 +237,21 @@ public class Inventory : MonoBehaviour {
     */
     public bool AddItem(Item item) {
         var success = false;
-        if(this.items.Count < this.maxItems) {
-            this.items.Add(item);
-            this.activeItemIndex = this.items.Count;
+        if(this.items[activeItemIndex] == null)
+        {
+            this.items[activeItemIndex] = item;
+            success = true;
         }
         this.Refresh();
         return success;
     }
 
     /** <summary>
-        Removes the active item. The selection is passed to a different item. If no item is
-        active, or the inventory is empty, this method has no effect. Additionally triggers
-        a HUD update.
+        Removes the active item. Additionally triggers a HUD update.
         </summary>
     */
     public void RemoveActiveItem() {
-        if(!this.activeItemIndex.HasValue) {
-            return;
-        }
-        this.items.RemoveAt(this.activeItemIndex.Value);
-        if(this.activeItemIndex >= this.items.Count) {
-            if(this.items.Count != 0) {
-                this.activeItemIndex = this.items.Count - 1;
-            } else {
-                this.activeItemIndex = null;
-            }
-        }
+        this.items[this.activeItemIndex] = null;
         this.Refresh();
     }
 
@@ -176,8 +260,11 @@ public class Inventory : MonoBehaviour {
         </summary>
     */
     public void ClearItems() {
-        this.items.Clear();
-        this.activeItemIndex = null;
+        for(int i = 0; i < maxItems; i++)
+        {
+            this.items[i] = null;
+        }
+        this.activeItemIndex = 0;
         this.Refresh();
     }
     #endregion
