@@ -25,9 +25,22 @@ public class Inventory : MonoBehaviour {
     private const string ADD_DEFAULT_ITEM = "r";
     private const string REMOVE_DEFAULT_ITEM = "y";
     private const string ADD_ITEM_SLOT = "i";
-    private const string REMOVE_ITEM_SLOT = "o";
+    private const string REMOVE_ITEM_SLOT = "p";
 
+    /*
+     * <summary>
+     * Reference to slot unselected background texture
+     * </summary>
+     * */
+    [SerializeField]
+    private Sprite unselectedBackground;
 
+    /* <summary>
+     * Reference to slot selected background texture
+     * </summary>
+     */
+    [SerializeField]
+    private Sprite selectedBackground;
 
     /** <summary>
         Reference to the HUD area displaying the inventory, so it can be updated.
@@ -55,7 +68,7 @@ public class Inventory : MonoBehaviour {
         </summary>
     */
     [SerializeField]
-    private Item bubble;
+    private Item[] bubble;
 
     /** <summary>
         Index of the active item in the list, or `null` if no item is selected.
@@ -87,7 +100,7 @@ public class Inventory : MonoBehaviour {
     {
         if (Input.GetKeyDown(ADD_DEFAULT_ITEM))
         {
-            AddItem(bubble);
+            AddItem(bubble[activeItemIndex]);
             
         }
         if (Input.GetKeyDown(REMOVE_DEFAULT_ITEM))
@@ -160,6 +173,15 @@ public class Inventory : MonoBehaviour {
                 children[i].GetComponentsInChildren<Image>()[1].sprite = this.inventorySlot.GetComponentsInChildren<Image>()[1].sprite;
             }
 
+            if(i == this.activeItemIndex)
+            {
+                children[i].GetComponentsInChildren<Image>()[0].sprite = selectedBackground;
+            }
+            else
+            {
+                children[i].GetComponentsInChildren<Image>()[0].sprite = unselectedBackground;
+            }
+
         }
     }
 
@@ -226,6 +248,7 @@ public class Inventory : MonoBehaviour {
     */
     public void SetActiveItem(int index) {        
         this.activeItemIndex = Mathf.Clamp(index, 0, this.maxItems - 1);
+        Refresh();
     }
     #endregion
 

@@ -21,5 +21,5 @@ public class Item : ScriptableObject {
         Prefab to instantiate whenever this item is brought to the game world.
         </summary>
     */
-    public ItemEntity itemEntityPrefab;
+    public GameObject itemEntityPrefab;
 }

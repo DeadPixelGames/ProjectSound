@@ -29,7 +29,7 @@ public class ItemEntity : Entity {
         // implementation of this method, as it should be optional for any ItemEntity-derived class
     }
 
-    protected virtual void Use() {
+    public virtual void Use(int direction, Vector3 position) {
         // Nothing
     }
 }

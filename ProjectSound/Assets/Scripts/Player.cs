@@ -35,7 +35,7 @@ public class Player : Entity
 
 
     //Dirección de mirada del personaje
-    bool facingRight = false;
+    public bool facingRight = false;
 
     private void Awake()
     {

@@ -56,6 +56,29 @@ public class PlayerController : MonoBehaviour
                     inventory.SetActiveItem(inventory.GetActiveItemIndex() - 1);
                 }
             }
+            if (Input.GetButtonDown("Action"))
+            {
+                Item item = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().GetActiveItem();
+                if(item != null)
+                {
+                    GameObject bubble = GameObject.Instantiate(item.itemEntityPrefab);
+                    Vector3 pos = this.transform.position;
+                    if (behaviour.facingRight)
+                    {
+                        pos.x += 1f;
+                        pos.y += 1f;
+                        bubble.GetComponent<ItemEntity>().Use(1, pos);
+                    }
+                    else
+                    {
+                        pos.x -= 1f;
+                        pos.y += 1f;
+                        bubble.GetComponent<ItemEntity>().Use(-1, pos);
+                    }
+                    
+                    GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().RemoveActiveItem();
+                }
+            }
             
             
             jump = Input.GetButton("Jump");
