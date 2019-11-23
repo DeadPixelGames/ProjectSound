@@ -180,9 +180,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f25630c88ee5664a80940fc475c1dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unselectedBackground: {fileID: 21300000, guid: fee489114a1f9734b874074f8e7a5c47,
-    type: 3}
-  selectedBackground: {fileID: 21300000, guid: 2b76caf2fb11b77498b016011a11a3c4, type: 3}
+  unselectedBackground:
+  - {fileID: 21300000, guid: 3501bc7fa2a0eaa45b23ccb330dd6437, type: 3}
+  - {fileID: 21300000, guid: a1024c26d71e94a46b2a415ee4176446, type: 3}
+  - {fileID: 21300000, guid: fee489114a1f9734b874074f8e7a5c47, type: 3}
+  selectedBackground:
+  - {fileID: 21300000, guid: 44ed32ab2dd5721448e4f1514d6c5494, type: 3}
+  - {fileID: 21300000, guid: 596e670525099a04bb0866fa20b6195f, type: 3}
+  - {fileID: 21300000, guid: 2b76caf2fb11b77498b016011a11a3c4, type: 3}
   inventoryUI: {fileID: 334010128}
   inventorySlot: {fileID: 3014880267574675238, guid: 74f5dd38fe753174795cabcb652cbe69,
     type: 3}

@@ -33,14 +33,14 @@ public class Inventory : MonoBehaviour {
      * </summary>
      * */
     [SerializeField]
-    private Sprite unselectedBackground;
+    private Sprite[] unselectedBackground;
 
     /* <summary>
      * Reference to slot selected background texture
      * </summary>
      */
     [SerializeField]
-    private Sprite selectedBackground;
+    private Sprite[] selectedBackground;
 
     /** <summary>
         Reference to the HUD area displaying the inventory, so it can be updated.
@@ -175,11 +175,11 @@ public class Inventory : MonoBehaviour {
 
             if(i == this.activeItemIndex)
             {
-                children[i].GetComponentsInChildren<Image>()[0].sprite = selectedBackground;
+                    children[i].GetComponentsInChildren<Image>()[0].sprite = selectedBackground[i % selectedBackground.Length];             
             }
             else
             {
-                children[i].GetComponentsInChildren<Image>()[0].sprite = unselectedBackground;
+                children[i].GetComponentsInChildren<Image>()[0].sprite = unselectedBackground[i % unselectedBackground.Length];
             }
 
         }
