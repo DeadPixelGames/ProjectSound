@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     //Intancia del comportamiento del personaje
     public Player behaviour;
 
+    private Animator animate;
+
 
     private Inventory inventory;
 
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-        
+        animate = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -63,21 +65,23 @@ public class PlayerController : MonoBehaviour
                 {
                     GameObject bubble = GameObject.Instantiate(item.itemEntityPrefab);
                     Vector3 pos = this.transform.position;
-                    if (behaviour.facingRight)
-                    {
-                        pos.x += 1f;
-                        pos.y += 1f;
-                        bubble.GetComponent<ItemEntity>().Use(1, pos);
-                    }
-                    else
+                    if (behaviour.facingLeft)
                     {
                         pos.x -= 1f;
                         pos.y += 1f;
                         bubble.GetComponent<ItemEntity>().Use(-1, pos);
                     }
+                    else
+                    {
+                        pos.x += 1f;
+                        pos.y += 1f;
+                        bubble.GetComponent<ItemEntity>().Use(1, pos);
+                    }
                     
                     GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().RemoveActiveItem();
+                    animate.SetBool("Throw", true);
                 }
+                
             }
             
             
@@ -88,6 +92,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         behaviour.Move(move * Time.fixedDeltaTime);
+        animate.SetFloat("Speed", move);
+        animate.SetBool("Jump", jump);
+        
         
         behaviour.changeLayer(moveZ);
         moveZ = 0;

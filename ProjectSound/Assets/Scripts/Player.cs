@@ -35,7 +35,7 @@ public class Player : Entity
 
 
     //Dirección de mirada del personaje
-    public bool facingRight = false;
+    public bool facingLeft = false;
 
     private void Awake()
     {
@@ -53,10 +53,10 @@ public class Player : Entity
         Vector3 targetVelocity = new Vector3(move * walkingSpeed * 10f, rigidBody.velocity.y);
         rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, targetVelocity, ref velocity, movementSmoothing);
 
-        if(move > 0  && !facingRight)
+        if(move < 0  && !facingLeft)
         {
             flip();
-        }else if(move < 0 && facingRight)
+        }else if(move > 0 && facingLeft)
         {
             flip();
         }
@@ -80,7 +80,7 @@ public class Player : Entity
     /* Método para dar la vuelta al sprite del personaje */
     public void flip()
     {
-        facingRight = !facingRight;
+        facingLeft = !facingLeft;
 
         Vector3 theScale = transform.localScale;
 

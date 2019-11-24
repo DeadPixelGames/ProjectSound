@@ -15,6 +15,6 @@ public class ToonLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shader.SetGlobalVector("_ToonDirection", -this.transform.forward);
+        Shader.SetGlobalVector("_ToonLightDirection", -this.transform.forward);
     }
 }
