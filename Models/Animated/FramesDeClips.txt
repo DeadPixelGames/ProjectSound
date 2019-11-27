@@ -1,0 +1,7 @@
+//Enemigo rodador
+Idle:0-10
+Run:11-31
+Rotate:32-72
+Jump:73-120
+Shoot:121-151
+Death:152-182
