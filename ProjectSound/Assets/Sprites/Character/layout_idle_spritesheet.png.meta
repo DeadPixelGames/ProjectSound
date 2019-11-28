@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f5dbd5d9854ba014882219f87143b45b
+guid: 546fa6f85e233f949bd2cc3987261b1b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: layout_idle_spritesheet_0
-    21300002: layout_idle_spritesheet_1
-    21300004: layout_idle_spritesheet_2
+    21300000: layout_idle_spritesheet 1_0
+    21300002: layout_idle_spritesheet 1_1
+    21300004: layout_idle_spritesheet 1_2
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -35,7 +35,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -87,13 +87,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: layout_idle_spritesheet_0
+      name: layout_idle_spritesheet 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 499
-        height: 878
+        height: 1756
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -101,19 +101,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0279b06d28212e4a8b2ffb48ba974de
+      spriteID: beecd8c282e195b4ebf6a4c15dea19bc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: layout_idle_spritesheet_1
+      name: layout_idle_spritesheet 1_1
       rect:
         serializedVersion: 2
         x: 499
         y: 0
         width: 499
-        height: 878
+        height: 1756
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,19 +121,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b13f76f13f503f44a1f8cc21c974528
+      spriteID: aeb524d7f37d3e04fa5095b2d9363c76
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: layout_idle_spritesheet_2
+      name: layout_idle_spritesheet 1_2
       rect:
         serializedVersion: 2
         x: 998
         y: 0
         width: 499
-        height: 878
+        height: 1756
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,7 +141,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b4dffd5b3994e548b474482de64cc55
+      spriteID: 26fc65b56df24284bbf49db7e8ef22e7
       vertices: []
       indices: 
       edges: []
@@ -149,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e1ab41694b69252428a63ea6c8a851b3
+    spriteID: 031d1f442edaaea4ca1171e239013163
     vertices: []
     indices: 
     edges: []
