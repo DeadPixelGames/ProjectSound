@@ -18,6 +18,7 @@ public class Auxiliar : MonoBehaviour
         List<Texture2D> textures = new List<Texture2D>() ;
         foreach(Material mat in materials)
         {
+            
             Color[] col = new Color[64];
             for(int j = 0; j < 64; j++)
             {
@@ -38,12 +39,13 @@ public class Auxiliar : MonoBehaviour
             Debug.Log(tex);
             
         }
-        int i = 0;
-        foreach(byte[] byt in bytes)
+        
+        
+        for(int i = 0; i < bytes.Count; i++)
         {
-            Debug.Log(byt);
+            
             // For testing purposes, also write to a file in the project folder
-            File.WriteAllBytes(Application.dataPath + "/../Assets/Textures/Beige"+i+".png", byt);
+            File.WriteAllBytes(Application.dataPath + "/../Assets/Textures/"+ materials[i].name+ ".png", bytes[i]);
             i++;
         }
         

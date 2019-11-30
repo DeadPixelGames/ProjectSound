@@ -63,28 +63,10 @@ public class PlayerController : MonoBehaviour
                 Item item = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().GetActiveItem();
                 if(item != null)
                 {
-                    GameObject bubble = GameObject.Instantiate(item.itemEntityPrefab);
-                    Vector3 pos = this.transform.position;
-                    if (behaviour.facingLeft)
-                    {
-                        pos.x -= 1f;
-                        pos.y += 1f;
-                        bubble.GetComponent<ItemEntity>().Use(-1, pos);
-                    }
-                    else
-                    {
-                        pos.x += 1f;
-                        pos.y += 1f;
-                        bubble.GetComponent<ItemEntity>().Use(1, pos);
-                    }
-                    
-                    GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().RemoveActiveItem();
-                    animate.SetBool("Throw", true);
+                    animate.SetTrigger("Throw");
                 }
                 
             }
-            
-            
             jump = Input.GetButton("Jump");
         }
     }
@@ -95,16 +77,19 @@ public class PlayerController : MonoBehaviour
         animate.SetFloat("Speed", move);
         animate.SetBool("Jump", jump);
         
+        animate.SetFloat("YSpeed", gameObject.GetComponent<Rigidbody>().velocity.y);
         
         behaviour.changeLayer(moveZ);
         moveZ = 0;
-        if (jump)
-        {
-            behaviour.jump();
-        }
+
         //jump = false;
         //jumpButton.pressed = false;
     }
+
     
+    public void setAnimatorGrounded()
+    {
+        animate.SetTrigger("Grounded");
+    }
 
 }

@@ -16,6 +16,8 @@ public class Player : Entity
     */
     public event System.Action onPlayerDead;
 
+    private const int LAYOUT_LAYER = 3;
+    private int previousLayer = 0;
 
     private int layer = 0;
 
@@ -27,11 +29,13 @@ public class Player : Entity
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsBouncy;
 
 
     [Header("Events")]
     [Space]
     public UnityEvent OnLandEvent;
+    public UnityEvent OnBouncyEvent;
 
 
     //Dirección de mirada del personaje
@@ -45,6 +49,10 @@ public class Player : Entity
         if(OnLandEvent == null)
         {
             OnLandEvent = new UnityEvent();
+        }
+        if(OnBouncyEvent == null)
+        {
+            OnBouncyEvent = new UnityEvent();
         }
     }
 
@@ -64,16 +72,46 @@ public class Player : Entity
 
     public void changeLayer(float change)
     {
-        
+
+        RaycastHit hit;
+
+        previousLayer = layer;
         if (change > 0)
         {
-            layer = GameManager.instance.ClampLayer(layer-1);
+            
+            if(Physics.Raycast(new Ray(transform.position, new Vector3(0f, 0f, 1f)), out hit))
+            {
+                if(hit.point.z > GameManager.instance.GetLayer(layer - 1)){
+                    layer = GameManager.instance.ClampLayer(layer - 1);
+                }
+            }
+            else
+            {
+                layer = GameManager.instance.ClampLayer(layer - 1);
+            }
             
         }
         else if(change < 0)
         {
-            layer = GameManager.instance.ClampLayer(layer+1);
+
+            if (Physics.Raycast(new Ray(transform.position, new Vector3(0f, 0f, -1f)), out hit))
+            {
+                if (hit.point.z < GameManager.instance.GetLayer(layer + 1))
+                {
+                    layer = GameManager.instance.ClampLayer(layer+1);
+                }
+            }
+            else
+            {
+                layer = GameManager.instance.ClampLayer(layer + 1);
+            }
+            
         }
+        if((previousLayer == LAYOUT_LAYER && layer != LAYOUT_LAYER) || (previousLayer != LAYOUT_LAYER && layer == LAYOUT_LAYER))
+        {
+            gameObject.GetComponent<Animator>().SetTrigger("ToggleClimb");
+        }
+
         
     }
 
@@ -89,7 +127,24 @@ public class Player : Entity
     }
 
     /* Método para usar una onomatopeya */
-    public void useBubble() { }
+    public void useBubble() {
+        GameObject bubble = GameObject.Instantiate(GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().GetActiveItem().itemEntityPrefab);
+        Vector3 pos = this.transform.position;
+        if (this.facingLeft)
+        {
+            pos.x -= 1f;
+            pos.y += 1f;
+            bubble.GetComponent<ItemEntity>().Use(-1, pos);
+        }
+        else
+        {
+            pos.x += 1f;
+            pos.y += 1f;
+            bubble.GetComponent<ItemEntity>().Use(1, pos);
+        }
+
+        GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().RemoveActiveItem();
+    }
 
 
     private void FixedUpdate()
@@ -117,6 +172,16 @@ public class Player : Entity
                 }
             }
         }
+
+        Collider[] bouncyColliders = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsBouncy);
+        for(int i = 0; i < bouncyColliders.Length; i++)
+        {
+            if(bouncyColliders[i].gameObject != gameObject)
+            {
+                   OnBouncyEvent.Invoke();
+                
+            }
+        }
     }
 
     public new void jump()
@@ -126,4 +191,15 @@ public class Player : Entity
             rigidBody.AddForce(new Vector2(0f, jumpSpeed));
         }
     }
+    public void bounce()
+    {
+
+        if (Input.GetButton("Jump"))
+        {
+            Debug.Log("UwU");
+            rigidBody.AddForce(new Vector2(0f, jumpSpeed * 0.025f), ForceMode.Impulse);
+        }
+    }
+
+
 }
