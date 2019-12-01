@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 416bc091e7073cb4487f4391ccc848c9
+guid: dbe05b187627ba44bb23b7aec923c103
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -19,16 +19,18 @@ ModelImporter:
     400012: tacoSuperior
     2100000: 'Material #2'
     2100002: 'Material #39'
-    2100004: 'Material #4'
+    2100004: 'Material #72'
     2100006: 'Material #42'
     2100008: 'Material #41'
     2100010: 'Material #43'
     2100012: 'Material #40'
-    2100014: 'Material #3'
-    2100016: 'Material #9'
-    2100018: 'Material #8'
-    2100020: 'Material #10'
-    2100022: 'Material #7'
+    2100014: 'Material #60'
+    2100016: 'Material #4'
+    2100018: 'Material #9'
+    2100020: 'Material #8'
+    2100022: 'Material #10'
+    2100024: 'Material #7'
+    2100026: 'Material #3'
     2300000: hoja
     2300002: margen
     2300004: portadaBaja
@@ -47,7 +49,7 @@ ModelImporter:
     4300006: tacoSuperior
     4300008: portadaSuperior
     4300010: margen
-    7400000: Abrir
+    7400000: AbrirCatalogo
     7400002: pasarPagina
     9500000: //RootNode
   externalObjects: {}
@@ -79,7 +81,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Abrir
+      name: AbrirCatalogo
       takeName: Take 001
       firstFrame: 0
       lastFrame: 50

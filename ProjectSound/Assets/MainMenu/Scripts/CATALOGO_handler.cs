@@ -12,6 +12,7 @@ public class CATALOGO_handler : MonoBehaviour
     {
         catalogo_animator.SetBool("pagina1", true);
         catalogo_animator.SetBool("pagina2", false);
+        Debug.Log("HOLA");
     }
 
     public void pasarPaginaIzquierda()
