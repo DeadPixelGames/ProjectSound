@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479b8a68218e3ec44a8479d5ec70dfbd, type: 3}
+  m_Name: Ink
+  m_EditorClassIdentifier: 
+  inventoryImage: {fileID: 21300000, guid: c39fd8be81721b14d8ae19a428c22512, type: 3}
+  itemEntityPrefab: {fileID: 3884226972281117355, guid: 93df5dbb5a38ef2418204d45504d3c34,
+    type: 3}

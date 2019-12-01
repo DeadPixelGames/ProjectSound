@@ -43,8 +43,9 @@ public class Player : Entity
     //Dirección de mirada del personaje
     public bool facingLeft = false;
 
-    private void Awake()
-    {
+    private new void Awake() {
+        base.Awake();
+
         rigidBody = GetComponent<Rigidbody>();
         
 

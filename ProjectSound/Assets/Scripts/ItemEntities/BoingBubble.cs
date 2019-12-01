@@ -13,7 +13,8 @@ public class BoingBubble : ItemEntity
     private new Rigidbody rigidbody;
 
     #region Unity
-    private void Awake() {
+    private new void Awake() {
+        base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }
     #endregion

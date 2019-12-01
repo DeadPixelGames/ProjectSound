@@ -18,7 +18,8 @@ public class FiumBubble : ItemEntity {
     private float cooldown = 0.1f;
 
     #region Unity
-    private void Awake() {
+    private new void Awake() {
+        base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }
 

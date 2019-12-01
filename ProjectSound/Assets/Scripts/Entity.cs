@@ -9,6 +9,10 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour {
     
     #region Unity
+    protected void Awake() {
+        this.health = this.maxHealth;
+    }
+
     private void FixedUpdate() {
         if(!GameManager.instance.IsPaused()) {
             this.Move(0);
