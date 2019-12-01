@@ -10,11 +10,19 @@ public class BoingBubble : ItemEntity
     [SerializeField]
     private Vector3 movementForce;
 
+    private new Rigidbody rigidbody;
+
+    #region Unity
+    private void Awake() {
+        this.rigidbody = this.GetComponent<Rigidbody>();
+    }
+    #endregion
+
     public override void Move(float move)
     {
         if (!this.floating)
         {
-            GetComponent<Rigidbody>().AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
+            rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
         }
     }
 
@@ -22,16 +30,16 @@ public class BoingBubble : ItemEntity
     {
         this.transform.position = position;
         this.floating = false;
-        Move(direction);
+        this.Move(direction);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject != GameObject.FindGameObjectWithTag("Player"))
         {
-            GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            Debug.Log(GetComponent<Rigidbody>().isKinematic);
+            rigidbody.isKinematic = false;
+            rigidbody.velocity = Vector3.zero;
+            Debug.Log(rigidbody.isKinematic);
         }
         
     }

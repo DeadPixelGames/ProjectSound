@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour {
         </summary>
     */
     public void SetPaused(bool paused) {
-        if(paused != this.paused) {
+        if(paused != this.paused && this.onPauseChanged != null) {
             this.onPauseChanged.Invoke(paused);
         }
         this.paused = paused;

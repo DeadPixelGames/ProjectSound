@@ -9,7 +9,7 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour {
     
     #region Unity
-    void Update() {
+    private void FixedUpdate() {
         if(!GameManager.instance.IsPaused()) {
             this.Move(0);
         }
