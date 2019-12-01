@@ -5,3 +5,11 @@ Rotate:32-72
 Jump:73-120
 Shoot:121-151
 Death:152-182
+
+//Enemigo volador
+Idle:0-20
+Run:21-41
+Rotate:42-112
+Traspaso:113-148
+Shoot:149-179
+Death:180-220
