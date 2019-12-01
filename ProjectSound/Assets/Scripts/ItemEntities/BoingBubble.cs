@@ -22,7 +22,7 @@ public class BoingBubble : ItemEntity
     {
         if (!this.floating)
         {
-            rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
+            this.rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
         }
     }
 
@@ -37,9 +37,8 @@ public class BoingBubble : ItemEntity
     {
         if(collision.gameObject != GameObject.FindGameObjectWithTag("Player"))
         {
-            rigidbody.isKinematic = false;
-            rigidbody.velocity = Vector3.zero;
-            Debug.Log(rigidbody.isKinematic);
+            this.rigidbody.isKinematic = false;
+            this.rigidbody.velocity = Vector3.zero;
         }
         
     }

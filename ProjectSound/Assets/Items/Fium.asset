@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479b8a68218e3ec44a8479d5ec70dfbd, type: 3}
   m_Name: Fium
   m_EditorClassIdentifier: 
-  inventoryImage: {fileID: 0}
-  itemEntityPrefab: {fileID: 0}
+  inventoryImage: {fileID: 21300000, guid: b4d5703f1ab195749a25d4cd27bab573, type: 3}
+  itemEntityPrefab: {fileID: 1880621192483543549, guid: 290436a5adcd9114497672cf20e26af5,
+    type: 3}

@@ -19,8 +19,7 @@ public class ThrowBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<Player>().useBubble();
+        GameManager.instance.player.useBubble();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -36,7 +36,6 @@ public class Auxiliar : MonoBehaviour
         {
             // Encode texture into PNG
             bytes.Add(tex.EncodeToPNG());
-            Debug.Log(tex);
             
         }
         

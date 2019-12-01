@@ -31,6 +31,8 @@ public class Player : Entity
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsBouncy;
 
+    [SerializeField] private Transform throwItem;
+
 
     [Header("Events")]
     [Space]
@@ -58,8 +60,8 @@ public class Player : Entity
 
     public override void Move(float move)
     {
-        Vector3 targetVelocity = new Vector3(move * walkingSpeed * 10f, rigidBody.velocity.y);
-        rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, targetVelocity, ref velocity, movementSmoothing);
+
+        rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right * 0.1f);
 
         if(move < 0  && !facingLeft)
         {
@@ -128,22 +130,14 @@ public class Player : Entity
 
     /* Método para usar una onomatopeya */
     public void useBubble() {
-        GameObject bubble = GameObject.Instantiate(GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().GetActiveItem().itemEntityPrefab);
-        Vector3 pos = this.transform.position;
-        if (this.facingLeft)
-        {
-            pos.x -= 1f;
-            pos.y += 1f;
-            bubble.GetComponent<ItemEntity>().Use(-1, pos);
-        }
-        else
-        {
-            pos.x += 1f;
-            pos.y += 1f;
-            bubble.GetComponent<ItemEntity>().Use(1, pos);
+        var activeItem = Inventory.instance.GetActiveItem();
+        if(activeItem == null) {
+            return;
         }
 
-        GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().RemoveActiveItem();
+        GameObject bubble = GameObject.Instantiate(activeItem.itemEntityPrefab);
+        bubble.GetComponent<ItemEntity>().Use(this.facingLeft ? -1 : 1, this.throwItem.position);
+        Inventory.instance.GetComponent<Inventory>().RemoveActiveItem();
     }
 
 
@@ -188,7 +182,7 @@ public class Player : Entity
     {
         if (grounded)
         {
-            rigidBody.AddForce(new Vector2(0f, jumpSpeed));
+            rigidBody.AddForce(jumpSpeed * Vector3.up);
         }
     }
 
@@ -198,8 +192,7 @@ public class Player : Entity
 
         if (Input.GetButton("Jump"))
         {
-            Debug.Log("UwU");
-            rigidBody.AddForce(new Vector2(0f, jumpSpeed * 0.025f), ForceMode.Impulse);
+            rigidBody.AddForce(jumpSpeed * 0.025f * Vector3.up, ForceMode.Impulse);
         }
     }
 

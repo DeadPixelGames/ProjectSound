@@ -45,13 +45,9 @@ public class ZapBubble : ItemEntity {
 
     private void Zap(Collision other) {
         var zappableComponents = other.gameObject.GetComponents<IZappable>();
-        var success = false;
         foreach(IZappable zappable in zappableComponents) {
             zappable.Zap();
-            success = true;
         }
-        if(success) {
-            GameObject.Destroy(this.gameObject);
-        }
+        GameObject.Destroy(this.gameObject);
     }
 }
