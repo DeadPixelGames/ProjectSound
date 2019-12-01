@@ -1,0 +1,199 @@
+fileFormatVersion: 2
+guid: 7d0f431ff31225043a07723228232ca7
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Circle
+    100002: Cube
+    100004: notizblock_part1
+    100006: notizblock_part2
+    100008: Sphere
+    100010: stift
+    100012: stift.001
+    100014: stift.002
+    100016: stift.003
+    100018: stift.004
+    100020: stift.005
+    100022: stiftkappe
+    100024: stiftkappe.001
+    100026: stiftkappe.002
+    100028: stiftkappe.003
+    100030: stiftkappe.004
+    100032: stiftkappe.005
+    100034: //RootNode
+    100036: zeichnung
+    400000: Circle
+    400002: Cube
+    400004: notizblock_part1
+    400006: notizblock_part2
+    400008: Sphere
+    400010: stift
+    400012: stift.001
+    400014: stift.002
+    400016: stift.003
+    400018: stift.004
+    400020: stift.005
+    400022: stiftkappe
+    400024: stiftkappe.001
+    400026: stiftkappe.002
+    400028: stiftkappe.003
+    400030: stiftkappe.004
+    400032: stiftkappe.005
+    400034: //RootNode
+    400036: zeichnung
+    2100000: rubber_rot
+    2100002: rubber
+    2100004: notizblock
+    2100006: bleistift_tex
+    2100008: stiftmine
+    2100010: stiftholz
+    2100012: Material.005
+    2100014: Material.002
+    2100016: Material.003
+    2100018: Material.011
+    2100020: Material.010
+    2100022: Material.008
+    2100024: 6AE659BF-FA91-416B-BD39-D490FC475492
+    2100026: Material.009
+    2100028: Material.004
+    2100030: Material.001
+    2300000: Circle
+    2300002: Cube
+    2300004: notizblock_part1
+    2300006: notizblock_part2
+    2300008: Sphere
+    2300010: stift
+    2300012: stift.001
+    2300014: stift.002
+    2300016: stift.003
+    2300018: stift.004
+    2300020: stift.005
+    2300022: stiftkappe
+    2300024: stiftkappe.001
+    2300026: stiftkappe.002
+    2300028: stiftkappe.003
+    2300030: stiftkappe.004
+    2300032: stiftkappe.005
+    2300034: zeichnung
+    3300000: Circle
+    3300002: Cube
+    3300004: notizblock_part1
+    3300006: notizblock_part2
+    3300008: Sphere
+    3300010: stift
+    3300012: stift.001
+    3300014: stift.002
+    3300016: stift.003
+    3300018: stift.004
+    3300020: stift.005
+    3300022: stiftkappe
+    3300024: stiftkappe.001
+    3300026: stiftkappe.002
+    3300028: stiftkappe.003
+    3300030: stiftkappe.004
+    3300032: stiftkappe.005
+    3300034: zeichnung
+    4300000: Cube
+    4300002: notizblock_part2
+    4300004: notizblock_part1
+    4300006: Sphere
+    4300008: stiftkappe.005
+    4300010: stift.005
+    4300012: stift.004
+    4300014: stiftkappe.004
+    4300016: stiftkappe.003
+    4300018: stift.003
+    4300020: Circle
+    4300022: zeichnung
+    4300024: stift.002
+    4300026: stiftkappe.002
+    4300028: stiftkappe.001
+    4300030: stift.001
+    4300032: stift
+    4300034: stiftkappe
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
