@@ -15,10 +15,10 @@ MonoBehaviour:
   k_AssetVersion: 4
   m_RequireDepthTexture: 0
   m_RequireOpaqueTexture: 0
-  m_OpaqueDownsampling: 1
+  m_OpaqueDownsampling: 2
   m_SupportsHDR: 0
   m_MSAA: 4
-  m_RenderScale: 1
+  m_RenderScale: 2.07
   m_MainLightRenderingMode: 1
   m_MainLightShadowsSupported: 1
   m_MainLightShadowmapResolution: 2048
@@ -41,4 +41,4 @@ MonoBehaviour:
   m_MaxPixelLights: 0
   m_ShadowAtlasResolution: 256
   m_ResourcesAsset: {fileID: 11400000, guid: aac5a08c32552a14c89394b703f1978a, type: 2}
-  m_ShaderVariantLogLevel: 0
+  m_ShaderVariantLogLevel: 2

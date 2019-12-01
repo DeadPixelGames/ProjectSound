@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5502380066642017313}
   - component: {fileID: 1298432853318047680}
   - component: {fileID: 6180936854772626943}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: boing_morado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
