@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animate;
 
+    private Rigidbody rigidBody;
 
     private Inventory inventory;
 
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
         animate = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
         animate.SetFloat("Speed", move);
         animate.SetBool("Jump", jump);
         
-        animate.SetFloat("YSpeed", gameObject.GetComponent<Rigidbody>().velocity.y);
+        animate.SetFloat("YSpeed", rigidBody.velocity.y);
         
         behaviour.changeLayer(moveZ);
         moveZ = 0;

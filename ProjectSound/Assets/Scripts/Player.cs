@@ -191,6 +191,8 @@ public class Player : Entity
             rigidBody.AddForce(new Vector2(0f, jumpSpeed));
         }
     }
+
+
     public void bounce()
     {
 
