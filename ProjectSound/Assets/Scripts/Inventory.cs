@@ -90,7 +90,8 @@ public class Inventory : MonoBehaviour {
         this.items = new List<Item>();
         for(int i = 0; i < maxItems; i++)
         {
-            this.items.Add(null);
+            //TODO Set this to null when we are done testing
+            this.items.Add(this.bubble[i]);
         }
         Refresh();
         

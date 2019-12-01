@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetButtonDown("Action"))
             {
-                Item item = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().GetActiveItem();
+                Item item = Inventory.instance.GetActiveItem();
                 if(item != null)
                 {
                     animate.SetTrigger("Throw");

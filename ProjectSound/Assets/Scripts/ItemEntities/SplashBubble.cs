@@ -45,13 +45,9 @@ public class SplashBubble : ItemEntity {
 
     private void Splash(Collision other) {
         var splashableComponents = other.gameObject.GetComponents<ISplashable>();
-        var success = false;
         foreach(ISplashable splashable in splashableComponents) {
             splashable.Splash();
-            success = true;
         }
-        if(success) {
-            GameObject.Destroy(this.gameObject);
-        }
+        GameObject.Destroy(this.gameObject);
     }
 }

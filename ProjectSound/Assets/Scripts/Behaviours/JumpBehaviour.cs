@@ -20,7 +20,7 @@ public class JumpBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().jump();
+        GameManager.instance.player.jump();
 
     }
 

@@ -6,7 +6,13 @@ public class BoomBubble : ItemEntity {
 
     public float damage = 10f;
 
-    public float effectRadius = 2f;
+    public float destroyRadius = 2f;
+
+    public float pushRadius = 3f;
+
+    public float pushFactor = 1f;
+
+    public float pushDecay = 1f;
 
     private bool floating = true;
 
@@ -30,19 +36,22 @@ public class BoomBubble : ItemEntity {
     
     private void OnCollisionEnter(Collision other) {
         if(!this.floating && this.cooldown < 0) {
+            this.Push();
             this.Explode();
         }
     }
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, this.effectRadius);
+        Gizmos.DrawWireSphere(this.transform.position, this.destroyRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(this.transform.position, this.pushRadius);
     }
     #endregion
 
     public override void Move(float move) {
         if(!this.floating) {
-            rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
+            this.rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
         }
     }
 
@@ -53,7 +62,7 @@ public class BoomBubble : ItemEntity {
     }
 
     private void Explode() {
-        var colliders = Physics.OverlapSphere(this.transform.position, this.effectRadius);
+        var colliders = Physics.OverlapSphere(this.transform.position, this.destroyRadius);
         foreach(Collider collider in colliders) {
             var explodableComponents = collider.gameObject.GetComponents<IExplodable>();
             foreach(IExplodable explodable in explodableComponents) {
@@ -65,5 +74,20 @@ public class BoomBubble : ItemEntity {
             }
         }
         GameObject.Destroy(this.gameObject);
+    }
+
+    private void Push() {
+        var colliders = Physics.OverlapSphere(this.transform.position, this.pushRadius);
+        foreach(Collider collider in colliders) {
+            var rigidbodies = collider.gameObject.GetComponents<Rigidbody>();
+            foreach(Rigidbody rigidbody in rigidbodies) {
+                var direction = (- this.transform.position + rigidbody.transform.position).normalized;
+                if(Vector3.Distance(this.transform.position, rigidbody.transform.position) > this.pushRadius) {
+                    continue;
+                }
+                var force = this.pushRadius * direction - pushDecay * (- this.transform.position + rigidbody.transform.position);
+                rigidbody.AddForce(force * pushFactor, ForceMode.Impulse);
+            }
+        }
     }
 }
