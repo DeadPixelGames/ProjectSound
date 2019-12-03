@@ -33,7 +33,8 @@ public class Player : Entity
 
     [SerializeField] private Transform throwItem;
 
-
+    [SerializeField] private float movementForce;
+    [SerializeField] private float maxVelocity;
     [Header("Events")]
     [Space]
     public UnityEvent OnLandEvent;
@@ -60,8 +61,16 @@ public class Player : Entity
 
     public override void Move(float move)
     {
+        Debug.Log(walkingSpeed);
+        //rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right);
+        //rigidBody.AddForce(movementForce * move * walkingSpeed * Vector3.right);
 
-        rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right * 0.1f);
+        //if(rigidBody.velocity.magnitude > maxVelocity)
+        //{
+        //    rigidBody.velocity = new Vector2(maxVelocity,0);
+        //}
+        transform.Translate(new Vector3(move, 0, 0) * walkingSpeed);
+
 
         if(move < 0  && !facingLeft)
         {
@@ -182,7 +191,10 @@ public class Player : Entity
     {
         if (grounded)
         {
+            
             rigidBody.AddForce(jumpSpeed * Vector3.up);
+            GetComponent<PlayerController>().animate.SetBool("Grounded", false);
+        
         }
     }
 
