@@ -11,7 +11,7 @@ public class SplashBubble : ItemEntity {
 
     private new Rigidbody rigidbody;
 
-    private float cooldown = 0.1f;
+    private float cooldown = 0.05f;
 
     #region Unity
     private new void Awake() {
@@ -26,7 +26,7 @@ public class SplashBubble : ItemEntity {
         }
     }
     
-    private void OnCollisionEnter(Collision other) {
+    private void OnCollisionStay(Collision other) {
         if(!this.floating && this.cooldown < 0) {
             this.Splash(other);
         }
@@ -46,10 +46,17 @@ public class SplashBubble : ItemEntity {
     }
 
     private void Splash(Collision other) {
+        if(other.gameObject == GameManager.instance.player.gameObject) {
+            return;
+        }
+        var success = false;
         var splashableComponents = other.gameObject.GetComponents<ISplashable>();
         foreach(ISplashable splashable in splashableComponents) {
             splashable.Splash();
+            success = true;
         }
-        GameObject.Destroy(this.gameObject);
+        if(success) {
+            GameObject.Destroy(this.gameObject);
+        }
     }
 }

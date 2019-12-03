@@ -48,11 +48,15 @@ public abstract class Entity : MonoBehaviour {
     private float invulnerabilityTime;
 
     public float getHealth() { return health; }
-    public void setHealth(float h) { Mathf.Clamp(h, 0, maxHealth); }
-    public void addHealth(float h) { Mathf.Clamp(h + health, 0, maxHealth); }
+    public void setHealth(float h) { this.health = Mathf.Clamp(h, 0, maxHealth); }
+    public void addHealth(float h) { this.health = Mathf.Clamp(h + health, 0, maxHealth); }
 
     public int GetLayer() {
         return this.layer;
+    }
+
+    public void SetLayer(int layer) {
+        this.layer = layer;
     }
 
     public void jump() { }

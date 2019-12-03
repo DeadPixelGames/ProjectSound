@@ -21,7 +21,7 @@ public class BoomBubble : ItemEntity {
 
     private new Rigidbody rigidbody;
 
-    private float cooldown = 0.1f;
+    private float cooldown = 0.05f;
 
     #region Unity
     private new void Awake() {
@@ -36,7 +36,10 @@ public class BoomBubble : ItemEntity {
         }
     }
     
-    private void OnCollisionEnter(Collision other) {
+    private void OnCollisionStay(Collision other) {
+        if(other.gameObject == GameManager.instance.player.gameObject) {
+            return;
+        }
         if(!this.floating && this.cooldown < 0) {
             this.Push();
             this.Explode();

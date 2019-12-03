@@ -109,7 +109,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.64, y: 3.48, z: 0.2}
+  m_Size: {x: 5, y: 3.48, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4129609972501340914
 MonoBehaviour:
@@ -128,5 +128,5 @@ MonoBehaviour:
   maxHealth: 0
   item: {fileID: 11400000, guid: ac499efd513ea4644bddd833d9e769c1, type: 2}
   damage: 10
-  impulse: 30
+  impulse: 5
   movementForce: {x: 2, y: 50, z: 0}

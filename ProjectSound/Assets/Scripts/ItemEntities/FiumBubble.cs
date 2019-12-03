@@ -15,7 +15,7 @@ public class FiumBubble : ItemEntity {
 
     private new Rigidbody rigidbody;
 
-    private float cooldown = 0.1f;
+    private float cooldown = 0.001f;
 
     #region Unity
     private new void Awake() {
@@ -51,9 +51,12 @@ public class FiumBubble : ItemEntity {
     }
 
     private void Damage(Collision other) {
+        if(other.gameObject == GameManager.instance.player.gameObject) {
+            return;
+        }
         var entity = other.gameObject.GetComponent<Entity>();
         if(entity != null) {
-            entity.addHealth(this.damage);
+            entity.addHealth(-this.damage);
         }
         GameObject.Destroy(this.gameObject);
     }

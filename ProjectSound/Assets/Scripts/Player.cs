@@ -132,9 +132,10 @@ public class Player : Entity
             return;
         }
 
-        GameObject bubble = GameObject.Instantiate(activeItem.itemEntityPrefab);
-        bubble.GetComponent<ItemEntity>().Use(this.facingLeft ? -1 : 1, this.throwItem.position);
-        Inventory.instance.GetComponent<Inventory>().RemoveActiveItem();
+        var bubble = GameObject.Instantiate(activeItem.itemEntityPrefab).GetComponent<ItemEntity>();
+        bubble.Use(this.facingLeft ? -1 : 1, this.throwItem.position);
+        bubble.SetLayer(this.layer);
+        Inventory.instance.RemoveActiveItem();
     }
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyController : Entity {
+public abstract class EnemyController : Entity, IZappable, ISplashable {
 
     private struct CapsuleData {
         private Vector3 point0;
@@ -46,6 +46,12 @@ public abstract class EnemyController : Entity {
 
     private float playerShootTimeout;
 
+    private float traverseLayerCounter;
+
+    private float destRotation;
+
+    private float destRotationCounter;
+
     private int previousLayer;
 
     private bool facingLeft;
@@ -56,11 +62,13 @@ public abstract class EnemyController : Entity {
         this.fieldOfViewData = this.GetFieldOfViewData();
         this.animator = this.GetComponent<Animator>();
         this.entitiesThisEnemyCanSee = new Collider[8];
+        this.destRotation = this.transform.rotation.eulerAngles.y;
     }
 
     private new void Update() {
         base.Update();
 
+        // Determine whether the player can be seen
         var playerSeen = this.SeesPlayer();
         if(playerSeen) {
             this.playerSeenTimeout = 1f;
@@ -68,21 +76,40 @@ public abstract class EnemyController : Entity {
             this.playerSeenTimeout -= Time.deltaTime;
         }
         this.animator.SetBool("SeesPlayer", playerSeen || this.playerSeenTimeout > 0);
-        if((playerSeen || this.playerSeenTimeout > 0) && GameManager.instance.player.GetLayer() != this.layer) {
+
+        // Move to the player's layer
+        if((playerSeen || this.playerSeenTimeout > 0) && GameManager.instance.player.GetLayer() != this.layer && Random.value < 0.01f) {
             this.ChangeLayer(this.layer - GameManager.instance.player.GetLayer());
         }
+
+        // Shoot the player
         if((playerSeen || this.playerSeenTimeout > 0) && this.playerShootTimeout <= 0) {
             this.animator.SetTrigger("Shoot");
             this.playerShootTimeout = this.shootCooldown;
         } else {
             this.playerShootTimeout -= Time.deltaTime;
         }
+
+        // Traverse layers
         if(Mathf.Abs(this.transform.position.z - GameManager.instance.GetLayer(this.layer)) > float.Epsilon) {
-            this.transform.position = Vector3.Slerp(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, GameManager.instance.GetLayer(this.layer)), this.animator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            this.transform.position = Vector3.Slerp(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, GameManager.instance.GetLayer(this.layer)), this.traverseLayerCounter);
+            this.traverseLayerCounter += 0.1f * Time.deltaTime;
         } else {
             this.snapToLayer = true;
+            this.traverseLayerCounter = 0;
         }
-        if(this.getHealth() <= 0) {
+
+        // Rotate
+        var euler = this.transform.rotation.eulerAngles;
+        if(Mathf.Abs(this.transform.rotation.eulerAngles.y - this.destRotation) > float.Epsilon) {
+            this.transform.rotation = Quaternion.Euler(Vector3.Slerp(euler, new Vector3(euler.x, destRotation, euler.z), this.destRotationCounter));
+            this.destRotationCounter += 0.5f * Time.deltaTime;
+        } else {
+            this.destRotationCounter = 0;
+        }
+
+        // Die
+        if(this.getHealth() <= 0 && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("Death")) {
             this.animator.SetTrigger("Death");
         }
     }
@@ -91,8 +118,9 @@ public abstract class EnemyController : Entity {
     public abstract bool ShouldTurnAround();
 
     public void Shoot() {
-        var bullet = GameObject.Instantiate(this.bulletPrefab, this.shootTransform.position, Quaternion.identity);
-        bullet.GetComponent<BulletEntity>().SetDirection(facingLeft ? -1 : 1);
+        var bullet = GameObject.Instantiate(this.bulletPrefab, this.shootTransform.position, Quaternion.identity).GetComponent<BulletEntity>();
+        bullet.SetLayer(this.layer);
+        bullet.SetDirection(facingLeft ? -1 : 1);
     }
 
     public void ChangeLayer(int change) {
@@ -140,19 +168,15 @@ public abstract class EnemyController : Entity {
     }
 
     public void Flip() {
-        var eulerAngles = this.transform.rotation.eulerAngles;
-        eulerAngles.y = (eulerAngles.y + 180) % 360;
-        this.transform.rotation = Quaternion.Euler(eulerAngles);
+        destRotation = (destRotation + 180) % 360;
 
         this.facingLeft = !this.facingLeft;
     }
 
     public void SetFacingLeft(bool facingLeft) {
-        var eulerAngles = this.transform.rotation.eulerAngles;
         if(this.facingLeft != facingLeft) {
-            eulerAngles.y = (eulerAngles.y + 180) % 360;
+            destRotation = (destRotation + 180) % 360;
         }
-        this.transform.rotation = Quaternion.Euler(eulerAngles);
 
         this.facingLeft = facingLeft;
     }
@@ -177,5 +201,13 @@ public abstract class EnemyController : Entity {
             this.fieldOfView.center + halfCapsule,
             this.fieldOfView.radius
         );
+    }
+
+    public void Splash() {
+        this.setHealth(0);
+    }
+
+    public void Zap() {
+        this.setHealth(0);
     }
 }

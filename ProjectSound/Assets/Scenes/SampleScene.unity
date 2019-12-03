@@ -3342,7 +3342,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.02
+  m_Radius: 2.12
   m_Height: 8.65
   m_Direction: 2
   m_Center: {x: 0, y: 1.39, z: 4.11}
@@ -4056,7 +4056,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098863701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.858, z: 0.893}
+  m_LocalPosition: {x: 0, y: 0.858, z: 0.893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 457075981458983041}
@@ -7302,6 +7302,7 @@ MonoBehaviour:
   fieldOfView: {fileID: 903807694}
   bulletPrefab: {fileID: 5509995747176858840, guid: 0e084957e97941d428c91376577951b4,
     type: 3}
+  shootCooldown: 2
 --- !u!1001 &1438850509646734959
 PrefabInstance:
   m_ObjectHideFlags: 0
