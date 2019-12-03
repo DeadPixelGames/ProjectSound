@@ -19,7 +19,8 @@ public class ZapBubble : ItemEntity {
         this.rigidbody = this.GetComponent<Rigidbody>();
     }
     
-    private void FixedUpdate() {
+    private new void FixedUpdate() {
+        base.FixedUpdate();
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }

@@ -18,9 +18,6 @@ public class Player : Entity
 
     private const int LAYOUT_LAYER = 3;
     private int previousLayer = 0;
-
-    private int layer = 0;
-
     private bool grounded = false;
     private Rigidbody rigidBody;
     private float movementSmoothing = .05f;
@@ -30,7 +27,6 @@ public class Player : Entity
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsBouncy;
-
     [SerializeField] private Transform throwItem;
 
 
@@ -82,7 +78,7 @@ public class Player : Entity
         if (change > 0)
         {
             
-            if(Physics.Raycast(new Ray(transform.position, new Vector3(0f, 0f, 1f)), out hit))
+            if(Physics.Raycast(transform.position, new Vector3(0f, 0f, 1f), out hit, Mathf.Infinity, 0x7FFFFFFF, QueryTriggerInteraction.Ignore))
             {
                 if(hit.point.z > GameManager.instance.GetLayer(layer - 1)){
                     layer = GameManager.instance.ClampLayer(layer - 1);
@@ -97,7 +93,7 @@ public class Player : Entity
         else if(change < 0)
         {
 
-            if (Physics.Raycast(new Ray(transform.position, new Vector3(0f, 0f, -1f)), out hit))
+            if (Physics.Raycast(transform.position, new Vector3(0f, 0f, -1f), out hit, Mathf.Infinity, 0x7FFFFFFF, QueryTriggerInteraction.Ignore))
             {
                 if (hit.point.z < GameManager.instance.GetLayer(layer + 1))
                 {
@@ -142,8 +138,8 @@ public class Player : Entity
     }
 
 
-    private void FixedUpdate()
-    {
+    private new void FixedUpdate() {
+
         #region Set Z layer
         Vector3 pos = transform.position;
         pos.z = GameManager.instance.GetLayer(layer);
