@@ -41,11 +41,23 @@ public class Player : Entity
     public UnityEvent OnBouncyEvent;
 
 
+    private Animator animator;
+
+
     //Dirección de mirada del personaje
     public bool facingLeft = false;
 
+
+    private void Start()
+    {
+        setHealth(1);
+    }
+
+
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+
         rigidBody = GetComponent<Rigidbody>();
         
 
@@ -61,7 +73,7 @@ public class Player : Entity
 
     public override void Move(float move)
     {
-        Debug.Log(walkingSpeed);
+        
         //rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right);
         //rigidBody.AddForce(movementForce * move * walkingSpeed * Vector3.right);
 
@@ -118,9 +130,14 @@ public class Player : Entity
             }
             
         }
-        if((previousLayer == LAYOUT_LAYER && layer != LAYOUT_LAYER) || (previousLayer != LAYOUT_LAYER && layer == LAYOUT_LAYER))
+        if((previousLayer == LAYOUT_LAYER && layer != LAYOUT_LAYER) )
         {
-            gameObject.GetComponent<Animator>().SetTrigger("ToggleClimb");
+            animator.SetBool("Layout", false);
+        }
+        if ((previousLayer != LAYOUT_LAYER && layer == LAYOUT_LAYER))
+        {
+            animator.SetTrigger("ToggleLayout");
+            animator.SetBool("Layout", true);
         }
 
         
@@ -185,6 +202,9 @@ public class Player : Entity
                 
             }
         }
+        
+        animator.SetFloat("Life", this.getHealth());
+        
     }
 
     public new void jump()
@@ -193,7 +213,7 @@ public class Player : Entity
         {
             
             rigidBody.AddForce(jumpSpeed * Vector3.up);
-            GetComponent<PlayerController>().animate.SetBool("Grounded", false);
+            animator.SetBool("Grounded", false);
         
         }
     }

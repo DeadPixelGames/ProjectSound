@@ -27,8 +27,8 @@ public abstract class Entity : MonoBehaviour {
     public float jumpSpeed;
 
     //Vida
-    private float health;
-    public float maxHealth;
+    private float health = 3;
+    public float maxHealth = 3;
 
     private float invulnerabilityTime;
 

@@ -51,7 +51,7 @@ public class FiumBubble : ItemEntity {
     private void Damage(Collision other) {
         var entity = other.gameObject.GetComponent<Entity>();
         if(entity != null) {
-            entity.addHealth(this.damage);
+            //entity.addHealth(this.damage);
         }
         GameObject.Destroy(this.gameObject);
     }

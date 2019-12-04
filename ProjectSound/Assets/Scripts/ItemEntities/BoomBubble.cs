@@ -70,7 +70,7 @@ public class BoomBubble : ItemEntity {
             }
             var entity = collider.gameObject.GetComponent<Entity>();
             if(entity != null) {
-                entity.addHealth(this.damage);
+                //entity.addHealth(this.damage);
             }
         }
         GameObject.Destroy(this.gameObject);

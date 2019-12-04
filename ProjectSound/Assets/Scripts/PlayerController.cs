@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     //Intancia del comportamiento del personaje
     public Player behaviour;
 
-    public Animator animate;
+    private Animator animate;
 
     private Rigidbody rigidBody;
 
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        Debug.Log(move);
+        
         behaviour.Move(move * Time.fixedDeltaTime);
         animate.SetFloat("Speed", move);
         animate.SetBool("Jump", jump);
