@@ -308,7 +308,6 @@ MonoBehaviour:
   jumpButton: {fileID: 0}
   actionButton: {fileID: 0}
   behaviour: {fileID: 7289971909457948396}
-  animate: {fileID: 0}
 --- !u!95 &7487964842233596660
 Animator:
   serializedVersion: 3

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2995709371165225478}
   - component: {fileID: 65148699679971128}
   - component: {fileID: 4129609972501340914}
+  - component: {fileID: 6225640100194457775}
   m_Layer: 0
   m_Name: fium_Blanco
   m_TagString: Untagged
@@ -130,3 +131,17 @@ MonoBehaviour:
   damage: 10
   impulse: 30
   movementForce: {x: 2, y: 50, z: 0}
+--- !u!114 &6225640100194457775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880621192483543549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f958c95106d324a8944136c06f1a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlowColor: {r: 0, g: 1, b: 0.0080235, a: 0}
+  LerpFactor: 10

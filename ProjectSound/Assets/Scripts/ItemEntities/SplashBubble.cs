@@ -13,6 +13,8 @@ public class SplashBubble : ItemEntity {
 
     private float cooldown = 0.1f;
 
+    
+
     #region Unity
     private void Awake() {
         this.rigidbody = this.GetComponent<Rigidbody>();
@@ -50,4 +52,6 @@ public class SplashBubble : ItemEntity {
         }
         GameObject.Destroy(this.gameObject);
     }
+
+    
 }
