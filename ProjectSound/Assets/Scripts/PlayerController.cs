@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
+    [SerializeField] private float actionRadius = 2f;
+
     //Controla cuando se ha de saltar
     bool jump = false;
     //Cantidad de movimiento
@@ -75,6 +77,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        
         behaviour.Move(move * Time.fixedDeltaTime);
         animate.SetFloat("Speed", move);
         animate.SetBool("Jump", jump);
@@ -84,14 +88,47 @@ public class PlayerController : MonoBehaviour
         behaviour.changeLayer(moveZ);
         moveZ = 0;
 
-        //jump = false;
-        //jumpButton.pressed = false;
+
     }
 
     
     public void setAnimatorGrounded()
     {
-        animate.SetTrigger("Grounded");
+        animate.SetBool("Grounded", true);
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(this.transform.position, this.actionRadius);
+    }
+
+    public void OnAction()
+    {
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, this.actionRadius);
+        Collider closest = null;
+        foreach(Collider collider in colliders)
+        {
+            if (!closest)
+            {
+                if((this.transform.position - collider.gameObject.transform.position).magnitude < (this.transform.position - closest.transform.position).magnitude)
+                {
+                    closest = collider;
+                }
+            }
+            else
+            {
+                closest = collider;
+            }
+        }
+        if (!closest)
+        {
+            IActionable actionableComponent = closest.gameObject.GetComponent<IActionable>();
+            actionableComponent.Action();
+        }
+        
+
     }
 
 }

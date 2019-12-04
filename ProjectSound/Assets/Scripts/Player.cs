@@ -29,11 +29,15 @@ public class Player : Entity
     [SerializeField] private LayerMask whatIsBouncy;
     [SerializeField] private Transform throwItem;
 
-
+    [SerializeField] private float movementForce;
+    [SerializeField] private float maxVelocity;
     [Header("Events")]
     [Space]
     public UnityEvent OnLandEvent;
     public UnityEvent OnBouncyEvent;
+
+
+    private Animator animator;
 
 
     //Dirección de mirada del personaje
@@ -41,6 +45,7 @@ public class Player : Entity
 
     protected override void Awake() {
         base.Awake();
+        animator = GetComponent<Animator>();
 
         rigidBody = GetComponent<Rigidbody>();
         
@@ -57,8 +62,16 @@ public class Player : Entity
 
     public override void Move(float move)
     {
+        
+        //rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right);
+        //rigidBody.AddForce(movementForce * move * walkingSpeed * Vector3.right);
 
-        rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right * 0.1f);
+        //if(rigidBody.velocity.magnitude > maxVelocity)
+        //{
+        //    rigidBody.velocity = new Vector2(maxVelocity,0);
+        //}
+        transform.Translate(new Vector3(move, 0, 0) * walkingSpeed);
+
 
         if(move < 0  && !facingLeft)
         {
@@ -106,9 +119,14 @@ public class Player : Entity
             }
             
         }
-        if((previousLayer == LAYOUT_LAYER && layer != LAYOUT_LAYER) || (previousLayer != LAYOUT_LAYER && layer == LAYOUT_LAYER))
+        if((previousLayer == LAYOUT_LAYER && layer != LAYOUT_LAYER) )
         {
-            gameObject.GetComponent<Animator>().SetTrigger("ToggleClimb");
+            animator.SetBool("Layout", false);
+        }
+        if ((previousLayer != LAYOUT_LAYER && layer == LAYOUT_LAYER))
+        {
+            animator.SetTrigger("ToggleLayout");
+            animator.SetBool("Layout", true);
         }
 
         
@@ -174,13 +192,19 @@ public class Player : Entity
                 
             }
         }
+        
+        animator.SetFloat("Life", this.getHealth());
+        
     }
 
     public new void jump()
     {
         if (grounded)
         {
+            
             rigidBody.AddForce(jumpSpeed * Vector3.up);
+            animator.SetBool("Grounded", false);
+        
         }
     }
 

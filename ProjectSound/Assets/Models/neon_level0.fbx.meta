@@ -1611,6 +1611,160 @@ ModelImporter:
     103210: wood1
     103212: wood2
     103214: wood_1_1
+    103216: Antena
+    103218: Antena001
+    103220: Antena002
+    103222: Hoja005
+    103224: Hoja006
+    103226: Hoja007
+    103228: Hoja008
+    103230: Hoja009
+    103232: Hoja010
+    103234: Hoja011
+    103236: Hoja012
+    103238: Hoja1
+    103240: Hoja2
+    103242: Hoja3
+    103244: Hoja4
+    103246: Maceta
+    103248: Maceta001
+    103250: Maceta002
+    103252: mastil
+    103254: mastil001
+    103256: mastil002
+    103258: Mesh034
+    103260: Mesh035
+    103262: Mesh036
+    103264: Mesh037
+    103266: Mesh038
+    103268: Mesh039
+    103270: Mesh040
+    103272: Mesh041
+    103274: Mesh042
+    103276: Mesh043
+    103278: Mesh044
+    103280: Mesh045
+    103282: Mesh046
+    103284: Mesh047
+    103286: Mesh048
+    103288: Mesh049
+    103290: Mesh050
+    103292: Mesh051
+    103294: Mesh052
+    103296: Mesh053
+    103298: Mesh054
+    103300: Mesh055
+    103302: Mesh056
+    103304: Mesh057
+    103306: Mesh058
+    103308: Mesh059
+    103310: Mesh060
+    103312: Mesh061
+    103314: Mesh062
+    103316: Mesh063
+    103318: Mesh064
+    103320: Mesh065
+    103322: Mesh066
+    103324: Mesh736
+    103326: Mesh737
+    103328: Mesh738
+    103330: Mesh739
+    103332: Mesh740
+    103334: Mesh741
+    103336: receptor
+    103338: receptor001
+    103340: receptor002
+    103342: Sphere006
+    103344: Sphere007
+    103346: Sphere008
+    103348: Sphere009
+    103350: Sphere010
+    103352: Sphere011
+    103354: Sphere012
+    103356: Sphere013
+    103358: Sphere014
+    103360: Sphere015
+    103362: Sphere016
+    103364: Sphere017
+    103366: Sphere018
+    103368: Sphere019
+    103370: Sphere020
+    103372: Sphere021
+    103374: Sphere022
+    103376: Sphere023
+    103378: Sphere024
+    103380: Sphere025
+    103382: Sphere026
+    103384: Sphere027
+    103386: Sphere028
+    103388: Sphere029
+    103390: Sphere030
+    103392: Sphere031
+    103394: Sphere032
+    103396: Sphere033
+    103398: Sphere034
+    103400: Sphere035
+    103402: Sphere036
+    103404: Sphere037
+    103406: Sphere038
+    103408: Sphere039
+    103410: Sphere040
+    103412: Sphere041
+    103414: Sphere042
+    103416: Sphere043
+    103418: Sphere044
+    103420: Sphere045
+    103422: Sphere046
+    103424: Sphere047
+    103426: Sphere048
+    103428: Sphere049
+    103430: Sphere050
+    103432: Sphere051
+    103434: Sphere052
+    103436: Sphere053
+    103438: Sphere054
+    103440: tallo
+    103442: tallo001
+    103444: tallo002
+    103446: tallo003
+    103448: tallo004
+    103450: tallo005
+    103452: tallo006
+    103454: tallo007
+    103456: tallo008
+    103458: tallo009
+    103460: tallo010
+    103462: tallo011
+    103464: tallo012
+    103466: tallo013
+    103468: tallo014
+    103470: Cone001
+    103472: Cylinder001
+    103474: Cylinder002
+    103476: Cylinder003
+    103478: Cylinder004
+    103480: Cylinder005
+    103482: Mesh742
+    103484: Antena2
+    103486: Banco
+    103488: Cylinder002 1
+    103490: Cylinder003 1
+    103492: Cylinder004 1
+    103494: Cylinder005 1
+    103496: Cylinder006
+    103498: Cylinder007
+    103500: Cylinder008
+    103502: Cylinder009
+    103504: Cylinder010
+    103506: Mesh1 1
+    103508: receptor 1
+    103510: Tanque
+    103512: Cylinder001 1
+    103514: Cylinder002 2
+    103516: Mesh1 2
+    103518: Mesh1 3
+    103520: Mesh1 4
+    103522: pintura1
     400000: air_con1
     400002: air_con2
     400004: air_con3
@@ -3219,6 +3373,160 @@ ModelImporter:
     403210: wood1
     403212: wood2
     403214: wood_1_1
+    403216: Antena
+    403218: Antena001
+    403220: Antena002
+    403222: Hoja005
+    403224: Hoja006
+    403226: Hoja007
+    403228: Hoja008
+    403230: Hoja009
+    403232: Hoja010
+    403234: Hoja011
+    403236: Hoja012
+    403238: Hoja1
+    403240: Hoja2
+    403242: Hoja3
+    403244: Hoja4
+    403246: Maceta
+    403248: Maceta001
+    403250: Maceta002
+    403252: mastil
+    403254: mastil001
+    403256: mastil002
+    403258: Mesh034
+    403260: Mesh035
+    403262: Mesh036
+    403264: Mesh037
+    403266: Mesh038
+    403268: Mesh039
+    403270: Mesh040
+    403272: Mesh041
+    403274: Mesh042
+    403276: Mesh043
+    403278: Mesh044
+    403280: Mesh045
+    403282: Mesh046
+    403284: Mesh047
+    403286: Mesh048
+    403288: Mesh049
+    403290: Mesh050
+    403292: Mesh051
+    403294: Mesh052
+    403296: Mesh053
+    403298: Mesh054
+    403300: Mesh055
+    403302: Mesh056
+    403304: Mesh057
+    403306: Mesh058
+    403308: Mesh059
+    403310: Mesh060
+    403312: Mesh061
+    403314: Mesh062
+    403316: Mesh063
+    403318: Mesh064
+    403320: Mesh065
+    403322: Mesh066
+    403324: Mesh736
+    403326: Mesh737
+    403328: Mesh738
+    403330: Mesh739
+    403332: Mesh740
+    403334: Mesh741
+    403336: receptor
+    403338: receptor001
+    403340: receptor002
+    403342: Sphere006
+    403344: Sphere007
+    403346: Sphere008
+    403348: Sphere009
+    403350: Sphere010
+    403352: Sphere011
+    403354: Sphere012
+    403356: Sphere013
+    403358: Sphere014
+    403360: Sphere015
+    403362: Sphere016
+    403364: Sphere017
+    403366: Sphere018
+    403368: Sphere019
+    403370: Sphere020
+    403372: Sphere021
+    403374: Sphere022
+    403376: Sphere023
+    403378: Sphere024
+    403380: Sphere025
+    403382: Sphere026
+    403384: Sphere027
+    403386: Sphere028
+    403388: Sphere029
+    403390: Sphere030
+    403392: Sphere031
+    403394: Sphere032
+    403396: Sphere033
+    403398: Sphere034
+    403400: Sphere035
+    403402: Sphere036
+    403404: Sphere037
+    403406: Sphere038
+    403408: Sphere039
+    403410: Sphere040
+    403412: Sphere041
+    403414: Sphere042
+    403416: Sphere043
+    403418: Sphere044
+    403420: Sphere045
+    403422: Sphere046
+    403424: Sphere047
+    403426: Sphere048
+    403428: Sphere049
+    403430: Sphere050
+    403432: Sphere051
+    403434: Sphere052
+    403436: Sphere053
+    403438: Sphere054
+    403440: tallo
+    403442: tallo001
+    403444: tallo002
+    403446: tallo003
+    403448: tallo004
+    403450: tallo005
+    403452: tallo006
+    403454: tallo007
+    403456: tallo008
+    403458: tallo009
+    403460: tallo010
+    403462: tallo011
+    403464: tallo012
+    403466: tallo013
+    403468: tallo014
+    403470: Cone001
+    403472: Cylinder001
+    403474: Cylinder002
+    403476: Cylinder003
+    403478: Cylinder004
+    403480: Cylinder005
+    403482: Mesh742
+    403484: Antena2
+    403486: Banco
+    403488: Cylinder002 1
+    403490: Cylinder003 1
+    403492: Cylinder004 1
+    403494: Cylinder005 1
+    403496: Cylinder006
+    403498: Cylinder007
+    403500: Cylinder008
+    403502: Cylinder009
+    403504: Cylinder010
+    403506: Mesh1 1
+    403508: receptor 1
+    403510: Tanque
+    403512: Cylinder001 1
+    403514: Cylinder002 2
+    403516: Mesh1 2
+    403518: Mesh1 3
+    403520: Mesh1 4
+    403522: pintura1
     2100000: M_0136_Charcoal
     2100002: Translucent_Glass_Blue
     2100004: Top__Gray_
@@ -3269,6 +3577,22 @@ ModelImporter:
     2100094: M_0019_Crimson
     2100096: M_0106_DarkBlue
     2100098: M_0060_GrassGreen
+    2100100: 01 - Default
+    2100102: 02 - Default
+    2100104: M_0109_DarkSlate
+    2100106: M_0107_MidnightB
+    2100108: M_0039_DarkOrange
+    2100110: metalAntena
+    2100112: 'Material #4'
+    2100114: tallo
+    2100116: hojas
+    2100118: metal
+    2100120: 'Material #26'
+    2100122: 'Material #27'
+    2100124: 'Material #28'
+    2100126: 'Material #30'
+    2100128: 'Material #31'
+    2100130: No Name
     2300000: Mesh1
     2300002: Mesh10
     2300004: Mesh100
@@ -4004,6 +4328,160 @@ ModelImporter:
     2301464: Mesh97
     2301466: Mesh98
     2301468: Mesh99
+    2301470: Antena
+    2301472: Antena001
+    2301474: Antena002
+    2301476: Hoja005
+    2301478: Hoja006
+    2301480: Hoja007
+    2301482: Hoja008
+    2301484: Hoja009
+    2301486: Hoja010
+    2301488: Hoja011
+    2301490: Hoja012
+    2301492: Hoja1
+    2301494: Hoja2
+    2301496: Hoja3
+    2301498: Hoja4
+    2301500: Maceta
+    2301502: Maceta001
+    2301504: Maceta002
+    2301506: mastil
+    2301508: mastil001
+    2301510: mastil002
+    2301512: Mesh034
+    2301514: Mesh035
+    2301516: Mesh036
+    2301518: Mesh037
+    2301520: Mesh038
+    2301522: Mesh039
+    2301524: Mesh040
+    2301526: Mesh041
+    2301528: Mesh042
+    2301530: Mesh043
+    2301532: Mesh044
+    2301534: Mesh045
+    2301536: Mesh046
+    2301538: Mesh047
+    2301540: Mesh048
+    2301542: Mesh049
+    2301544: Mesh050
+    2301546: Mesh051
+    2301548: Mesh052
+    2301550: Mesh053
+    2301552: Mesh054
+    2301554: Mesh055
+    2301556: Mesh056
+    2301558: Mesh057
+    2301560: Mesh058
+    2301562: Mesh059
+    2301564: Mesh060
+    2301566: Mesh061
+    2301568: Mesh062
+    2301570: Mesh063
+    2301572: Mesh064
+    2301574: Mesh065
+    2301576: Mesh066
+    2301578: Mesh736
+    2301580: Mesh737
+    2301582: Mesh738
+    2301584: Mesh739
+    2301586: Mesh740
+    2301588: Mesh741
+    2301590: receptor
+    2301592: receptor001
+    2301594: receptor002
+    2301596: Sphere006
+    2301598: Sphere007
+    2301600: Sphere008
+    2301602: Sphere009
+    2301604: Sphere010
+    2301606: Sphere011
+    2301608: Sphere012
+    2301610: Sphere013
+    2301612: Sphere014
+    2301614: Sphere015
+    2301616: Sphere016
+    2301618: Sphere017
+    2301620: Sphere018
+    2301622: Sphere019
+    2301624: Sphere020
+    2301626: Sphere021
+    2301628: Sphere022
+    2301630: Sphere023
+    2301632: Sphere024
+    2301634: Sphere025
+    2301636: Sphere026
+    2301638: Sphere027
+    2301640: Sphere028
+    2301642: Sphere029
+    2301644: Sphere030
+    2301646: Sphere031
+    2301648: Sphere032
+    2301650: Sphere033
+    2301652: Sphere034
+    2301654: Sphere035
+    2301656: Sphere036
+    2301658: Sphere037
+    2301660: Sphere038
+    2301662: Sphere039
+    2301664: Sphere040
+    2301666: Sphere041
+    2301668: Sphere042
+    2301670: Sphere043
+    2301672: Sphere044
+    2301674: Sphere045
+    2301676: Sphere046
+    2301678: Sphere047
+    2301680: Sphere048
+    2301682: Sphere049
+    2301684: Sphere050
+    2301686: Sphere051
+    2301688: Sphere052
+    2301690: Sphere053
+    2301692: Sphere054
+    2301694: tallo
+    2301696: tallo001
+    2301698: tallo002
+    2301700: tallo003
+    2301702: tallo004
+    2301704: tallo005
+    2301706: tallo006
+    2301708: tallo007
+    2301710: tallo008
+    2301712: tallo009
+    2301714: tallo010
+    2301716: tallo011
+    2301718: tallo012
+    2301720: tallo013
+    2301722: tallo014
+    2301724: Cone001
+    2301726: Cylinder001
+    2301728: Cylinder002
+    2301730: Cylinder003
+    2301732: Cylinder004
+    2301734: Cylinder005
+    2301736: Mesh742
+    2301738: Antena2
+    2301740: Banco
+    2301742: Cylinder002 1
+    2301744: Cylinder003 1
+    2301746: Cylinder004 1
+    2301748: Cylinder005 1
+    2301750: Cylinder006
+    2301752: Cylinder007
+    2301754: Cylinder008
+    2301756: Cylinder009
+    2301758: Cylinder010
+    2301760: Mesh1 1
+    2301762: receptor 1
+    2301764: Tanque
+    2301766: Cylinder001 1
+    2301768: Cylinder002 2
+    2301770: Mesh1 2
+    2301772: Mesh1 3
+    2301774: Mesh1 4
+    2301776: pintura1
     3300000: Mesh1
     3300002: Mesh10
     3300004: Mesh100
@@ -4739,6 +5217,160 @@ ModelImporter:
     3301464: Mesh97
     3301466: Mesh98
     3301468: Mesh99
+    3301470: Antena
+    3301472: Antena001
+    3301474: Antena002
+    3301476: Hoja005
+    3301478: Hoja006
+    3301480: Hoja007
+    3301482: Hoja008
+    3301484: Hoja009
+    3301486: Hoja010
+    3301488: Hoja011
+    3301490: Hoja012
+    3301492: Hoja1
+    3301494: Hoja2
+    3301496: Hoja3
+    3301498: Hoja4
+    3301500: Maceta
+    3301502: Maceta001
+    3301504: Maceta002
+    3301506: mastil
+    3301508: mastil001
+    3301510: mastil002
+    3301512: Mesh034
+    3301514: Mesh035
+    3301516: Mesh036
+    3301518: Mesh037
+    3301520: Mesh038
+    3301522: Mesh039
+    3301524: Mesh040
+    3301526: Mesh041
+    3301528: Mesh042
+    3301530: Mesh043
+    3301532: Mesh044
+    3301534: Mesh045
+    3301536: Mesh046
+    3301538: Mesh047
+    3301540: Mesh048
+    3301542: Mesh049
+    3301544: Mesh050
+    3301546: Mesh051
+    3301548: Mesh052
+    3301550: Mesh053
+    3301552: Mesh054
+    3301554: Mesh055
+    3301556: Mesh056
+    3301558: Mesh057
+    3301560: Mesh058
+    3301562: Mesh059
+    3301564: Mesh060
+    3301566: Mesh061
+    3301568: Mesh062
+    3301570: Mesh063
+    3301572: Mesh064
+    3301574: Mesh065
+    3301576: Mesh066
+    3301578: Mesh736
+    3301580: Mesh737
+    3301582: Mesh738
+    3301584: Mesh739
+    3301586: Mesh740
+    3301588: Mesh741
+    3301590: receptor
+    3301592: receptor001
+    3301594: receptor002
+    3301596: Sphere006
+    3301598: Sphere007
+    3301600: Sphere008
+    3301602: Sphere009
+    3301604: Sphere010
+    3301606: Sphere011
+    3301608: Sphere012
+    3301610: Sphere013
+    3301612: Sphere014
+    3301614: Sphere015
+    3301616: Sphere016
+    3301618: Sphere017
+    3301620: Sphere018
+    3301622: Sphere019
+    3301624: Sphere020
+    3301626: Sphere021
+    3301628: Sphere022
+    3301630: Sphere023
+    3301632: Sphere024
+    3301634: Sphere025
+    3301636: Sphere026
+    3301638: Sphere027
+    3301640: Sphere028
+    3301642: Sphere029
+    3301644: Sphere030
+    3301646: Sphere031
+    3301648: Sphere032
+    3301650: Sphere033
+    3301652: Sphere034
+    3301654: Sphere035
+    3301656: Sphere036
+    3301658: Sphere037
+    3301660: Sphere038
+    3301662: Sphere039
+    3301664: Sphere040
+    3301666: Sphere041
+    3301668: Sphere042
+    3301670: Sphere043
+    3301672: Sphere044
+    3301674: Sphere045
+    3301676: Sphere046
+    3301678: Sphere047
+    3301680: Sphere048
+    3301682: Sphere049
+    3301684: Sphere050
+    3301686: Sphere051
+    3301688: Sphere052
+    3301690: Sphere053
+    3301692: Sphere054
+    3301694: tallo
+    3301696: tallo001
+    3301698: tallo002
+    3301700: tallo003
+    3301702: tallo004
+    3301704: tallo005
+    3301706: tallo006
+    3301708: tallo007
+    3301710: tallo008
+    3301712: tallo009
+    3301714: tallo010
+    3301716: tallo011
+    3301718: tallo012
+    3301720: tallo013
+    3301722: tallo014
+    3301724: Cone001
+    3301726: Cylinder001
+    3301728: Cylinder002
+    3301730: Cylinder003
+    3301732: Cylinder004
+    3301734: Cylinder005
+    3301736: Mesh742
+    3301738: Antena2
+    3301740: Banco
+    3301742: Cylinder002 1
+    3301744: Cylinder003 1
+    3301746: Cylinder004 1
+    3301748: Cylinder005 1
+    3301750: Cylinder006
+    3301752: Cylinder007
+    3301754: Cylinder008
+    3301756: Cylinder009
+    3301758: Cylinder010
+    3301760: Mesh1 1
+    3301762: receptor 1
+    3301764: Tanque
+    3301766: Cylinder001 1
+    3301768: Cylinder002 2
+    3301770: Mesh1 2
+    3301772: Mesh1 3
+    3301774: Mesh1 4
+    3301776: pintura1
     4300000: Mesh1
     4300002: Mesh2
     4300004: Mesh3
@@ -5474,6 +6106,160 @@ ModelImporter:
     4301464: Mesh733
     4301466: Mesh734
     4301468: Mesh735
+    4301470: Sphere006
+    4301472: Sphere007
+    4301474: Sphere008
+    4301476: Sphere009
+    4301478: Sphere010
+    4301480: Sphere011
+    4301482: Sphere012
+    4301484: Sphere013
+    4301486: Sphere014
+    4301488: Sphere015
+    4301490: Sphere016
+    4301492: Sphere017
+    4301494: Sphere018
+    4301496: Sphere019
+    4301498: Sphere020
+    4301500: Sphere021
+    4301502: Sphere022
+    4301504: Sphere023
+    4301506: Sphere024
+    4301508: Sphere025
+    4301510: Sphere026
+    4301512: Sphere027
+    4301514: Sphere028
+    4301516: Sphere029
+    4301518: Sphere030
+    4301520: Sphere031
+    4301522: Sphere032
+    4301524: Sphere033
+    4301526: Sphere034
+    4301528: Sphere035
+    4301530: Sphere036
+    4301532: Sphere037
+    4301534: Sphere038
+    4301536: Sphere039
+    4301538: Sphere040
+    4301540: Sphere041
+    4301542: Sphere042
+    4301544: Sphere043
+    4301546: Sphere044
+    4301548: Sphere045
+    4301550: Sphere046
+    4301552: Sphere047
+    4301554: Sphere048
+    4301556: Sphere049
+    4301558: Sphere050
+    4301560: Sphere051
+    4301562: Sphere052
+    4301564: Sphere053
+    4301566: Sphere054
+    4301568: Mesh035
+    4301570: Mesh066
+    4301572: Mesh065
+    4301574: Mesh064
+    4301576: Mesh063
+    4301578: Mesh062
+    4301580: Mesh061
+    4301582: Mesh060
+    4301584: Mesh059
+    4301586: Mesh058
+    4301588: Mesh057
+    4301590: Mesh056
+    4301592: Mesh055
+    4301594: Mesh054
+    4301596: Mesh053
+    4301598: Mesh052
+    4301600: Mesh051
+    4301602: Mesh050
+    4301604: Mesh049
+    4301606: Mesh048
+    4301608: Mesh047
+    4301610: Mesh046
+    4301612: Mesh045
+    4301614: Mesh044
+    4301616: Mesh043
+    4301618: Mesh042
+    4301620: Mesh041
+    4301622: Mesh040
+    4301624: Mesh039
+    4301626: Mesh038
+    4301628: Mesh037
+    4301630: Mesh741
+    4301632: Mesh740
+    4301634: Mesh739
+    4301636: Mesh738
+    4301638: Mesh737
+    4301640: Mesh736
+    4301642: Mesh036
+    4301644: Mesh034
+    4301646: Antena
+    4301648: mastil
+    4301650: receptor
+    4301652: Antena001
+    4301654: mastil001
+    4301656: receptor001
+    4301658: Antena002
+    4301660: mastil002
+    4301662: receptor002
+    4301664: Maceta
+    4301666: Hoja4
+    4301668: Hoja3
+    4301670: Hoja2
+    4301672: Hoja1
+    4301674: tallo
+    4301676: tallo002
+    4301678: tallo001
+    4301680: tallo003
+    4301682: tallo004
+    4301684: Maceta001
+    4301686: Hoja005
+    4301688: Hoja006
+    4301690: Hoja007
+    4301692: Hoja008
+    4301694: tallo005
+    4301696: tallo006
+    4301698: tallo007
+    4301700: tallo008
+    4301702: tallo009
+    4301704: Maceta002
+    4301706: Hoja009
+    4301708: Hoja010
+    4301710: Hoja011
+    4301712: Hoja012
+    4301714: tallo010
+    4301716: tallo011
+    4301718: tallo012
+    4301720: tallo013
+    4301722: tallo014
+    4301724: Mesh742
+    4301726: Cylinder001
+    4301728: Cone001
+    4301730: Cylinder002
+    4301732: Cylinder003
+    4301734: Cylinder004
+    4301736: Cylinder005
+    4301738: Banco
+    4301740: Antena2
+    4301742: Cylinder010
+    4301744: Cylinder009
+    4301746: Cylinder008
+    4301748: Cylinder007
+    4301750: Cylinder006
+    4301752: Tanque
+    4301754: Cylinder005
+    4301756: Cylinder004
+    4301758: Cylinder003
+    4301760: Cylinder002
+    4301762: Mesh1
+    4301764: receptor
+    4301766: pintura1
+    4301768: Cylinder002
+    4301770: Cylinder001
+    4301772: Mesh1
+    4301774: Mesh1
+    4301776: Mesh1
     6400000: Mesh1
     6400002: Mesh10
     6400004: Mesh100
@@ -6209,6 +6995,160 @@ ModelImporter:
     6401464: Mesh97
     6401466: Mesh98
     6401468: Mesh99
+    6401470: Antena
+    6401472: Antena001
+    6401474: Antena002
+    6401476: Hoja005
+    6401478: Hoja006
+    6401480: Hoja007
+    6401482: Hoja008
+    6401484: Hoja009
+    6401486: Hoja010
+    6401488: Hoja011
+    6401490: Hoja012
+    6401492: Hoja1
+    6401494: Hoja2
+    6401496: Hoja3
+    6401498: Hoja4
+    6401500: Maceta
+    6401502: Maceta001
+    6401504: Maceta002
+    6401506: mastil
+    6401508: mastil001
+    6401510: mastil002
+    6401512: Mesh034
+    6401514: Mesh035
+    6401516: Mesh036
+    6401518: Mesh037
+    6401520: Mesh038
+    6401522: Mesh039
+    6401524: Mesh040
+    6401526: Mesh041
+    6401528: Mesh042
+    6401530: Mesh043
+    6401532: Mesh044
+    6401534: Mesh045
+    6401536: Mesh046
+    6401538: Mesh047
+    6401540: Mesh048
+    6401542: Mesh049
+    6401544: Mesh050
+    6401546: Mesh051
+    6401548: Mesh052
+    6401550: Mesh053
+    6401552: Mesh054
+    6401554: Mesh055
+    6401556: Mesh056
+    6401558: Mesh057
+    6401560: Mesh058
+    6401562: Mesh059
+    6401564: Mesh060
+    6401566: Mesh061
+    6401568: Mesh062
+    6401570: Mesh063
+    6401572: Mesh064
+    6401574: Mesh065
+    6401576: Mesh066
+    6401578: Mesh736
+    6401580: Mesh737
+    6401582: Mesh738
+    6401584: Mesh739
+    6401586: Mesh740
+    6401588: Mesh741
+    6401590: receptor
+    6401592: receptor001
+    6401594: receptor002
+    6401596: Sphere006
+    6401598: Sphere007
+    6401600: Sphere008
+    6401602: Sphere009
+    6401604: Sphere010
+    6401606: Sphere011
+    6401608: Sphere012
+    6401610: Sphere013
+    6401612: Sphere014
+    6401614: Sphere015
+    6401616: Sphere016
+    6401618: Sphere017
+    6401620: Sphere018
+    6401622: Sphere019
+    6401624: Sphere020
+    6401626: Sphere021
+    6401628: Sphere022
+    6401630: Sphere023
+    6401632: Sphere024
+    6401634: Sphere025
+    6401636: Sphere026
+    6401638: Sphere027
+    6401640: Sphere028
+    6401642: Sphere029
+    6401644: Sphere030
+    6401646: Sphere031
+    6401648: Sphere032
+    6401650: Sphere033
+    6401652: Sphere034
+    6401654: Sphere035
+    6401656: Sphere036
+    6401658: Sphere037
+    6401660: Sphere038
+    6401662: Sphere039
+    6401664: Sphere040
+    6401666: Sphere041
+    6401668: Sphere042
+    6401670: Sphere043
+    6401672: Sphere044
+    6401674: Sphere045
+    6401676: Sphere046
+    6401678: Sphere047
+    6401680: Sphere048
+    6401682: Sphere049
+    6401684: Sphere050
+    6401686: Sphere051
+    6401688: Sphere052
+    6401690: Sphere053
+    6401692: Sphere054
+    6401694: tallo
+    6401696: tallo001
+    6401698: tallo002
+    6401700: tallo003
+    6401702: tallo004
+    6401704: tallo005
+    6401706: tallo006
+    6401708: tallo007
+    6401710: tallo008
+    6401712: tallo009
+    6401714: tallo010
+    6401716: tallo011
+    6401718: tallo012
+    6401720: tallo013
+    6401722: tallo014
+    6401724: Cone001
+    6401726: Cylinder001
+    6401728: Cylinder002
+    6401730: Cylinder003
+    6401732: Cylinder004
+    6401734: Cylinder005
+    6401736: Mesh742
+    6401738: Antena2
+    6401740: Banco
+    6401742: Cylinder002 1
+    6401744: Cylinder003 1
+    6401746: Cylinder004 1
+    6401748: Cylinder005 1
+    6401750: Cylinder006
+    6401752: Cylinder007
+    6401754: Cylinder008
+    6401756: Cylinder009
+    6401758: Cylinder010
+    6401760: Mesh1 1
+    6401762: receptor 1
+    6401764: Tanque
+    6401766: Cylinder001 1
+    6401768: Cylinder002 2
+    6401770: Mesh1 2
+    6401772: Mesh1 3
+    6401774: Mesh1 4
+    6401776: pintura1
   externalObjects:
   - first:
       type: UnityEngine:Material

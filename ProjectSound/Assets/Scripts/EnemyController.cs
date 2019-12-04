@@ -213,7 +213,7 @@ public abstract class EnemyController : Entity, ISplashable {
             this.fieldOfViewData.GetPoint1(),
             this.fieldOfViewData.GetRadius(),
             this.entitiesThisEnemyCanSee,
-            0x7FFFFFFF, QueryTriggerInteraction.Ignore
+            0x1 << 9, QueryTriggerInteraction.Ignore
         );
 
         var ret = false;
