@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123a7717f2eea84fafc77d4567d8f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceToIdle: 0.2
+  chanceToIdle: 0.005
 --- !u!114 &114912240751745818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b11bd6cb1047094fb422f24f814505a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceToMove: 0.5
+  chanceToMove: 0.01
 --- !u!1101 &1101201515901567682
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

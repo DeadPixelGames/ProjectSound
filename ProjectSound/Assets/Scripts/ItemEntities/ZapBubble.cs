@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ZapBubble : ItemEntity {
     
-    private bool floating = true;
-
     [SerializeField]
     private Vector3 movementForce;
 
@@ -14,7 +12,7 @@ public class ZapBubble : ItemEntity {
     private float cooldown = 0.05f;
 
     #region Unity
-    private new void Awake() {
+    protected override void Awake() {
         base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }

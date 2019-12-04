@@ -14,8 +14,6 @@ public class BoomBubble : ItemEntity {
 
     public float pushDecay = 1f;
 
-    private bool floating = true;
-
     [SerializeField]
     private Vector3 movementForce;
 
@@ -24,7 +22,7 @@ public class BoomBubble : ItemEntity {
     private float cooldown = 0.05f;
 
     #region Unity
-    private new void Awake() {
+    protected override void Awake() {
         base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }

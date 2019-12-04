@@ -2,18 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyController : Entity, IZappable, ISplashable {
+[RequireComponent(typeof(BubbleSpawner))]
+public abstract class EnemyController : Entity, ISplashable {
 
-    private struct CapsuleData {
+    protected struct CapsuleData {
         private Vector3 point0;
         private Vector3 point1;
+        private float height;
         private float radius;
+        private Vector3 direction;
         private Transform transform;
-        public CapsuleData(Transform transform, Vector3 point0, Vector3 point1, float radius) {
-            this.point0 = point0;
-            this.point1 = point1;
+        public CapsuleData(Transform transform, Vector3 center, float height, float radius, int direction) {
             this.radius = radius;
+            this.height = height;
             this.transform = transform;
+            this.direction = Vector3.zero;
+            switch(direction) {
+            case 0:
+                this.direction = Vector3.right;
+                break;
+            case 1:
+                this.direction = Vector3.up;
+                break;
+            case 2:
+                this.direction = Vector3.forward;
+                break;
+            }
+            var halfCapsule = (0.5f * height - radius) * this.direction;
+            this.point0 = center - halfCapsule;
+            this.point1 = center + halfCapsule;
         }
 
         public Vector3 GetPoint0() {
@@ -22,8 +39,14 @@ public abstract class EnemyController : Entity, IZappable, ISplashable {
         public Vector3 GetPoint1() {
             return this.transform.TransformPoint(this.point1);
         }
+        public float GetHeight() {
+            return this.height;
+        }
         public float GetRadius() {
             return this.radius;
+        }
+        public Vector3 GetDirection() {
+            return this.direction;
         }
 
     }
@@ -36,11 +59,25 @@ public abstract class EnemyController : Entity, IZappable, ISplashable {
 
     public float shootCooldown = 2f;
 
+    public Item bubbleOnRegularDeath;
+
+    public Item bubbleOnSplashInducedDeath;
+
     protected Animator animator;
+
+    protected new Rigidbody rigidbody;
+
+    protected bool moving;
 
     private Collider[] entitiesThisEnemyCanSee;
 
-    private CapsuleData fieldOfViewData;
+    private new CapsuleCollider collider;
+
+    protected CapsuleData fieldOfViewData;
+
+    protected CapsuleData colliderData;
+
+    private BubbleSpawner spawner;
 
     private float playerSeenTimeout;
 
@@ -56,17 +93,28 @@ public abstract class EnemyController : Entity, IZappable, ISplashable {
 
     private bool facingLeft;
 
+    private bool dead;
+
     #region Unity
-    private new void Awake() {
+    protected override void Awake() {
         base.Awake();
-        this.fieldOfViewData = this.GetFieldOfViewData();
         this.animator = this.GetComponent<Animator>();
+        this.rigidbody = this.GetComponent<Rigidbody>();
+        this.collider = this.GetComponent<CapsuleCollider>();
+        this.spawner = this.GetComponent<BubbleSpawner>();
+        this.fieldOfViewData = this.GetCapsuleColliderData(this.fieldOfView);
+        this.colliderData = this.GetCapsuleColliderData(this.collider);
         this.entitiesThisEnemyCanSee = new Collider[8];
         this.destRotation = this.transform.rotation.eulerAngles.y;
     }
 
-    private new void Update() {
+    protected override void Update() {
         base.Update();
+
+        // If dead, do not continue running checks
+        if(this.dead) {
+            return;
+        }
 
         // Determine whether the player can be seen
         var playerSeen = this.SeesPlayer();
@@ -78,12 +126,14 @@ public abstract class EnemyController : Entity, IZappable, ISplashable {
         this.animator.SetBool("SeesPlayer", playerSeen || this.playerSeenTimeout > 0);
 
         // Move to the player's layer
-        if((playerSeen || this.playerSeenTimeout > 0) && GameManager.instance.player.GetLayer() != this.layer && Random.value < 0.01f) {
-            this.ChangeLayer(this.layer - GameManager.instance.player.GetLayer());
+        if(!this.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) {
+            if((playerSeen || this.playerSeenTimeout > 0) && GameManager.instance.player.GetLayer() != this.layer && Random.value < 0.1f) {
+                this.ChangeLayer(this.layer - GameManager.instance.player.GetLayer());
+            }
         }
 
         // Shoot the player
-        if((playerSeen || this.playerSeenTimeout > 0) && this.playerShootTimeout <= 0) {
+        if((playerSeen || this.playerSeenTimeout > 0) && this.playerShootTimeout <= 0 && GameManager.instance.player.GetLayer() == this.layer) {
             this.animator.SetTrigger("Shoot");
             this.playerShootTimeout = this.shootCooldown;
         } else {
@@ -91,12 +141,14 @@ public abstract class EnemyController : Entity, IZappable, ISplashable {
         }
 
         // Traverse layers
-        if(Mathf.Abs(this.transform.position.z - GameManager.instance.GetLayer(this.layer)) > float.Epsilon) {
-            this.transform.position = Vector3.Slerp(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, GameManager.instance.GetLayer(this.layer)), this.traverseLayerCounter);
-            this.traverseLayerCounter += 0.1f * Time.deltaTime;
-        } else {
-            this.snapToLayer = true;
-            this.traverseLayerCounter = 0;
+        if(this.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) {
+            if(Mathf.Abs(this.transform.position.z - GameManager.instance.GetLayer(this.layer)) > float.Epsilon) {
+                this.transform.position = Vector3.Slerp(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, GameManager.instance.GetLayer(this.layer)), this.traverseLayerCounter);
+                this.traverseLayerCounter += 0.1f * Time.deltaTime;
+            } else {
+                this.snapToLayer = true;
+                this.traverseLayerCounter = 0;
+            }
         }
 
         // Rotate
@@ -109,18 +161,24 @@ public abstract class EnemyController : Entity, IZappable, ISplashable {
         }
 
         // Die
-        if(this.getHealth() <= 0 && !this.animator.GetCurrentAnimatorStateInfo(0).IsName("Death")) {
+        if(this.getHealth() <= 0) {
             this.animator.SetTrigger("Death");
+            this.dead = true;
+
+            this.spawner.SetItem(this.bubbleOnRegularDeath);
+            this.spawner.Spawn();
         }
     }
     #endregion
 
-    public abstract bool ShouldTurnAround();
+    public abstract bool ShouldFlip();
 
     public void Shoot() {
         var bullet = GameObject.Instantiate(this.bulletPrefab, this.shootTransform.position, Quaternion.identity).GetComponent<BulletEntity>();
         bullet.SetLayer(this.layer);
         bullet.SetDirection(facingLeft ? -1 : 1);
+        
+        this.spawner.Spawn();
     }
 
     public void ChangeLayer(int change) {
@@ -173,6 +231,10 @@ public abstract class EnemyController : Entity, IZappable, ISplashable {
         this.facingLeft = !this.facingLeft;
     }
 
+    public bool IsFacingLeft() {
+        return this.facingLeft;
+    }
+
     public void SetFacingLeft(bool facingLeft) {
         if(this.facingLeft != facingLeft) {
             destRotation = (destRotation + 180) % 360;
@@ -181,33 +243,27 @@ public abstract class EnemyController : Entity, IZappable, ISplashable {
         this.facingLeft = facingLeft;
     }
 
-    private CapsuleData GetFieldOfViewData() {
-        Vector3 direction = Vector3.zero;
-        switch(this.fieldOfView.direction) {
-            case 0:
-                direction = Vector3.right;
-                break;
-            case 1:
-                direction = Vector3.up;
-                break;
-            case 2:
-                direction = Vector3.forward;
-                break;
-        }
-        var halfCapsule = (0.5f * this.fieldOfView.height - this.fieldOfView.radius) * direction;
-        return new CapsuleData(
-            this.transform,
-            this.fieldOfView.center - halfCapsule,
-            this.fieldOfView.center + halfCapsule,
-            this.fieldOfView.radius
-        );
+    public bool IsMoving() {
+        return this.moving;
+    }
+
+    public void SetMoving(bool value) {
+        this.moving = value;
+    }
+
+    private CapsuleData GetCapsuleColliderData(CapsuleCollider data) {
+        return new CapsuleData(this.transform, data.center, data.height, data.radius, data.direction);
     }
 
     public void Splash() {
-        this.setHealth(0);
-    }
+        if(dead) {
+            return;
+        }
 
-    public void Zap() {
-        this.setHealth(0);
+        this.animator.SetTrigger("Death");
+        this.dead = true;
+
+        this.spawner.SetItem(this.bubbleOnSplashInducedDeath);
+        this.spawner.Spawn();
     }
 }

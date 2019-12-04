@@ -19,6 +19,14 @@ public class ItemEntity : Entity {
         Adds the item to the inventory, and removes this entity from the world.
         </summary>
     */
+
+    protected bool floating = true;
+
+    protected override void Update() {
+        base.Update();
+        this.rigidbody.isKinematic = this.floating;
+    }
+
     public void Grab() {
         Inventory.instance.AddItem(this.item);
         GameObject.Destroy(this);

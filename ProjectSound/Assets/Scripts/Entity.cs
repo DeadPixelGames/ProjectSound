@@ -8,20 +8,24 @@ using UnityEngine;
 */
 public abstract class Entity : MonoBehaviour {
     
+    [SerializeField]
     protected int layer;
+
+    protected new Rigidbody rigidbody;
 
     protected bool snapToLayer = true;
 
     #region Unity
-    protected void Awake() {
+    protected virtual void Awake() {
         this.health = this.maxHealth;
+        this.rigidbody = this.GetComponent<Rigidbody>();
     }
 
-    protected void Update() {
+    protected virtual void Update() {
         // Nothing
     }
 
-    protected void FixedUpdate() {
+    protected virtual void FixedUpdate() {
         if(!GameManager.instance.IsPaused()) {
             this.Move(0);
         }

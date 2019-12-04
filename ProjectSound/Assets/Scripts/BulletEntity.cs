@@ -18,13 +18,13 @@ public class BulletEntity : Entity
     private new Rigidbody rigidbody;
 
     #region Unity
-    private new void Awake() {
+    protected override void Awake() {
         base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
         this.currentLifespan = this.lifespan;
     }
 
-    private new void Update() {
+    protected override void Update() {
         base.Update();
         if(this.currentLifespan <= 0) {
             GameObject.Destroy(this.gameObject);

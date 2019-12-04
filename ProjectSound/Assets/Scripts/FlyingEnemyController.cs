@@ -2,20 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LandEnemyController : EnemyController {
+public class FlyingEnemyController : EnemyController
+{
 
     public float speed = 5f;
 
+    public float horizontalLimit = 10f;
+
+    private Vector3 spawnPosition;
+    
     private CapsuleCollider capsuleCollider;
 
     protected override void Awake() {
         base.Awake();
+        this.spawnPosition = this.transform.position;
         this.capsuleCollider = this.GetComponent<CapsuleCollider>();
     }
 
     public override void Move(float move) {
         if(this.moving) {
             this.rigidbody.MovePosition(this.transform.position + 0.1f * this.speed * Time.deltaTime * (this.IsFacingLeft() ? -1 : 1) * Vector3.right);
+        }
+
+        var seesPlayer = this.SeesPlayer();
+        if(!seesPlayer && this.transform.position.y < this.spawnPosition.y
+        || seesPlayer && this.transform.position.y < GameManager.instance.player.transform.position.y) {
+            this.rigidbody.AddForce(-0.05f * Physics.gravity, ForceMode.Impulse);
         }
     }
 
@@ -24,14 +36,11 @@ public class LandEnemyController : EnemyController {
         RaycastHit hit;
 
         var direction = this.IsFacingLeft() ? -1 : 1;
-        var offset = this.speed * Time.deltaTime * direction * Vector3.right;
 
-        var reachedPit = !Physics.Raycast(this.capsuleCollider.bounds.center, Vector3.down, this.capsuleCollider.bounds.size.y * 0.5f, 0x7FFFFFFF, QueryTriggerInteraction.Ignore);
         var hitWall = this.rigidbody.SweepTest(direction * Vector3.right, out hit, this.speed * Time.deltaTime, QueryTriggerInteraction.Ignore);
-        // IMPORTANT! In order for hitWall to work, the field of view collider must have its own rigidbody. Otherwise, SweepTest will use it
-        // as a regular, non-trigger collider, which will result in many false positives.
-        
-        if(reachedPit || hitWall) {
+        var strayedTooFar = Mathf.Abs(this.transform.position.x - this.spawnPosition.x) >= this.horizontalLimit;
+
+        if(hitWall || strayedTooFar) {
             ret = true;
         }
         return ret;

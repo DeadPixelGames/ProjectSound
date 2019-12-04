@@ -8,8 +8,6 @@ public class FiumBubble : ItemEntity {
 
     public float impulse; 
 
-    private bool floating = true;
-
     [SerializeField]
     private Vector3 movementForce;
 
@@ -18,7 +16,7 @@ public class FiumBubble : ItemEntity {
     private float cooldown = 0.001f;
 
     #region Unity
-    private new void Awake() {
+    protected override void Awake() {
         base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }
