@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SplashSpawner : BubbleSpawner
+public class ColliderSpawner : BubbleSpawner
 {
     private void OnTriggerEnter(Collider other)
     {
