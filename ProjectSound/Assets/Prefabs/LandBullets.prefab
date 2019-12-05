@@ -154,12 +154,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c75466c3a57b44184b25e1c49a3c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer: 0
   walkingSpeed: 0
   jumpSpeed: 0
   maxHealth: 0
   speed: 10
   lifespan: 3
-  damage: 2
+  damage: 1
 --- !u!1 &5694833829118548403
 GameObject:
   m_ObjectHideFlags: 0

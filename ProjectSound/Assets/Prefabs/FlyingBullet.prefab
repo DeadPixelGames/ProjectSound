@@ -159,4 +159,4 @@ MonoBehaviour:
   maxHealth: 0
   speed: 10
   lifespan: 3
-  damage: 2
+  damage: 1

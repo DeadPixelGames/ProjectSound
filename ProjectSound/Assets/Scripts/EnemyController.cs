@@ -112,7 +112,7 @@ public abstract class EnemyController : Entity, ISplashable {
         base.Update();
 
         // If dead, do not continue running checks
-        if(this.dead) {
+        if(this.dead || GameManager.instance.IsPaused()) {
             return;
         }
 
@@ -174,6 +174,10 @@ public abstract class EnemyController : Entity, ISplashable {
     public abstract bool ShouldFlip();
 
     public void Shoot() {
+        if(this.dead || GameManager.instance.IsPaused()) {
+            return;
+        }
+
         var bullet = GameObject.Instantiate(this.bulletPrefab, this.shootTransform.position, Quaternion.identity).GetComponent<BulletEntity>();
         bullet.SetLayer(this.layer);
         bullet.SetDirection(facingLeft ? -1 : 1);
@@ -184,6 +188,10 @@ public abstract class EnemyController : Entity, ISplashable {
     public void ChangeLayer(int change) {
         RaycastHit hit;
         this.previousLayer = this.layer;
+
+        if(this.dead || GameManager.instance.IsPaused()) {
+            return;
+        }
 
         if(change > 0) {
             if(Physics.Raycast(this.transform.position, Vector3.forward, out hit, Mathf.Infinity, 0x7FFFFFFF, QueryTriggerInteraction.Ignore)) {
@@ -256,7 +264,7 @@ public abstract class EnemyController : Entity, ISplashable {
     }
 
     public void Splash() {
-        if(dead) {
+        if(dead || GameManager.instance.IsPaused()) {
             return;
         }
 

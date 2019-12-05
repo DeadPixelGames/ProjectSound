@@ -123,10 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a46a41fd5358b4f9211cd7884f751a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer: 0
   walkingSpeed: 0
   jumpSpeed: 0
   maxHealth: 0
   item: {fileID: 11400000, guid: ac499efd513ea4644bddd833d9e769c1, type: 2}
-  damage: 10
+  damage: 1
   impulse: 5
   movementForce: {x: 2, y: 50, z: 0}

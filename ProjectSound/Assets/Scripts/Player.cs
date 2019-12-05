@@ -19,6 +19,8 @@ public class Player : Entity
     private const int LAYOUT_LAYER = 3;
     private int previousLayer = 0;
     private bool grounded = false;
+
+    private bool dead = false;
     private Rigidbody rigidBody;
     private float movementSmoothing = .05f;
     Vector3 velocity = Vector3.zero;
@@ -62,6 +64,10 @@ public class Player : Entity
 
     public override void Move(float move)
     {
+
+        if(this.dead || GameManager.instance.IsPaused()) {
+            return;
+        }
         
         //rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right);
         //rigidBody.AddForce(movementForce * move * walkingSpeed * Vector3.right);
@@ -84,6 +90,10 @@ public class Player : Entity
 
     public void changeLayer(float change)
     {
+
+        if(this.dead || GameManager.instance.IsPaused()) {
+            return;
+        }
 
         RaycastHit hit;
 
@@ -145,6 +155,11 @@ public class Player : Entity
 
     /* Método para usar una onomatopeya */
     public void useBubble() {
+
+        if(this.dead || GameManager.instance.IsPaused()) { 
+            return;
+        }
+
         var activeItem = Inventory.instance.GetActiveItem();
         if(activeItem == null) {
             return;
@@ -157,7 +172,12 @@ public class Player : Entity
     }
 
 
-    private new void FixedUpdate() {
+    protected override void FixedUpdate() {
+        base.FixedUpdate();
+
+        if(this.dead || GameManager.instance.IsPaused()) {
+            return;
+        }
 
         #region Set Z layer
         Vector3 pos = transform.position;
@@ -194,11 +214,21 @@ public class Player : Entity
         }
         
         animator.SetFloat("Life", this.getHealth());
-        
+
+        if(this.getHealth() <= 0) {
+            this.dead = true;
+            GameManager.instance.SetPaused(true);
+            this.animator.SetTrigger("Death");
+            this.onPlayerDead.Invoke();
+        }
     }
 
     public new void jump()
     {
+        if(this.dead || GameManager.instance.IsPaused()) {
+            return;
+        }
+
         if (grounded)
         {
             
@@ -211,6 +241,9 @@ public class Player : Entity
 
     public void bounce()
     {
+        if(this.dead || GameManager.instance.IsPaused()) {
+            return;
+        }
 
         if (Input.GetButton("Jump"))
         {
@@ -218,5 +251,7 @@ public class Player : Entity
         }
     }
 
-
+    public bool IsDead() {
+        return this.dead;
+    }
 }

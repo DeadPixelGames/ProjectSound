@@ -23,6 +23,9 @@ public class FiumBubble : ItemEntity {
 
     private new void FixedUpdate() {
         base.FixedUpdate();
+        if(GameManager.instance.IsPaused()) {
+            return;
+        }
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }

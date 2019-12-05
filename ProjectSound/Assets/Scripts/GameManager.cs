@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
     public Joystick joystick;
     public ButtonController jumpButton;
     public ButtonController actionButton;
+
+    public float deathCounter;
     
     /** <summary>
      * Represents if operating in a handheld device
@@ -57,9 +59,6 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         GameManager.InitSingleton(this);
         this.player.onPlayerDead += this.OnPlayerDead;
-        
-        
-        
          
         #region Joystick and Buttons in Mobile
 
@@ -119,7 +118,14 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     private void OnPlayerDead() {
+        this.StartCoroutine(this.DeathCoroutine());
+    }
+
+    private IEnumerator DeathCoroutine() {
+        yield return new WaitForSeconds(this.deathCounter);
         //TODO Ir al menú de selección de niveles
+        Debug.Log("Dead");
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 
     public int ClampLayer(int layer)
@@ -136,5 +142,4 @@ public class GameManager : MonoBehaviour {
         //TODO Detener AudioSource de Camera.main
     }
     #endregion
-
 }
