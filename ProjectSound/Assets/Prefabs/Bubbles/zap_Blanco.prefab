@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 54813523966945840}
   - component: {fileID: 65297156383177278}
   - component: {fileID: 1212276114}
+  - component: {fileID: 4320203269782876783}
   m_Layer: 0
   m_Name: zap_Blanco
   m_TagString: Untagged
@@ -129,3 +130,17 @@ MonoBehaviour:
   maxHealth: 0
   item: {fileID: 11400000, guid: 1b7b51e77af5baa4dbb41f8f0f31d736, type: 2}
   movementForce: {x: 2, y: 5, z: 0}
+--- !u!114 &4320203269782876783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195662108244975716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f958c95106d324a8944136c06f1a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlowColor: {r: 0, g: 1, b: 0.12923098, a: 0}
+  LerpFactor: 10

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4748203998512897385}
   - component: {fileID: 2569563044199978348}
   - component: {fileID: 1449357225225333064}
+  - component: {fileID: 6368858569903365998}
   m_Layer: 0
   m_Name: splash_blanco
   m_TagString: Untagged
@@ -129,3 +130,17 @@ MonoBehaviour:
   maxHealth: 0
   item: {fileID: 11400000, guid: 91716787076993944b5ee56bf53a60d3, type: 2}
   movementForce: {x: 2, y: 5, z: 0}
+--- !u!114 &6368858569903365998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089649674917162331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f958c95106d324a8944136c06f1a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlowColor: {r: 0, g: 0.9528302, b: 0.17928766, a: 0}
+  LerpFactor: 10

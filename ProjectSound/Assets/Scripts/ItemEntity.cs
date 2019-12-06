@@ -8,7 +8,7 @@ using UnityEngine;
         entities.
         </summary>
     */
-public class ItemEntity : Entity {
+public class ItemEntity : Entity, IActionable {
     /** <summary>
         Item object that this entity will turn into if put away into the inventory.
         </summary>
@@ -50,5 +50,11 @@ public class ItemEntity : Entity {
 
     public virtual void Use(int direction, Vector3 position) {
         // Nothing
+    }
+
+    void IActionable.Action()
+    {
+        Inventory.instance.AddItem(item);
+        GameObject.Destroy(this.gameObject);
     }
 }

@@ -11,6 +11,8 @@ public class SplashBubble : ItemEntity {
 
     private float cooldown = 0.05f;
 
+    
+
     #region Unity
     protected override void Awake() {
         base.Awake();
@@ -61,4 +63,6 @@ public class SplashBubble : ItemEntity {
             GameObject.Destroy(this.gameObject);
         }
     }
+
+    
 }
