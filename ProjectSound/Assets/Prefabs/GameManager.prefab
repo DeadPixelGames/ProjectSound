@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3908827433773627402}
   - component: {fileID: 3908827433773627401}
+  - component: {fileID: 296753656}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,9 +47,25 @@ MonoBehaviour:
   joystick: {fileID: 0}
   jumpButton: {fileID: 0}
   actionButton: {fileID: 0}
+  deathCounter: 2
   player: {fileID: 0}
   layers:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  bottomlessPit: {fileID: 0}
+--- !u!114 &296753656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3908827433773627400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3adb26b73afef284295cdc5d6f8ce363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: e70fec065c0a2204da9d015bcc51f6a6, type: 2}

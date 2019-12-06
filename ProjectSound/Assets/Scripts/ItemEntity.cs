@@ -28,6 +28,10 @@ public class ItemEntity : Entity {
         base.Update();
         this.rigidbody.isKinematic = this.floating;  
         this.collider.isTrigger = this.floating;
+
+        if(this.getHealth() <= 0) {
+            GameObject.Destroy(this.gameObject);
+        }
     }
 
     /** <summary>

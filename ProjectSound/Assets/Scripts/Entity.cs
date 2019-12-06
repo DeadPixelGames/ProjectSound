@@ -32,6 +32,9 @@ public abstract class Entity : MonoBehaviour {
         if(this.snapToLayer) {
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, GameManager.instance.GetLayer(this.layer));
         }
+        if(this.transform.position.y < GameManager.instance.bottomlessPit.position.y) {
+            this.setHealth(0);
+        }
     }
     #endregion
 

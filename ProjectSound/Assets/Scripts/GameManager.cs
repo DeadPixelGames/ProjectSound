@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour {
     */
     public List<GameObject> layers;
 
+    public Transform bottomlessPit;
+
     /** <summary>
         Event that triggers whenever transitioning into or out of the pause state.
         </summary>

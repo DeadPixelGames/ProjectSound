@@ -111,6 +111,11 @@ public abstract class EnemyController : Entity, ISplashable {
     protected override void Update() {
         base.Update();
 
+        // If below death barrier, despawn
+        if(this.transform.position.y < GameManager.instance.bottomlessPit.position.y) {
+            GameObject.Destroy(this.gameObject);
+        }
+
         // If dead, do not continue running checks
         if(this.dead) {
             return;
