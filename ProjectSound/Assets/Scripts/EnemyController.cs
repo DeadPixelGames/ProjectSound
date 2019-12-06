@@ -170,7 +170,7 @@ public abstract class EnemyController : Entity, ISplashable {
         if(this.getHealth() <= 0) {
             this.animator.SetTrigger("Death");
             this.dead = true;
-
+            this.rigidbody.velocity = Vector3.Scale(this.rigidbody.velocity, new Vector3(0, 1, 1));
             this.spawner.SetItem(this.bubbleOnRegularDeath);
             this.spawner.Spawn();
         }
@@ -276,7 +276,8 @@ public abstract class EnemyController : Entity, ISplashable {
 
         this.animator.SetTrigger("Death");
         this.dead = true;
-
+        this.setHealth(0);
+        this.rigidbody.velocity = Vector3.Scale(this.rigidbody.velocity, new Vector3(0, 1, 1));
         this.spawner.SetItem(this.bubbleOnSplashInducedDeath);
         this.spawner.Spawn();
     }

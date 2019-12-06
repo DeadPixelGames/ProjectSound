@@ -127,7 +127,7 @@ MonoBehaviour:
   layer: 0
   walkingSpeed: 0
   jumpSpeed: 0
-  maxHealth: 0
+  maxHealth: 1
   item: {fileID: 11400000, guid: 91716787076993944b5ee56bf53a60d3, type: 2}
   movementForce: {x: 2, y: 5, z: 0}
 --- !u!114 &6368858569903365998

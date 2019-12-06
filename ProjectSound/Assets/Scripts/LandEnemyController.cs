@@ -14,6 +14,10 @@ public class LandEnemyController : EnemyController {
     }
 
     public override void Move(float move) {
+        if(this.dead) {
+            return;
+        }
+
         if(this.moving) {
             this.rigidbody.MovePosition(this.transform.position + 0.1f * this.speed * Time.deltaTime * (this.IsFacingLeft() ? -1 : 1) * Vector3.right);
         }
@@ -21,6 +25,11 @@ public class LandEnemyController : EnemyController {
 
     public override bool ShouldFlip() {
         var ret = false;
+
+        if(this.dead) {
+            return false;
+        }
+
         RaycastHit hit;
 
         var direction = this.IsFacingLeft() ? -1 : 1;

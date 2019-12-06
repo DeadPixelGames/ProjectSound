@@ -97,7 +97,7 @@ MonoBehaviour:
   layer: 0
   walkingSpeed: 0
   jumpSpeed: 0
-  maxHealth: 0
+  maxHealth: 1
   item: {fileID: 11400000, guid: 64ae89a8d78669e4fa008c01f71228e7, type: 2}
   heal: 1
 --- !u!54 &3876447496269780118

@@ -32,7 +32,7 @@ public class BoingBubble : ItemEntity
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject != GameObject.FindGameObjectWithTag("Player"))
+        if(collision.gameObject != GameManager.instance.player)
         {
             this.rigidbody.isKinematic = false;
             this.rigidbody.velocity = Vector3.zero;
