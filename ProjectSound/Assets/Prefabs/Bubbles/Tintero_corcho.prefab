@@ -94,11 +94,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07874272729c2d144a24803603eca08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer: 0
   walkingSpeed: 0
   jumpSpeed: 0
   maxHealth: 0
   item: {fileID: 11400000, guid: 64ae89a8d78669e4fa008c01f71228e7, type: 2}
-  health: 10
+  heal: 1
 --- !u!54 &3876447496269780118
 Rigidbody:
   m_ObjectHideFlags: 0

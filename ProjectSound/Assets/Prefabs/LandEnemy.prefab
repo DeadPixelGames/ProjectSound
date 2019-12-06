@@ -1130,7 +1130,7 @@ MonoBehaviour:
   layer: 0
   walkingSpeed: 0
   jumpSpeed: 0
-  maxHealth: 10
+  maxHealth: 3
   shootTransform: {fileID: 1098863702}
   fieldOfView: {fileID: 903807694}
   bulletPrefab: {fileID: 5509995747176858840, guid: 0e084957e97941d428c91376577951b4,
@@ -1141,7 +1141,6 @@ MonoBehaviour:
   bubbleOnSplashInducedDeath: {fileID: 11400000, guid: 1b7b51e77af5baa4dbb41f8f0f31d736,
     type: 2}
   speed: 10
-  collider: {fileID: 0}
 --- !u!114 &457075981459281126
 MonoBehaviour:
   m_ObjectHideFlags: 0

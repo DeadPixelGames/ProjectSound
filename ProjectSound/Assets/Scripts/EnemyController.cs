@@ -93,7 +93,7 @@ public abstract class EnemyController : Entity, ISplashable {
 
     private bool facingLeft;
 
-    private bool dead;
+    protected bool dead;
 
     #region Unity
     protected override void Awake() {
@@ -112,28 +112,29 @@ public abstract class EnemyController : Entity, ISplashable {
         base.Update();
 
         // If dead, do not continue running checks
-        if(this.dead || GameManager.instance.IsPaused()) {
+        if(this.dead) {
             return;
         }
 
         // Determine whether the player can be seen
-        var playerSeen = this.SeesPlayer();
-        if(playerSeen) {
+        
+        if(this.SeesPlayer()) {
             this.playerSeenTimeout = 1f;
         } else {
             this.playerSeenTimeout -= Time.deltaTime;
         }
-        this.animator.SetBool("SeesPlayer", playerSeen || this.playerSeenTimeout > 0);
+        var playerSeen = (this.SeesPlayer() || this.playerSeenTimeout > 0) && !GameManager.instance.player.IsDead();
+        this.animator.SetBool("SeesPlayer", playerSeen);
 
         // Move to the player's layer
         if(!this.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) {
-            if((playerSeen || this.playerSeenTimeout > 0) && GameManager.instance.player.GetLayer() != this.layer && Random.value < 0.1f) {
+            if(playerSeen && GameManager.instance.player.GetLayer() != this.layer && Random.value < 0.1f) {
                 this.ChangeLayer(this.layer - GameManager.instance.player.GetLayer());
             }
         }
 
         // Shoot the player
-        if((playerSeen || this.playerSeenTimeout > 0) && this.playerShootTimeout <= 0 && GameManager.instance.player.GetLayer() == this.layer) {
+        if(playerSeen && this.playerShootTimeout <= 0 && GameManager.instance.player.GetLayer() == this.layer) {
             this.animator.SetTrigger("Shoot");
             this.playerShootTimeout = this.shootCooldown;
         } else {
@@ -174,7 +175,7 @@ public abstract class EnemyController : Entity, ISplashable {
     public abstract bool ShouldFlip();
 
     public void Shoot() {
-        if(this.dead || GameManager.instance.IsPaused()) {
+        if(this.dead) {
             return;
         }
 
@@ -189,7 +190,7 @@ public abstract class EnemyController : Entity, ISplashable {
         RaycastHit hit;
         this.previousLayer = this.layer;
 
-        if(this.dead || GameManager.instance.IsPaused()) {
+        if(this.dead) {
             return;
         }
 
@@ -264,7 +265,7 @@ public abstract class EnemyController : Entity, ISplashable {
     }
 
     public void Splash() {
-        if(dead || GameManager.instance.IsPaused()) {
+        if(dead) {
             return;
         }
 

@@ -21,10 +21,12 @@ public class Player : Entity
     private bool grounded = false;
 
     private bool dead = false;
+    private float previousHealth;
     private Rigidbody rigidBody;
     private float movementSmoothing = .05f;
     Vector3 velocity = Vector3.zero;
     private float groundRadius = .2f;
+    private Collider[] overlappedColliders;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask whatIsGround;
@@ -51,6 +53,7 @@ public class Player : Entity
 
         rigidBody = GetComponent<Rigidbody>();
         
+        overlappedColliders = new Collider[8];
 
         if(OnLandEvent == null)
         {
@@ -65,7 +68,7 @@ public class Player : Entity
     public override void Move(float move)
     {
 
-        if(this.dead || GameManager.instance.IsPaused()) {
+        if(this.dead) {
             return;
         }
         
@@ -91,7 +94,7 @@ public class Player : Entity
     public void changeLayer(float change)
     {
 
-        if(this.dead || GameManager.instance.IsPaused()) {
+        if(this.dead) {
             return;
         }
 
@@ -156,7 +159,7 @@ public class Player : Entity
     /* Método para usar una onomatopeya */
     public void useBubble() {
 
-        if(this.dead || GameManager.instance.IsPaused()) { 
+        if(this.dead) { 
             return;
         }
 
@@ -175,7 +178,7 @@ public class Player : Entity
     protected override void FixedUpdate() {
         base.FixedUpdate();
 
-        if(this.dead || GameManager.instance.IsPaused()) {
+        if(this.dead) {
             return;
         }
 
@@ -189,11 +192,15 @@ public class Player : Entity
 
         grounded = false;
 
-        Collider[] colliders = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsGround);
+        Physics.OverlapSphereNonAlloc(groundCheck.position, groundRadius, overlappedColliders, whatIsGround);
 
-        for(int i = 0; i < colliders.Length; i++)
+        for(int i = 0; i < overlappedColliders.Length; i++)
         {
-            if(colliders[i].gameObject != gameObject)
+            if(overlappedColliders[i] == null) {
+                 break;
+            }
+
+            if(overlappedColliders[i].gameObject != this.gameObject)
             {
                 grounded = true;
                 if(!wasGrounded)
@@ -201,23 +208,31 @@ public class Player : Entity
                     OnLandEvent.Invoke();
                 }
             }
+
+            overlappedColliders[i] = null;
         }
 
-        Collider[] bouncyColliders = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsBouncy);
-        for(int i = 0; i < bouncyColliders.Length; i++)
+        Physics.OverlapSphereNonAlloc(groundCheck.position, groundRadius, overlappedColliders, whatIsBouncy);
+        
+        for(int i = 0; i < overlappedColliders.Length; i++)
         {
-            if(bouncyColliders[i].gameObject != gameObject)
-            {
-                   OnBouncyEvent.Invoke();
-                
+            if(overlappedColliders[i] == null) {
+                break;
             }
+
+            if(overlappedColliders[i].gameObject != this.gameObject)
+            {
+                OnBouncyEvent.Invoke();
+                break;
+            }
+
+            overlappedColliders[i] = null;
         }
         
         animator.SetFloat("Life", this.getHealth());
 
         if(this.getHealth() <= 0) {
             this.dead = true;
-            GameManager.instance.SetPaused(true);
             this.animator.SetTrigger("Death");
             this.onPlayerDead.Invoke();
         }
@@ -225,7 +240,7 @@ public class Player : Entity
 
     public new void jump()
     {
-        if(this.dead || GameManager.instance.IsPaused()) {
+        if(this.dead) {
             return;
         }
 
@@ -241,7 +256,7 @@ public class Player : Entity
 
     public void bounce()
     {
-        if(this.dead || GameManager.instance.IsPaused()) {
+        if(this.dead) {
             return;
         }
 

@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d782f806ec60546b754d61a44f8b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer: 0
   walkingSpeed: 0
   jumpSpeed: 0
   maxHealth: 0

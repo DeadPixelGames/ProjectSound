@@ -19,18 +19,19 @@ public class SplashBubble : ItemEntity {
 
     private new void FixedUpdate() {
         base.FixedUpdate();
-        if(GameManager.instance.IsPaused()) {
-            return;
-        }
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }
     }
     
-    private void OnCollisionStay(Collision other) {
+    private void OnCollisionEnter(Collision other) {
         if(!this.floating && this.cooldown < 0) {
             this.Splash(other);
         }
+    }
+
+    private void OnCollisionStay(Collision other) {
+        this.OnCollisionEnter(other);
     }
     #endregion
 
@@ -50,7 +51,7 @@ public class SplashBubble : ItemEntity {
         if(other.gameObject == GameManager.instance.player.gameObject) {
             return;
         }
-        var success = false;
+        var success = true; //// false;
         var splashableComponents = other.gameObject.GetComponents<ISplashable>();
         foreach(ISplashable splashable in splashableComponents) {
             splashable.Splash();

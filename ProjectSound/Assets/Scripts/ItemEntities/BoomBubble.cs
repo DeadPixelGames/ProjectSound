@@ -29,15 +29,12 @@ public class BoomBubble : ItemEntity {
 
     private new void FixedUpdate() {
         base.FixedUpdate();
-        if(!GameManager.instance.IsPaused()) {
-            return;
-        }
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }
     }
     
-    private void OnCollisionStay(Collision other) {
+    private void OnCollisionEnter(Collision other) {
         if(other.gameObject == GameManager.instance.player.gameObject) {
             return;
         }
@@ -45,6 +42,10 @@ public class BoomBubble : ItemEntity {
             this.Push();
             this.Explode();
         }
+    }
+
+    private void OnCollisionStay(Collision other) {
+        this.OnCollisionEnter(other);
     }
 
     private void OnDrawGizmosSelected() {
@@ -76,7 +77,7 @@ public class BoomBubble : ItemEntity {
             }
             var entity = collider.gameObject.GetComponent<Entity>();
             if(entity != null) {
-                entity.addHealth(this.damage);
+                entity.addHealth(-this.damage);
             }
         }
         GameObject.Destroy(this.gameObject);

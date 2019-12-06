@@ -23,9 +23,6 @@ public class FiumBubble : ItemEntity {
 
     private new void FixedUpdate() {
         base.FixedUpdate();
-        if(GameManager.instance.IsPaused()) {
-            return;
-        }
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }
@@ -36,6 +33,10 @@ public class FiumBubble : ItemEntity {
         if(!this.floating && this.cooldown < 0) {
             this.Damage(other);
         }
+    }
+
+    private void OnCollisionStay(Collision other) {
+        this.OnCollisionEnter(other);
     }
     #endregion
 

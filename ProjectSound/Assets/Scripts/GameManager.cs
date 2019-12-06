@@ -124,7 +124,6 @@ public class GameManager : MonoBehaviour {
     private IEnumerator DeathCoroutine() {
         yield return new WaitForSeconds(this.deathCounter);
         //TODO Ir al menú de selección de niveles
-        Debug.Log("Dead");
         UnityEditor.EditorApplication.isPlaying = false;
     }
 

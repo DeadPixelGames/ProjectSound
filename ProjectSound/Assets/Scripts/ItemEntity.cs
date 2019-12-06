@@ -15,18 +15,25 @@ public class ItemEntity : Entity {
     */
     public Item item;
 
+    protected bool floating = true;
+
+    private new Collider collider;
+
+    protected override void Awake() {
+        base.Awake();
+        this.collider = this.GetComponent<Collider>();
+    }
+
+    protected override void Update() {
+        base.Update();
+        this.rigidbody.isKinematic = this.floating;  
+        this.collider.isTrigger = this.floating;
+    }
+
     /** <summary>
         Adds the item to the inventory, and removes this entity from the world.
         </summary>
     */
-
-    protected bool floating = true;
-
-    protected override void Update() {
-        base.Update();
-        this.rigidbody.isKinematic = this.floating;
-    }
-
     public void Grab() {
         Inventory.instance.AddItem(this.item);
         GameObject.Destroy(this);
