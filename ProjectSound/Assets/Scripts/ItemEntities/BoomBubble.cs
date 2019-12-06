@@ -14,31 +14,38 @@ public class BoomBubble : ItemEntity {
 
     public float pushDecay = 1f;
 
-    private bool floating = true;
-
     [SerializeField]
     private Vector3 movementForce;
 
     private new Rigidbody rigidbody;
 
-    private float cooldown = 0.1f;
+    private float cooldown = 0.05f;
 
     #region Unity
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate() {
+    private new void FixedUpdate() {
+        base.FixedUpdate();
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }
     }
     
     private void OnCollisionEnter(Collision other) {
+        if(other.gameObject == GameManager.instance.player.gameObject) {
+            return;
+        }
         if(!this.floating && this.cooldown < 0) {
             this.Push();
             this.Explode();
         }
+    }
+
+    private void OnCollisionStay(Collision other) {
+        this.OnCollisionEnter(other);
     }
 
     private void OnDrawGizmosSelected() {
@@ -70,7 +77,7 @@ public class BoomBubble : ItemEntity {
             }
             var entity = collider.gameObject.GetComponent<Entity>();
             if(entity != null) {
-                entity.addHealth(this.damage);
+                entity.addHealth(-this.damage);
             }
         }
         GameObject.Destroy(this.gameObject);

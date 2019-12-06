@@ -8,12 +8,31 @@ using UnityEngine;
         entities.
         </summary>
     */
-public class ItemEntity : Entity {
+public class ItemEntity : Entity, IActionable {
     /** <summary>
         Item object that this entity will turn into if put away into the inventory.
         </summary>
     */
     public Item item;
+
+    protected bool floating = true;
+
+    private new Collider collider;
+
+    protected override void Awake() {
+        base.Awake();
+        this.collider = this.GetComponent<Collider>();
+    }
+
+    protected override void Update() {
+        base.Update();
+        this.rigidbody.isKinematic = this.floating;  
+        this.collider.isTrigger = this.floating;
+
+        if(this.getHealth() <= 0) {
+            GameObject.Destroy(this.gameObject);
+        }
+    }
 
     /** <summary>
         Adds the item to the inventory, and removes this entity from the world.
@@ -31,5 +50,11 @@ public class ItemEntity : Entity {
 
     public virtual void Use(int direction, Vector3 position) {
         // Nothing
+    }
+
+    void IActionable.Action()
+    {
+        Inventory.instance.AddItem(item);
+        GameObject.Destroy(this.gameObject);
     }
 }

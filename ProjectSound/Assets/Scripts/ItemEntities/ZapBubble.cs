@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ZapBubble : ItemEntity {
     
-    private bool floating = true;
-
     [SerializeField]
     private Vector3 movementForce;
 
     private new Rigidbody rigidbody;
 
-    private float cooldown = 0.1f;
+    private float cooldown = 0.05f;
 
     #region Unity
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }
     
-    private void FixedUpdate() {
+    private new void FixedUpdate() {
+        base.FixedUpdate();
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }
@@ -28,6 +28,10 @@ public class ZapBubble : ItemEntity {
         if(!this.floating && this.cooldown < 0) {
             this.Zap(other);
         }
+    }
+
+    private void OnCollisionStay(Collision other) {
+        this.OnCollisionEnter(other);
     }
     #endregion
 
@@ -44,10 +48,17 @@ public class ZapBubble : ItemEntity {
     }
 
     private void Zap(Collision other) {
+        if(other.gameObject == GameManager.instance.player.gameObject) {
+            return;
+        }
+        var success = true; //// false
         var zappableComponents = other.gameObject.GetComponents<IZappable>();
         foreach(IZappable zappable in zappableComponents) {
             zappable.Zap();
+            success = true;
         }
-        GameObject.Destroy(this.gameObject);
+        if(success) {
+            GameObject.Destroy(this.gameObject);
+        }
     }
 }

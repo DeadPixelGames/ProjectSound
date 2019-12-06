@@ -18,35 +18,42 @@ public class Player : Entity
 
     private const int LAYOUT_LAYER = 3;
     private int previousLayer = 0;
-
-    private int layer = 0;
-
     private bool grounded = false;
+
+    private bool dead = false;
+    private float previousHealth;
     private Rigidbody rigidBody;
     private float movementSmoothing = .05f;
     Vector3 velocity = Vector3.zero;
     private float groundRadius = .2f;
+    private Collider[] overlappedColliders;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask whatIsGround;
     [SerializeField] private LayerMask whatIsBouncy;
-
     [SerializeField] private Transform throwItem;
 
-
+    [SerializeField] private float movementForce;
+    [SerializeField] private float maxVelocity;
     [Header("Events")]
     [Space]
     public UnityEvent OnLandEvent;
     public UnityEvent OnBouncyEvent;
 
 
+    private Animator animator;
+
+
     //Dirección de mirada del personaje
     public bool facingLeft = false;
 
-    private void Awake()
-    {
+    protected override void Awake() {
+        base.Awake();
+        animator = GetComponent<Animator>();
+
         rigidBody = GetComponent<Rigidbody>();
         
+        overlappedColliders = new Collider[8];
 
         if(OnLandEvent == null)
         {
@@ -61,7 +68,19 @@ public class Player : Entity
     public override void Move(float move)
     {
 
-        rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right * 0.1f);
+        if(this.dead) {
+            return;
+        }
+        
+        //rigidBody.MovePosition(this.transform.position + move * walkingSpeed * Vector3.right);
+        //rigidBody.AddForce(movementForce * move * walkingSpeed * Vector3.right);
+
+        //if(rigidBody.velocity.magnitude > maxVelocity)
+        //{
+        //    rigidBody.velocity = new Vector2(maxVelocity,0);
+        //}
+        transform.Translate(new Vector3(move, 0, 0) * walkingSpeed);
+
 
         if(move < 0  && !facingLeft)
         {
@@ -75,13 +94,17 @@ public class Player : Entity
     public void changeLayer(float change)
     {
 
+        if(this.dead) {
+            return;
+        }
+
         RaycastHit hit;
 
         previousLayer = layer;
         if (change > 0)
         {
             
-            if(Physics.Raycast(new Ray(transform.position, new Vector3(0f, 0f, 1f)), out hit))
+            if(Physics.Raycast(transform.position, new Vector3(0f, 0f, 1f), out hit, Mathf.Infinity, 0x7FFFFFFF, QueryTriggerInteraction.Ignore))
             {
                 if(hit.point.z > GameManager.instance.GetLayer(layer - 1)){
                     layer = GameManager.instance.ClampLayer(layer - 1);
@@ -96,7 +119,7 @@ public class Player : Entity
         else if(change < 0)
         {
 
-            if (Physics.Raycast(new Ray(transform.position, new Vector3(0f, 0f, -1f)), out hit))
+            if (Physics.Raycast(transform.position, new Vector3(0f, 0f, -1f), out hit, Mathf.Infinity, 0x7FFFFFFF, QueryTriggerInteraction.Ignore))
             {
                 if (hit.point.z < GameManager.instance.GetLayer(layer + 1))
                 {
@@ -109,9 +132,14 @@ public class Player : Entity
             }
             
         }
-        if((previousLayer == LAYOUT_LAYER && layer != LAYOUT_LAYER) || (previousLayer != LAYOUT_LAYER && layer == LAYOUT_LAYER))
+        if((previousLayer == LAYOUT_LAYER && layer != LAYOUT_LAYER) )
         {
-            gameObject.GetComponent<Animator>().SetTrigger("ToggleClimb");
+            animator.SetBool("Layout", false);
+        }
+        if ((previousLayer != LAYOUT_LAYER && layer == LAYOUT_LAYER))
+        {
+            animator.SetTrigger("ToggleLayout");
+            animator.SetBool("Layout", true);
         }
 
         
@@ -130,19 +158,30 @@ public class Player : Entity
 
     /* Método para usar una onomatopeya */
     public void useBubble() {
+
+        if(this.dead) { 
+            return;
+        }
+
         var activeItem = Inventory.instance.GetActiveItem();
         if(activeItem == null) {
             return;
         }
 
-        GameObject bubble = GameObject.Instantiate(activeItem.itemEntityPrefab);
-        bubble.GetComponent<ItemEntity>().Use(this.facingLeft ? -1 : 1, this.throwItem.position);
-        Inventory.instance.GetComponent<Inventory>().RemoveActiveItem();
+        var bubble = GameObject.Instantiate(activeItem.itemEntityPrefab).GetComponent<ItemEntity>();
+        bubble.Use(this.facingLeft ? -1 : 1, this.throwItem.position);
+        bubble.SetLayer(this.layer);
+        Inventory.instance.RemoveActiveItem();
     }
 
 
-    private void FixedUpdate()
-    {
+    protected override void FixedUpdate() {
+        base.FixedUpdate();
+
+        if(this.dead) {
+            return;
+        }
+
         #region Set Z layer
         Vector3 pos = transform.position;
         pos.z = GameManager.instance.GetLayer(layer);
@@ -153,11 +192,15 @@ public class Player : Entity
 
         grounded = false;
 
-        Collider[] colliders = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsGround);
+        Physics.OverlapSphereNonAlloc(groundCheck.position, groundRadius, overlappedColliders, whatIsGround);
 
-        for(int i = 0; i < colliders.Length; i++)
+        for(int i = 0; i < overlappedColliders.Length; i++)
         {
-            if(colliders[i].gameObject != gameObject)
+            if(overlappedColliders[i] == null) {
+                 break;
+            }
+
+            if(overlappedColliders[i].gameObject != this.gameObject)
             {
                 grounded = true;
                 if(!wasGrounded)
@@ -165,30 +208,57 @@ public class Player : Entity
                     OnLandEvent.Invoke();
                 }
             }
+
+            overlappedColliders[i] = null;
         }
 
-        Collider[] bouncyColliders = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsBouncy);
-        for(int i = 0; i < bouncyColliders.Length; i++)
+        Physics.OverlapSphereNonAlloc(groundCheck.position, groundRadius, overlappedColliders, whatIsBouncy);
+        
+        for(int i = 0; i < overlappedColliders.Length; i++)
         {
-            if(bouncyColliders[i].gameObject != gameObject)
-            {
-                   OnBouncyEvent.Invoke();
-                
+            if(overlappedColliders[i] == null) {
+                break;
             }
+
+            if(overlappedColliders[i].gameObject != this.gameObject)
+            {
+                OnBouncyEvent.Invoke();
+                break;
+            }
+
+            overlappedColliders[i] = null;
+        }
+        
+        animator.SetFloat("Life", this.getHealth());
+
+        if(this.getHealth() <= 0) {
+            this.dead = true;
+            this.animator.SetTrigger("Death");
+            this.onPlayerDead.Invoke();
         }
     }
 
     public new void jump()
     {
+        if(this.dead) {
+            return;
+        }
+
         if (grounded)
         {
+            
             rigidBody.AddForce(jumpSpeed * Vector3.up);
+            animator.SetBool("Grounded", false);
+        
         }
     }
 
 
     public void bounce()
     {
+        if(this.dead) {
+            return;
+        }
 
         if (Input.GetButton("Jump"))
         {
@@ -196,5 +266,7 @@ public class Player : Entity
         }
     }
 
-
+    public bool IsDead() {
+        return this.dead;
+    }
 }

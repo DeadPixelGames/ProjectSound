@@ -50,4 +50,16 @@ public class GlowObjectCmd : MonoBehaviour
 			enabled = false;
 		}
 	}
+
+    public void Glow()
+    {
+        _targetColor = GlowColor;
+        enabled = true;
+    }
+
+    public void StopGlowing()
+    {
+        _targetColor = Color.black;
+        enabled = true;
+    }
 }

@@ -5,23 +5,20 @@ using UnityEngine;
 public class BoingBubble : ItemEntity
 {
 
-    private bool floating = true;
-
     [SerializeField]
     private Vector3 movementForce;
 
     private new Rigidbody rigidbody;
 
     #region Unity
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }
     #endregion
 
-    public override void Move(float move)
-    {
-        if (!this.floating)
-        {
+    public override void Move(float move) {
+        if (!this.floating) {
             this.rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
         }
     }
@@ -35,7 +32,7 @@ public class BoingBubble : ItemEntity
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject != GameObject.FindGameObjectWithTag("Player"))
+        if(collision.gameObject != GameManager.instance.player)
         {
             this.rigidbody.isKinematic = false;
             this.rigidbody.velocity = Vector3.zero;

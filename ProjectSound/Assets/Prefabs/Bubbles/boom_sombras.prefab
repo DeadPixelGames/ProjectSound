@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3052923010266149280}
   - component: {fileID: 3052923010266149281}
   - component: {fileID: 3052923010266149286}
+  - component: {fileID: 1866210838577979766}
   m_Layer: 0
   m_Name: boom_sombras
   m_TagString: Untagged
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0e4dabacf044eea47a582fff678cdde7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 767b3831a8a923f40a45f38c2d4412f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -90,7 +91,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3052923010266149287}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -123,13 +124,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65038a321eaaa6a4996504ae61d55231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer: 0
   walkingSpeed: 0
   jumpSpeed: 0
-  maxHealth: 0
+  maxHealth: 1
   item: {fileID: 11400000, guid: 0ade8456037dfb846bffd3fb2d0e9040, type: 2}
-  damage: 10
+  damage: 1
   destroyRadius: 2
   pushRadius: 4
   pushFactor: 2
   pushDecay: 0.5
   movementForce: {x: 2, y: 10, z: 0}
+--- !u!114 &1866210838577979766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3052923010266149287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28f958c95106d324a8944136c06f1a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlowColor: {r: 0.018987417, g: 1, b: 0, a: 0}
+  LerpFactor: 10

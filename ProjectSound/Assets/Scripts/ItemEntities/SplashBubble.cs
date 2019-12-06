@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SplashBubble : ItemEntity {
-    
-    private bool floating = true;
 
     [SerializeField]
     private Vector3 movementForce;
 
     private new Rigidbody rigidbody;
 
-    private float cooldown = 0.1f;
+    private float cooldown = 0.05f;
+
+    
 
     #region Unity
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         this.rigidbody = this.GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate() {
+    private new void FixedUpdate() {
+        base.FixedUpdate();
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }
@@ -28,6 +30,10 @@ public class SplashBubble : ItemEntity {
         if(!this.floating && this.cooldown < 0) {
             this.Splash(other);
         }
+    }
+
+    private void OnCollisionStay(Collision other) {
+        this.OnCollisionEnter(other);
     }
     #endregion
 
@@ -44,10 +50,19 @@ public class SplashBubble : ItemEntity {
     }
 
     private void Splash(Collision other) {
+        if(other.gameObject == GameManager.instance.player.gameObject) {
+            return;
+        }
+        var success = true; //// false;
         var splashableComponents = other.gameObject.GetComponents<ISplashable>();
         foreach(ISplashable splashable in splashableComponents) {
             splashable.Splash();
+            success = true;
         }
-        GameObject.Destroy(this.gameObject);
+        if(success) {
+            GameObject.Destroy(this.gameObject);
+        }
     }
+
+    
 }

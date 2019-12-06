@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
+    [SerializeField] private float actionRadius = 2f;
+
     //Controla cuando se ha de saltar
     bool jump = false;
     //Cantidad de movimiento
@@ -26,6 +28,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidBody;
 
     private Inventory inventory;
+
+    private GameObject closestInteractableObject;
+
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +72,10 @@ public class PlayerController : MonoBehaviour
                 {
                     animate.SetTrigger("Throw");
                 }
+                else
+                {
+                    OnAction();
+                }
                 
             }
             jump = Input.GetButton("Jump");
@@ -75,6 +84,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        checkClosestObject();
+        if(closestInteractableObject != null)
+        {
+            GlowObjectCmd glow = closestInteractableObject.GetComponent<GlowObjectCmd>();
+            if (glow != null)
+            {
+                glow.Glow();
+            }
+        }
+        
         behaviour.Move(move * Time.fixedDeltaTime);
         animate.SetFloat("Speed", move);
         animate.SetBool("Jump", jump);
@@ -84,14 +104,84 @@ public class PlayerController : MonoBehaviour
         behaviour.changeLayer(moveZ);
         moveZ = 0;
 
-        //jump = false;
-        //jumpButton.pressed = false;
+
     }
 
     
     public void setAnimatorGrounded()
     {
-        animate.SetTrigger("Grounded");
+        animate.SetBool("Grounded", true);
     }
 
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(this.transform.position, this.actionRadius);
+    }
+
+    public void OnAction()
+    {
+       
+        if (closestInteractableObject != null)
+        {
+            IActionable actionableComponent = closestInteractableObject.GetComponent<IActionable>();
+            actionableComponent.Action();
+            
+        }
+        
+
+    }
+
+
+
+    private void checkClosestObject()
+    {
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, this.actionRadius);
+        Collider closest = null;
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.GetComponent<IActionable>() != null)
+            {
+                if (closest != null)
+                {
+                    if ((this.transform.position - collider.gameObject.transform.position).magnitude < (this.transform.position - closest.transform.position).magnitude)
+                    {
+                        closest = collider;
+                    }
+                }
+                else
+                {
+                    closest = collider;
+                }
+            }
+        }
+        if(closest != null)
+        {
+            if(closestInteractableObject != null)
+            {
+                if(closest.gameObject != closestInteractableObject)
+                {
+                    GlowObjectCmd glow = closestInteractableObject.GetComponent<GlowObjectCmd>();
+                    if(glow != null)
+                    {
+                        glow.StopGlowing();
+                    }
+                    closestInteractableObject = closest.gameObject;
+                }
+            }
+            else
+            {
+                closestInteractableObject = closest.gameObject;
+            }
+            
+           
+            
+        }
+        else
+        {
+            closestInteractableObject = null;
+        }
+        
+    }
 }
