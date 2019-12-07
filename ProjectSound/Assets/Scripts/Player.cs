@@ -39,7 +39,7 @@ public class Player : Entity
     [Space]
     public UnityEvent OnLandEvent;
     public UnityEvent OnBouncyEvent;
-
+    public float bounceFactor = 0.025f;
 
     private Animator animator;
 
@@ -262,7 +262,7 @@ public class Player : Entity
 
         if (Input.GetButton("Jump"))
         {
-            rigidBody.AddForce(jumpSpeed * 0.025f * Vector3.up, ForceMode.Impulse);
+            rigidBody.AddForce(jumpSpeed * bounceFactor * Vector3.up, ForceMode.Impulse);
         }
     }
 

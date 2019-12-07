@@ -6,6 +6,7 @@ using UnityEngine;
     Component that spawns onomatopoeia bubbles associated to an item.
     </summary>
 */
+[RequireComponent(typeof(AudioSource))]
 public class BubbleSpawner : MonoBehaviour {
 
     /** <summary>
@@ -21,7 +22,18 @@ public class BubbleSpawner : MonoBehaviour {
     */
     public Transform spawnTransform;
 
+    public int defaultLayer;
+
     private ItemEntity lastSpawnedItem;
+
+    private Entity entity;
+
+    private new AudioSource audio;
+
+    private void Awake() {
+        this.entity = this.GetComponent<Entity>();
+        this.audio = this.GetComponent<AudioSource>(); 
+    }
 
     /** <summary>
         Instantiates the bubble associated with the `item` property at the position of the
@@ -30,11 +42,17 @@ public class BubbleSpawner : MonoBehaviour {
     */
     public void Spawn() {
         if(!this.CanSpawnItem()) {
+            this.PlayBubbleSound();
             return;
         }
 
         var spawnTransform = this.spawnTransform != null ? this.spawnTransform : this.transform;
-        this.lastSpawnedItem = GameObject.Instantiate(item.itemEntityPrefab, spawnTransform.position, Quaternion.identity).GetComponent<ItemEntity>();
+        this.lastSpawnedItem = GameObject.Instantiate(this.item.itemEntityPrefab, spawnTransform.position, Quaternion.identity).GetComponent<ItemEntity>();
+        if(this.entity != null) {
+            this.lastSpawnedItem.SetLayer(this.entity.GetLayer());
+        } else {
+            this.lastSpawnedItem.SetLayer(this.defaultLayer);
+        }
     }
 
     public void SetItem(Item item) {
@@ -44,5 +62,12 @@ public class BubbleSpawner : MonoBehaviour {
 
     private bool CanSpawnItem() {
         return this.lastSpawnedItem == null;
+    }
+
+    private void PlayBubbleSound() {
+        if(this.audio != null) {
+            this.audio.clip = this.item.itemEntityPrefab.GetComponent<ItemEntity>().GetSoundFromPrefab();
+            this.audio.Play();
+        }
     }
 }

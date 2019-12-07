@@ -25,16 +25,16 @@ public class FlyingEnemyController : EnemyController
         }
 
         if(this.moving) {
-            this.rigidbody.MovePosition(this.transform.position + 0.1f * this.speed * Time.deltaTime * (this.IsFacingLeft() ? -1 : 1) * Vector3.right);
+            this.rb.MovePosition(this.transform.position + 0.1f * this.speed * Time.deltaTime * (this.IsFacingLeft() ? -1 : 1) * Vector3.right);
         }
 
         var seesPlayer = this.SeesPlayer() && !GameManager.instance.player.IsDead();
         if(!seesPlayer && this.transform.position.y < this.spawnPosition.y
         || seesPlayer && this.transform.position.y < GameManager.instance.player.transform.position.y) {
-            this.rigidbody.AddForce(-0.05f * Physics.gravity, ForceMode.Impulse);
+            this.rb.AddForce(-0.05f * Physics.gravity, ForceMode.Impulse);
         } else if(!seesPlayer && this.transform.position.y > this.spawnPosition.y
         || seesPlayer && this.transform.position.y > GameManager.instance.player.transform.position.y) {
-            this.rigidbody.AddForce(0.05f * Physics.gravity, ForceMode.Impulse);
+            this.rb.AddForce(0.05f * Physics.gravity, ForceMode.Impulse);
         }
     }
 
@@ -48,7 +48,7 @@ public class FlyingEnemyController : EnemyController
 
         var direction = this.IsFacingLeft() ? -1 : 1;
 
-        var hitWall = this.rigidbody.SweepTest(direction * Vector3.right, out hit, this.speed * Time.deltaTime, QueryTriggerInteraction.Ignore);
+        var hitWall = this.rb.SweepTest(direction * Vector3.right, out hit, this.speed * Time.deltaTime, QueryTriggerInteraction.Ignore);
         var strayedTooFar = Mathf.Abs(this.transform.position.x - this.spawnPosition.x) >= this.horizontalLimit;
 
         if(hitWall || strayedTooFar) {

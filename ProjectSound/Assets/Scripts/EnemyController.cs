@@ -59,13 +59,13 @@ public abstract class EnemyController : Entity, ISplashable {
 
     public float shootCooldown = 2f;
 
+    public float deathCounter = 3f;
+
     public Item bubbleOnRegularDeath;
 
     public Item bubbleOnSplashInducedDeath;
 
     protected Animator animator;
-
-    protected new Rigidbody rigidbody;
 
     protected bool moving;
 
@@ -99,7 +99,7 @@ public abstract class EnemyController : Entity, ISplashable {
     protected override void Awake() {
         base.Awake();
         this.animator = this.GetComponent<Animator>();
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        this.rb = this.GetComponent<Rigidbody>();
         this.collider = this.GetComponent<CapsuleCollider>();
         this.spawner = this.GetComponent<BubbleSpawner>();
         this.fieldOfViewData = this.GetCapsuleColliderData(this.fieldOfView);
@@ -168,11 +168,8 @@ public abstract class EnemyController : Entity, ISplashable {
 
         // Die
         if(this.getHealth() <= 0) {
-            this.animator.SetTrigger("Death");
-            this.dead = true;
-            this.rigidbody.velocity = Vector3.Scale(this.rigidbody.velocity, new Vector3(0, 1, 1));
             this.spawner.SetItem(this.bubbleOnRegularDeath);
-            this.spawner.Spawn();
+            this.Die();
         }
     }
     #endregion
@@ -274,11 +271,20 @@ public abstract class EnemyController : Entity, ISplashable {
             return;
         }
 
+        this.spawner.SetItem(this.bubbleOnSplashInducedDeath);
+        this.Die();        
+    }
+
+    private void Die() {
         this.animator.SetTrigger("Death");
         this.dead = true;
         this.setHealth(0);
-        this.rigidbody.velocity = Vector3.Scale(this.rigidbody.velocity, new Vector3(0, 1, 1));
-        this.spawner.SetItem(this.bubbleOnSplashInducedDeath);
         this.spawner.Spawn();
+        this.StartCoroutine(this.DeathCoroutine());
+    }
+
+    private IEnumerator DeathCoroutine() {
+        yield return new WaitForSeconds(this.deathCounter);
+        GameObject.Destroy(this.gameObject);
     }
 }

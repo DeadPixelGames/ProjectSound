@@ -8,18 +8,15 @@ public class BoingBubble : ItemEntity
     [SerializeField]
     private Vector3 movementForce;
 
-    
-
     #region Unity
     protected override void Awake() {
         base.Awake();
-        this.rb = this.GetComponent<Rigidbody>();
     }
     #endregion
 
     public override void Move(float move) {
         if (!this.floating) {
-            this.rb.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
+            this.rb.AddForce(new Vector3(100f * movementForce.x * move, movementForce.y, 0));
         }
     }
 
@@ -32,10 +29,10 @@ public class BoingBubble : ItemEntity
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject != GameManager.instance.player)
-        {
+        if(collision.gameObject != GameManager.instance.player) {
             this.rb.isKinematic = false;
             this.rb.velocity = Vector3.zero;
+            this.PlaySound();
         }
         
     }

@@ -19,7 +19,7 @@ public class LandEnemyController : EnemyController {
         }
 
         if(this.moving) {
-            this.rigidbody.MovePosition(this.transform.position + 0.1f * this.speed * Time.deltaTime * (this.IsFacingLeft() ? -1 : 1) * Vector3.right);
+            this.rb.MovePosition(this.transform.position + 0.1f * this.speed * Time.deltaTime * (this.IsFacingLeft() ? -1 : 1) * Vector3.right);
         }
     }
 
@@ -36,7 +36,7 @@ public class LandEnemyController : EnemyController {
         var offset = this.speed * Time.deltaTime * direction * Vector3.right;
 
         var reachedPit = !Physics.Raycast(this.capsuleCollider.bounds.center, Vector3.down, this.capsuleCollider.bounds.size.y * 0.5f, 0x7FFFFFFF, QueryTriggerInteraction.Ignore);
-        var hitWall = this.rigidbody.SweepTest(direction * Vector3.right, out hit, this.speed * Time.deltaTime, QueryTriggerInteraction.Ignore);
+        var hitWall = this.rb.SweepTest(direction * Vector3.right, out hit, this.speed * Time.deltaTime, QueryTriggerInteraction.Ignore);
         // IMPORTANT! In order for hitWall to work, the field of view collider must have its own rigidbody. Otherwise, SweepTest will use it
         // as a regular, non-trigger collider, which will result in many false positives.
         
