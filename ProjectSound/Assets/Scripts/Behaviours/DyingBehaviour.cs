@@ -13,8 +13,11 @@ public class DyingBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        InterfaceController.instance.setActiveGameOver(true);
-        InterfaceController.instance.setActiveInput(false);
+        if(InterfaceController.instance != null)
+        {
+            InterfaceController.instance.setActiveGameOver(true);
+            InterfaceController.instance.setActiveInput(false);
+        }
         Time.timeScale = 0;
     }
 

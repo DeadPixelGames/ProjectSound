@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         GameManager.InitSingleton(this);
         this.player.onPlayerDead += this.OnPlayerDead;
-         
+        Time.timeScale = 1;
         #region Joystick and Buttons in Mobile
 
         if (SystemInfo.operatingSystem.Split(' ')[0].Equals("Android"))
