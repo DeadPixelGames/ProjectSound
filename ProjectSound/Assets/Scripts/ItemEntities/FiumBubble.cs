@@ -13,12 +13,12 @@ public class FiumBubble : ItemEntity {
 
     private float cooldown = 0.001f;
 
-    private new AudioSource audio;
+    
 
     #region Unity
     protected override void Awake() {
         base.Awake();
-        this.audio = this.GetComponent<AudioSource>();
+        this.audioSource = this.GetComponent<AudioSource>();
     }
 
     private new void FixedUpdate() {

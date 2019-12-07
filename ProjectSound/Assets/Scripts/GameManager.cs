@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour {
     */
     private bool paused;
 
+
+    private int bubbleUseCount=0;
+    [SerializeField] private int twoStarsThreshHold;
+    [SerializeField] private int threeStarsThreshHold;
+
+
     #region Unity
     void Awake() {
         GameManager.InitSingleton(this);
@@ -117,6 +123,11 @@ public class GameManager : MonoBehaviour {
         var listIndex = ClampLayer(layer);
         return this.layers[listIndex].transform.position.z;
     }
+
+    public int getBubbleUseCount() { return this.bubbleUseCount; }
+    public int getTwoStarThreshHold() { return this.twoStarsThreshHold; }
+    public int getThreeStarThreshHold() { return this.threeStarsThreshHold; }
+
     #endregion
 
     private void OnPlayerDead() {
@@ -133,6 +144,8 @@ public class GameManager : MonoBehaviour {
     {
         return Mathf.Clamp(layer, 0, this.layers.Count - 1);
     }
+
+    public void addBubbleUseCount(int i) { this.bubbleUseCount += i; }
 
     #region Music
     public void PlayMusic(AudioClip audio) {

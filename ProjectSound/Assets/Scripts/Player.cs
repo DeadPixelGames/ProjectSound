@@ -172,6 +172,7 @@ public class Player : Entity
         bubble.Use(this.facingLeft ? -1 : 1, this.throwItem.position);
         bubble.SetLayer(this.layer);
         Inventory.instance.RemoveActiveItem();
+        GameManager.instance.addBubbleUseCount(1);
     }
 
 
