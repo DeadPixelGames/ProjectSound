@@ -110,67 +110,72 @@ public abstract class EnemyController : Entity, ISplashable {
 
     protected override void Update() {
         base.Update();
+        if(GameManager.instance != null)
+        {
+            // If below death barrier, despawn
+            if(this.transform.position.y < GameManager.instance.bottomlessPit.position.y) {
+                GameObject.Destroy(this.gameObject);
+            }
 
-        // If below death barrier, despawn
-        if(this.transform.position.y < GameManager.instance.bottomlessPit.position.y) {
-            GameObject.Destroy(this.gameObject);
-        }
+            // If dead, do not continue running checks
+            if(this.dead) {
+                return;
+            }
 
-        // If dead, do not continue running checks
-        if(this.dead) {
-            return;
-        }
-
-        // Determine whether the player can be seen
+            // Determine whether the player can be seen
         
-        if(this.SeesPlayer()) {
-            this.playerSeenTimeout = 1f;
-        } else {
-            this.playerSeenTimeout -= Time.deltaTime;
-        }
-        var playerSeen = (this.SeesPlayer() || this.playerSeenTimeout > 0) && !GameManager.instance.player.IsDead();
-        this.animator.SetBool("SeesPlayer", playerSeen);
-
-        // Move to the player's layer
-        if(!this.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) {
-            if(playerSeen && GameManager.instance.player.GetLayer() != this.layer && Random.value < 0.1f) {
-                this.ChangeLayer(this.layer - GameManager.instance.player.GetLayer());
-            }
-        }
-
-        // Shoot the player
-        if(playerSeen && this.playerShootTimeout <= 0 && GameManager.instance.player.GetLayer() == this.layer) {
-            this.animator.SetTrigger("Shoot");
-            this.playerShootTimeout = this.shootCooldown;
-        } else {
-            this.playerShootTimeout -= Time.deltaTime;
-        }
-
-        // Traverse layers
-        if(this.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) {
-            if(Mathf.Abs(this.transform.position.z - GameManager.instance.GetLayer(this.layer)) > float.Epsilon) {
-                this.transform.position = Vector3.Slerp(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, GameManager.instance.GetLayer(this.layer)), this.traverseLayerCounter);
-                this.traverseLayerCounter += 0.1f * Time.deltaTime;
+            if(this.SeesPlayer()) {
+                this.playerSeenTimeout = 1f;
             } else {
-                this.snapToLayer = true;
-                this.traverseLayerCounter = 0;
+                this.playerSeenTimeout -= Time.deltaTime;
             }
+            var playerSeen = (this.SeesPlayer() || this.playerSeenTimeout > 0) && !GameManager.instance.player.IsDead();
+            this.animator.SetBool("SeesPlayer", playerSeen);
+
+            // Move to the player's layer
+            if(!this.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) {
+                if(playerSeen && GameManager.instance.player.GetLayer() != this.layer && Random.value < 0.1f) {
+                    this.ChangeLayer(this.layer - GameManager.instance.player.GetLayer());
+                }
+            }
+            
+            // Shoot the player
+            if(playerSeen && this.playerShootTimeout <= 0 && GameManager.instance.player.GetLayer() == this.layer) {
+                this.animator.SetTrigger("Shoot");
+                this.playerShootTimeout = this.shootCooldown;
+            } else {
+                this.playerShootTimeout -= Time.deltaTime;
+            }
+
+            // Traverse layers
+            if(this.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump")) {
+                if(Mathf.Abs(this.transform.position.z - GameManager.instance.GetLayer(this.layer)) > float.Epsilon) {
+                    this.transform.position = Vector3.Slerp(this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y, GameManager.instance.GetLayer(this.layer)), this.traverseLayerCounter);
+                    this.traverseLayerCounter += 0.1f * Time.deltaTime;
+                } else {
+                    this.snapToLayer = true;
+                    this.traverseLayerCounter = 0;
+                }
+            }
+
+            // Rotate
+            var euler = this.transform.rotation.eulerAngles;
+            if(Mathf.Abs(this.transform.rotation.eulerAngles.y - this.destRotation) > float.Epsilon) {
+                this.transform.rotation = Quaternion.Euler(Vector3.Slerp(euler, new Vector3(euler.x, destRotation, euler.z), this.destRotationCounter));
+                this.destRotationCounter += 0.5f * Time.deltaTime;
+            } else {
+                this.destRotationCounter = 0;
+            }
+
+            // Die
+            if(this.getHealth() <= 0) {
+                this.spawner.SetItem(this.bubbleOnRegularDeath);
+                this.Die();
+            }
+        
         }
 
-        // Rotate
-        var euler = this.transform.rotation.eulerAngles;
-        if(Mathf.Abs(this.transform.rotation.eulerAngles.y - this.destRotation) > float.Epsilon) {
-            this.transform.rotation = Quaternion.Euler(Vector3.Slerp(euler, new Vector3(euler.x, destRotation, euler.z), this.destRotationCounter));
-            this.destRotationCounter += 0.5f * Time.deltaTime;
-        } else {
-            this.destRotationCounter = 0;
-        }
-
-        // Die
-        if(this.getHealth() <= 0) {
-            this.spawner.SetItem(this.bubbleOnRegularDeath);
-            this.Die();
-        }
+        
     }
     #endregion
 
