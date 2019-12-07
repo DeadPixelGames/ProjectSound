@@ -6,6 +6,16 @@ public class CAMARA_handler : MonoBehaviour
 {
     [SerializeField] private Animator camara_animator;
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+        if (StayThroughScenesObject.instance.isLvlSelection())
+        {
+            irEstanteria();
+        }
+    }
+
+
     public void irEstanteria()
     {
         camara_animator.SetBool("enEstanteria", true);

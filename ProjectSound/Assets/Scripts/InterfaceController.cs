@@ -68,6 +68,11 @@ public class InterfaceController : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void SetLvlSelection(bool lvlSel)
+    {
+        StayThroughScenesObject.instance.setLvLSelection(lvlSel);
+    }
+
     public void Pause()
     {
         Time.timeScale = 0;
