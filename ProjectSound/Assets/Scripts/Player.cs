@@ -135,6 +135,7 @@ public class Player : Entity
         if((previousLayer == LAYOUT_LAYER && layer != LAYOUT_LAYER) )
         {
             animator.SetBool("Layout", false);
+            layer = GameManager.instance.ClampLayer(layer + 1);
         }
         if ((previousLayer != LAYOUT_LAYER && layer == LAYOUT_LAYER))
         {
@@ -143,6 +144,11 @@ public class Player : Entity
         }
 
         
+    }
+
+    public void moveForwardALayer()
+    {
+        layer = GameManager.instance.ClampLayer(layer - 1);
     }
 
     /* Método para dar la vuelta al sprite del personaje */

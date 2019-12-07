@@ -246,6 +246,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisAudioClip: {fileID: 8300000, guid: 13f16256264adc64192ed4f27ce972b4, type: 3}
+--- !u!114 &114698728675763198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1282edc2f7ffff4794efbfa9ba0aada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114755364150129066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1433,7 +1445,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: YSpeed
-    m_EventTreshold: -1.2
+    m_EventTreshold: -1.9
   - m_ConditionMode: 3
     m_ConditionEvent: Life
     m_EventTreshold: 0
@@ -2299,6 +2311,7 @@ AnimatorState:
   - {fileID: 1101047149896945244}
   m_StateMachineBehaviours:
   - {fileID: 114755364150129066}
+  - {fileID: 114698728675763198}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

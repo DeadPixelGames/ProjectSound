@@ -27,7 +27,11 @@ public class StayThroughScenesObject : MonoBehaviour
 
     private void Awake()
     {
-        InitSingleton(this);
+        if(StayThroughScenesObject.instance == null)
+        {
+            InitSingleton(this);
+        }
+        
         DontDestroyOnLoad(this);
     }
 
