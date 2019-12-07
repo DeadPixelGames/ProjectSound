@@ -14,73 +14,73 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Throw
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: YSpeed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Grounded
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Life
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Layout
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ToggleLayout
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Death
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Damage
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Pick
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Drink
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: cdc9db44c3abd2440b2c0b3f9d1e5da6, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: 73c3e661fd80c064c94e16e4d224dbcb, type: 3}
 --- !u!114 &114329053912006724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2059f9207b23f074f80d04256a1a63b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: fa36f084b0a51b943ad120317f27dead, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: 39b8cd817ceaf9742be29f49eba230cf, type: 3}
 --- !u!114 &114372689300826744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,7 +168,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: f0374c0ece44625488de7f1ac48008de, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: 6a7a13867559c3241b79103a3c24856c, type: 3}
+--- !u!114 &114380916933020346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAudioClip: {fileID: 8300000, guid: 046db8d73beeffb4baff330dc3adceaa, type: 3}
 --- !u!114 &114461826666179054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: 0f4b70a9e4c6ea64dab3d6f777aca083, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: 046db8d73beeffb4baff330dc3adceaa, type: 3}
 --- !u!114 &114556022769466962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: 332826cca57c3564fa31f20ecf11015f, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: db49f2b5abef4eb498b406ed82cc3357, type: 3}
 --- !u!114 &114596328455313106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: 332826cca57c3564fa31f20ecf11015f, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: db49f2b5abef4eb498b406ed82cc3357, type: 3}
 --- !u!114 &114655093543707182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: b536e9cc9d94c804bbe2f720b9ee1c78, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: 13f16256264adc64192ed4f27ce972b4, type: 3}
 --- !u!114 &114755364150129066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: d5965cc8e7083bc40b837c3bdf101805, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: f1da200fef04f8247b5a19972a0228f8, type: 3}
 --- !u!114 &114794320301549622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ef2242e03b7e9488a0671b4415f25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: 332826cca57c3564fa31f20ecf11015f, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: db49f2b5abef4eb498b406ed82cc3357, type: 3}
 --- !u!114 &114926286652433802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -283,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2059f9207b23f074f80d04256a1a63b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisAudioClip: {fileID: 8300000, guid: 83e87ada7282d234e98d03016ce52dba, type: 3}
+  thisAudioClip: {fileID: 8300000, guid: 39b8cd817ceaf9742be29f49eba230cf, type: 3}
 --- !u!206 &206062393916181590
 BlendTree:
   m_ObjectHideFlags: 1
@@ -2202,6 +2215,7 @@ AnimatorState:
   - {fileID: 1101973354024008798}
   m_StateMachineBehaviours:
   - {fileID: 114098463310453466}
+  - {fileID: 114380916933020346}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
