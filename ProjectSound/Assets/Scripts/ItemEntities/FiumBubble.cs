@@ -11,14 +11,14 @@ public class FiumBubble : ItemEntity {
     [SerializeField]
     private Vector3 movementForce;
 
-    private new Rigidbody rigidbody;
-
     private float cooldown = 0.001f;
+
+    private new AudioSource audio;
 
     #region Unity
     protected override void Awake() {
         base.Awake();
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        this.audio = this.GetComponent<AudioSource>();
     }
 
     private new void FixedUpdate() {
@@ -26,12 +26,12 @@ public class FiumBubble : ItemEntity {
         if(!this.floating) {
             this.cooldown -= Time.deltaTime;
         }
-        
     }
     
     private void OnCollisionEnter(Collision other) {
         if(!this.floating && this.cooldown < 0) {
             this.Damage(other);
+            this.PlaySound();
         }
     }
 
@@ -42,7 +42,7 @@ public class FiumBubble : ItemEntity {
 
     public override void Move(float move) {
         if(!this.floating) {
-            this.rigidbody.AddForce(move * new Vector3(1, 0, 0), ForceMode.Impulse);
+            this.rb.AddForce(move * Vector3.right, ForceMode.Impulse);
         }
     }
 

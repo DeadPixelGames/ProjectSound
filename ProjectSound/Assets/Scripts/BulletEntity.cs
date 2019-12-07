@@ -15,12 +15,10 @@ public class BulletEntity : Entity
 
     private float currentLifespan;
 
-    private new Rigidbody rigidbody;
-
     #region Unity
     protected override void Awake() {
         base.Awake();
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        this.rb = this.GetComponent<Rigidbody>();
         this.currentLifespan = this.lifespan;
     }
 
@@ -43,7 +41,7 @@ public class BulletEntity : Entity
     #endregion
 
     public override void Move(float move) {
-        this.rigidbody.MovePosition(this.transform.position + (this.speed * this.direction * Time.deltaTime) * Vector3.right);
+        this.rb.MovePosition(this.transform.position + (this.speed * this.direction * Time.deltaTime) * Vector3.right);
     }
 
     public void SetDirection(int direction) {

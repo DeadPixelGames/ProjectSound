@@ -7,14 +7,11 @@ public class ZapBubble : ItemEntity {
     [SerializeField]
     private Vector3 movementForce;
 
-    private new Rigidbody rigidbody;
-
     private float cooldown = 0.05f;
 
     #region Unity
     protected override void Awake() {
         base.Awake();
-        this.rigidbody = this.GetComponent<Rigidbody>();
     }
     
     private new void FixedUpdate() {
@@ -27,6 +24,7 @@ public class ZapBubble : ItemEntity {
     private void OnCollisionEnter(Collision other) {
         if(!this.floating && this.cooldown < 0) {
             this.Zap(other);
+            this.PlaySound();
         }
     }
 
@@ -37,7 +35,7 @@ public class ZapBubble : ItemEntity {
 
     public override void Move(float move) {
         if(!this.floating) {
-            rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
+            rb.AddForce(new Vector3(100f * movementForce.x * move, movementForce.y, 0));
         }
     }
 

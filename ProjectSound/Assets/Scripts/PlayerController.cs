@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private GameObject closestInteractableObject;
 
+    private Collider[] possibleInteractableObjects;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour
         inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
         animate = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
+
+        this.possibleInteractableObjects = new Collider[8];
     }
 
     // Update is called once per frame
@@ -134,14 +138,18 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
     private void checkClosestObject()
     {
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, this.actionRadius);
+        Physics.OverlapSphereNonAlloc(this.transform.position, this.actionRadius, this.possibleInteractableObjects);
         Collider closest = null;
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject.GetComponent<IActionable>() != null)
+        for(int i = 0; i < this.possibleInteractableObjects.Length; i++)  {
+            if(this.possibleInteractableObjects[i] == null) {
+                break;
+            }
+
+            var collider = this.possibleInteractableObjects[i];
+
+            if (collider.GetComponent<IActionable>() != null)
             {
                 if (closest != null)
                 {
@@ -155,6 +163,7 @@ public class PlayerController : MonoBehaviour
                     closest = collider;
                 }
             }
+            this.possibleInteractableObjects[i] = null;
         }
         if(closest != null)
         {

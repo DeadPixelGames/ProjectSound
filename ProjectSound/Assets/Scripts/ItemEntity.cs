@@ -19,6 +19,8 @@ public class ItemEntity : Entity, IActionable {
 
     private new Collider collider;
 
+    private new AudioSource audio;
+
     protected override void Awake() {
         base.Awake();
         this.collider = this.GetComponent<Collider>();
@@ -26,8 +28,9 @@ public class ItemEntity : Entity, IActionable {
 
     protected override void Update() {
         base.Update();
-        this.rigidbody.isKinematic = this.floating;  
+        this.rb.isKinematic = this.floating;  
         this.collider.isTrigger = this.floating;
+        this.audio = this.GetComponent<AudioSource>();
 
         if(this.getHealth() <= 0) {
             GameObject.Destroy(this.gameObject);
@@ -50,6 +53,16 @@ public class ItemEntity : Entity, IActionable {
 
     public virtual void Use(int direction, Vector3 position) {
         // Nothing
+    }
+
+    public void PlaySound() {
+        if(this.audio != null && this.audio.enabled) {
+            this.audio.Play();
+        }
+    }
+
+    public AudioClip GetSoundFromPrefab() {
+        return this.GetComponent<AudioSource>().clip;
     }
 
     void IActionable.Action()
