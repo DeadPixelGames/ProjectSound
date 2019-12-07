@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         animate = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody>();
 
-        this.possibleInteractableObjects = new Collider[8];
+        this.possibleInteractableObjects = new Collider[32];
     }
 
     // Update is called once per frame
