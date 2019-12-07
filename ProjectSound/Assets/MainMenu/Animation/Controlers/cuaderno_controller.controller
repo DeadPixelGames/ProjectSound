@@ -28,7 +28,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!114 &114351251122021660
+--- !u!114 &114092437893158188
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisAudioClip: {fileID: 8300000, guid: d992a608516af7147a22d23b21e12258, type: 3}
+--- !u!114 &114351251122021660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0bd6d3699dc6304a8b602ab666826d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAudioClip: {fileID: 8300000, guid: f86568c48c17ec348970a4208c9eaad0, type: 3}
+--- !u!114 &114793254104268856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32da091e16098be4d8220769d241bec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1101 &1101720683572878656
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -78,7 +103,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101720683572878656}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114092437893158188}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -106,6 +132,7 @@ AnimatorState:
   m_Transitions: []
   m_StateMachineBehaviours:
   - {fileID: 114351251122021660}
+  - {fileID: 114793254104268856}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -134,7 +161,7 @@ AnimatorStateMachine:
     m_Position: {x: 384, y: -36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102524751706047074}
-    m_Position: {x: 562.2549, y: 126.24649, z: 0}
+    m_Position: {x: 564, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

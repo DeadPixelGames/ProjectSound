@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TheEnd : MonoBehaviour
 {
+
+    
     
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject == GameManager.instance.player.gameObject) {
             //TODO Pantalla de victoria
-            UnityEditor.EditorApplication.isPlaying = false;
+            Time.timeScale = 0;
+            InterfaceController.instance.setActiveVictory(true);
         }
     }
 }
