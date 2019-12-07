@@ -136,6 +136,7 @@ MonoBehaviour:
   pushFactor: 2
   pushDecay: 0.5
   movementForce: {x: 2, y: 5, z: 0}
+  destroyDelay: 0.5
 --- !u!114 &1866210838577979766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bfdce29f6da93ca4ba81eeb4b045594a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

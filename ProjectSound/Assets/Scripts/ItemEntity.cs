@@ -56,7 +56,9 @@ public class ItemEntity : Entity, IActionable {
     }
 
     public void PlaySound() {
-        if(this.audioSource != null && this.audioSource.enabled) {
+        
+        if(this.audioSource != null && this.audioSource.enabled && !this.audioSource.isPlaying) {
+            
             this.audioSource.Play();
         }
     }

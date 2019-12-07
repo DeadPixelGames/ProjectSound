@@ -16,12 +16,14 @@ public class BoomBubble : ItemEntity {
 
     [SerializeField]
     private Vector3 movementForce;
+    [SerializeField] private float destroyDelay;
 
     private float cooldown = 0.05f;
 
     #region Unity
     protected override void Awake() {
         base.Awake();
+        this.GetSoundFromPrefab();
     }
 
     private new void FixedUpdate() {
@@ -74,11 +76,12 @@ public class BoomBubble : ItemEntity {
                 explodable.Explode();
             }
             var entity = collider.gameObject.GetComponent<Entity>();
-            if(entity != null) {
+            if(entity != null && entity.gameObject != this.gameObject) {
                 entity.addHealth(-this.damage);
             }
         }
-        GameObject.Destroy(this.gameObject);
+        this.StartCoroutine(this.DestroyThisObject());
+        
     }
 
     private void Push() {
@@ -94,5 +97,11 @@ public class BoomBubble : ItemEntity {
                 rigidbody.AddForce(force * pushFactor, ForceMode.Impulse);
             }
         }
+    }
+
+    private IEnumerator DestroyThisObject()
+    {
+        yield return new WaitForSeconds(this.destroyDelay);
+        GameObject.Destroy(this.gameObject);
     }
 }

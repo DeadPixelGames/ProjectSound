@@ -1129,6 +1129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 0
+  takeDamageClip: {fileID: 8300000, guid: 42119ee5c0a23b549aa480a5cc44af54, type: 3}
   walkingSpeed: 0
   jumpSpeed: 0
   maxHealth: 3
@@ -1157,6 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: ac499efd513ea4644bddd833d9e769c1, type: 2}
   spawnTransform: {fileID: 1098863702}
+  defaultLayer: 0
 --- !u!82 &8640423620502598320
 AudioSource:
   m_ObjectHideFlags: 0

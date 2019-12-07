@@ -15,6 +15,8 @@ public abstract class Entity : MonoBehaviour {
 
     protected bool snapToLayer = true;
 
+    [SerializeField] private AudioClip takeDamageClip;
+
     #region Unity
     protected virtual void Awake() {
         this.health = this.maxHealth;
@@ -56,7 +58,16 @@ public abstract class Entity : MonoBehaviour {
 
     public float getHealth() { return health; }
     public void setHealth(float h) { this.health = Mathf.Clamp(h, 0, maxHealth); }
-    public void addHealth(float h) { this.health = Mathf.Clamp(h + health, 0, maxHealth); }
+    public void addHealth(float h) {
+        if(takeDamageClip != null && h < 0)
+        {
+            this.GetComponent<AudioSource>().clip = takeDamageClip;
+            this.GetComponent<AudioSource>().Play();
+        }
+
+        this.health = Mathf.Clamp(h + health, 0, maxHealth);
+
+    }
 
     public int GetLayer() {
         return this.layer;
