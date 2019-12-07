@@ -7,7 +7,7 @@ public class SplashBubble : ItemEntity {
     [SerializeField]
     private Vector3 movementForce;
 
-    private new Rigidbody rigidbody;
+    
 
     private float cooldown = 0.05f;
 
@@ -16,7 +16,7 @@ public class SplashBubble : ItemEntity {
     #region Unity
     protected override void Awake() {
         base.Awake();
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        this.rb = this.GetComponent<Rigidbody>();
     }
 
     private new void FixedUpdate() {
@@ -39,7 +39,7 @@ public class SplashBubble : ItemEntity {
 
     public override void Move(float move) {
         if(!this.floating) {
-            rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
+            rb.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
         }
     }
 

@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private GameObject closestInteractableObject;
 
+    private bool movingThroughLayersUsingTheJoystick = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,11 +47,54 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.operatingInMobile)
         {
-            move = joystick.Horizontal;
-            moveZ = joystick.Vertical;
+            if(joystick.Horizontal > 0.2 || joystick.Horizontal < -0.2)
+            {
+                move = joystick.Horizontal;
+            }
+            else
+            {
+                move = 0;
+            }
+            
+            
+            if(!movingThroughLayersUsingTheJoystick && joystick.Vertical > 0.7)
+            {
+                movingThroughLayersUsingTheJoystick = true;
+                moveZ = 1;
+            }else if(!movingThroughLayersUsingTheJoystick && joystick.Vertical < -0.7)
+            {
+                movingThroughLayersUsingTheJoystick = true;
+                moveZ = -1;
+            }
+            else if(joystick.Vertical >= -0.7 && joystick.Vertical <= 0.7)
+            {
+                movingThroughLayersUsingTheJoystick = false;
+            }
+            
             jump = jumpButton.pressed;
+            if (actionButton.pressed)
+            {
+                actionButton.pressed = false;
+                Item item = Inventory.instance.GetActiveItem();
+                if (item != null)
+                {
+                    if (item.isDrinkable())
+                    {
+                        animate.SetTrigger("Drink");
+                    }
+                    else
+                    {
+                        animate.SetTrigger("Throw");
+                    }
+                    
+                }
+                else
+                {
+                    animate.SetTrigger("Pick");
+                }
+            }
         }
-        else
+         else
         {
             move = Input.GetAxisRaw("Horizontal");
             if (Input.GetButtonDown("Vertical"))
@@ -70,11 +115,18 @@ public class PlayerController : MonoBehaviour
                 Item item = Inventory.instance.GetActiveItem();
                 if(item != null)
                 {
-                    animate.SetTrigger("Throw");
+                    if (item.isDrinkable())
+                    {
+                        animate.SetTrigger("Drink");
+                    }
+                    else
+                    {
+                        animate.SetTrigger("Throw");
+                    }
                 }
                 else
                 {
-                    OnAction();
+                    animate.SetTrigger("Pick");
                 }
                 
             }
@@ -180,6 +232,14 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if(closestInteractableObject != null)
+            {
+                GlowObjectCmd glow = closestInteractableObject.GetComponent<GlowObjectCmd>();
+                if (glow != null)
+                {
+                    glow.StopGlowing();
+                }
+            }
             closestInteractableObject = null;
         }
         

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class Auxiliar : MonoBehaviour
+public class TakeTextureFromMaterial : MonoBehaviour
 {
     public Material[] materials;
     private void Start()

@@ -11,6 +11,8 @@ using UnityEngine;
     */
 [CreateAssetMenu(fileName = "New Item", menuName = "Item")]
 public class Item : ScriptableObject {
+
+    [SerializeField] private bool drinkable = false;
     /** <summary>
         Image to use in the inventory to represent this item.
         </summary>
@@ -22,4 +24,6 @@ public class Item : ScriptableObject {
         </summary>
     */
     public GameObject itemEntityPrefab;
+
+    public bool isDrinkable() { return this.drinkable; }
 }

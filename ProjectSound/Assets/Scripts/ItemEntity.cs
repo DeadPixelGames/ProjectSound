@@ -26,7 +26,7 @@ public class ItemEntity : Entity, IActionable {
 
     protected override void Update() {
         base.Update();
-        this.rigidbody.isKinematic = this.floating;  
+        this.rb.isKinematic = this.floating;  
         this.collider.isTrigger = this.floating;
 
         if(this.getHealth() <= 0) {

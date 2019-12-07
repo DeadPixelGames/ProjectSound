@@ -6,6 +6,8 @@ public class GlowObjectCmd : MonoBehaviour
 	public Color GlowColor;
 	public float LerpFactor = 10;
 
+    
+
 	public Renderer[] Renderers
 	{
 		get;
@@ -32,7 +34,16 @@ public class GlowObjectCmd : MonoBehaviour
 		enabled = true;
 	}
 
-	private void OnMouseExit()
+    private void OnMouseDown()
+    {
+        SceneController sceneController = gameObject.GetComponent<SceneController>();
+        if(sceneController != null)
+        {
+            sceneController.changeScene();
+        }
+    }
+
+    private void OnMouseExit()
 	{
 		_targetColor = Color.black;
 		enabled = true;

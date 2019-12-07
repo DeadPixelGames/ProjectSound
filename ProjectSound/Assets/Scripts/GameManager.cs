@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator DeathCoroutine() {
         yield return new WaitForSeconds(this.deathCounter);
         //TODO Ir al menú de selección de niveles
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
     public int ClampLayer(int layer)

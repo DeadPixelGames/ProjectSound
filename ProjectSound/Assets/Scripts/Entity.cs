@@ -11,14 +11,14 @@ public abstract class Entity : MonoBehaviour {
     [SerializeField]
     protected int layer;
 
-    protected new Rigidbody rigidbody;
+    protected Rigidbody rb;
 
     protected bool snapToLayer = true;
 
     #region Unity
     protected virtual void Awake() {
         this.health = this.maxHealth;
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        this.rb = this.GetComponent<Rigidbody>();
     }
 
     protected virtual void Update() {

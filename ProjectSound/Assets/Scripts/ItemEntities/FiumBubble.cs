@@ -11,14 +11,14 @@ public class FiumBubble : ItemEntity {
     [SerializeField]
     private Vector3 movementForce;
 
-    private new Rigidbody rigidbody;
+    
 
     private float cooldown = 0.001f;
 
     #region Unity
     protected override void Awake() {
         base.Awake();
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        this.rb = this.GetComponent<Rigidbody>();
     }
 
     private new void FixedUpdate() {
@@ -42,7 +42,7 @@ public class FiumBubble : ItemEntity {
 
     public override void Move(float move) {
         if(!this.floating) {
-            this.rigidbody.AddForce(move * new Vector3(1, 0, 0), ForceMode.Impulse);
+            this.rb.AddForce(move * new Vector3(1, 0, 0), ForceMode.Impulse);
         }
     }
 

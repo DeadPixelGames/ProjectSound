@@ -17,14 +17,14 @@ public class BoomBubble : ItemEntity {
     [SerializeField]
     private Vector3 movementForce;
 
-    private new Rigidbody rigidbody;
+   
 
     private float cooldown = 0.05f;
 
     #region Unity
     protected override void Awake() {
         base.Awake();
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        this.rb = this.GetComponent<Rigidbody>();
     }
 
     private new void FixedUpdate() {
@@ -58,7 +58,7 @@ public class BoomBubble : ItemEntity {
 
     public override void Move(float move) {
         if(!this.floating) {
-            this.rigidbody.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
+            this.rb.AddForce(new Vector3(movementForce.x * move, movementForce.y, 0));
         }
     }
 
