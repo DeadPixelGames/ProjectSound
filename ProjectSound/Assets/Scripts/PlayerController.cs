@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.operatingInMobile)
         {
-            if(joystick.Horizontal > 0.2 || joystick.Horizontal < -0.2)
+            if(joystick.Horizontal > 0.1 || joystick.Horizontal < -0.1)
             {
                 move = joystick.Horizontal;
             }
@@ -60,16 +60,16 @@ public class PlayerController : MonoBehaviour
             }
             
             
-            if(!movingThroughLayersUsingTheJoystick && joystick.Vertical > 0.7)
+            if(!movingThroughLayersUsingTheJoystick && joystick.Vertical > 0.6)
             {
                 movingThroughLayersUsingTheJoystick = true;
                 moveZ = 1;
-            }else if(!movingThroughLayersUsingTheJoystick && joystick.Vertical < -0.7)
+            }else if(!movingThroughLayersUsingTheJoystick && joystick.Vertical < -0.6)
             {
                 movingThroughLayersUsingTheJoystick = true;
                 moveZ = -1;
             }
-            else if(joystick.Vertical >= -0.7 && joystick.Vertical <= 0.7)
+            else if(joystick.Vertical >= -0.6 && joystick.Vertical <= 0.6)
             {
                 movingThroughLayersUsingTheJoystick = false;
             }
