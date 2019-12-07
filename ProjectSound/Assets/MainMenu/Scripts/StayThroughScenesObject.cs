@@ -22,6 +22,8 @@ public class StayThroughScenesObject : MonoBehaviour
 
 
     private bool lvlSelection = false;
+    private string sceneIWantToLoad = "";
+
 
     private void Awake()
     {
@@ -31,4 +33,7 @@ public class StayThroughScenesObject : MonoBehaviour
 
     public void setLvLSelection(bool lvlSel) { this.lvlSelection = lvlSel; }
     public bool isLvlSelection() { return this.lvlSelection; }
+
+    public void setSceneIWantToLoad(string scene) { this.sceneIWantToLoad = scene; }
+    public string getSceneIWantToLoad() { return this.sceneIWantToLoad; }
 }

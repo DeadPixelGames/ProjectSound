@@ -11,7 +11,8 @@ public class SceneController : MonoBehaviour
     {
         if(sceneToChange != null)
         {
-            SceneManager.LoadScene(sceneToChange);
+            StayThroughScenesObject.instance.setSceneIWantToLoad(sceneToChange);
+            SceneManager.LoadScene("LoadingScene");
         }
     }
 }

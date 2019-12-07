@@ -65,7 +65,13 @@ public class InterfaceController : MonoBehaviour
 
     public void StartScene(string scene)
     {
-        SceneManager.LoadScene(scene);
+
+        GameManager.instance = null;
+        Inventory.instance = null;
+        instance = null;
+        Time.timeScale = 1;
+        StayThroughScenesObject.instance.setSceneIWantToLoad(scene);
+        SceneManager.LoadScene("LoadingScene");
     }
 
     public void SetLvlSelection(bool lvlSel)
