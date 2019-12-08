@@ -116516,7 +116516,8 @@ AudioSource:
   m_GameObject: {fileID: 687812282}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 348220f6aaf56f24d8fcbc29b2bd72a3,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -122700,6 +122701,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8640423620502598320, guid: e5af11471bc549a4cafeb8ae292e2476,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 348220f6aaf56f24d8fcbc29b2bd72a3,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5af11471bc549a4cafeb8ae292e2476, type: 3}
 --- !u!1 &1603128501
@@ -127785,6 +127792,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: setActiveOptions
       objectReference: {fileID: 0}
+    - target: {fileID: 8913781215135053019, guid: 2ed7a60f263f2d74d93dd67b0f3fd5b1,
+        type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 348220f6aaf56f24d8fcbc29b2bd72a3,
+        type: 2}
     - target: {fileID: 8913781215812761126, guid: 2ed7a60f263f2d74d93dd67b0f3fd5b1,
         type: 3}
       propertyPath: m_AnchorMax.x

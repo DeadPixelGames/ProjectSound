@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class VolumeSliderController : MonoBehaviour
 {
     private Slider slider;
+    [SerializeField] private AudioMixer audioMixer;
 
 
     private void Awake()
@@ -26,6 +28,6 @@ public class VolumeSliderController : MonoBehaviour
     {
         if(StayThroughScenesObject.instance != null)
         StayThroughScenesObject.instance.setSoundVolume(slider.value);
-        AudioListener.volume = slider.value;
+        audioMixer.SetFloat("volume", Mathf.Log10(slider.value) * 20);
     }
 }
