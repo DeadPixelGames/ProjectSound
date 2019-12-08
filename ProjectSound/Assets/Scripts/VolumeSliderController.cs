@@ -10,6 +10,7 @@ public class VolumeSliderController : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
 
 
+
     private void Awake()
     {
         slider = GetComponent<Slider>();

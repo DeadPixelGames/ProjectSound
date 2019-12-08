@@ -26,6 +26,7 @@ public class Inventory : MonoBehaviour {
     private const string REMOVE_DEFAULT_ITEM = "y";
     private const string ADD_ITEM_SLOT = "i";
     private const string REMOVE_ITEM_SLOT = "p";
+    private const string ACTIVATE_DEBUG = "m";
 
     /*
      * <summary>
@@ -82,6 +83,8 @@ public class Inventory : MonoBehaviour {
     */
     private List<Item> items;
 
+    private bool debugActive = false;
+
     #region Unity
     void Awake() {
         Inventory.InitSingleton(this);
@@ -91,7 +94,7 @@ public class Inventory : MonoBehaviour {
         for(int i = 0; i < maxItems; i++)
         {
             //TODO Set this to null when we are done testing
-            this.items.Add(this.bubble[i]);
+            this.items.Add(null);
         }
         Refresh();
         
@@ -99,24 +102,32 @@ public class Inventory : MonoBehaviour {
     //For Debug Purposes Only
     void Update()
     {
-        /* DEBUG CONTROLS
-        if (Input.GetKeyDown(ADD_DEFAULT_ITEM))
+        // DEBUG CONTROLS
+        if (debugActive)
         {
-            AddItem(bubble[activeItemIndex]);
+            if (Input.GetKeyDown(ADD_DEFAULT_ITEM))
+            {
+                AddItem(bubble[activeItemIndex]);
             
+            }
+            if (Input.GetKeyDown(REMOVE_DEFAULT_ITEM))
+            {
+                RemoveActiveItem();
+            }
+            if (Input.GetKeyDown(REMOVE_ITEM_SLOT))
+            {
+                SetMaxItems(GetMaxItems() - 1);
+            }
+            if (Input.GetKeyDown(ADD_ITEM_SLOT))
+            {
+                SetMaxItems(GetMaxItems() + 1);
+            }
         }
-        if (Input.GetKeyDown(REMOVE_DEFAULT_ITEM))
+        if (Input.GetKeyDown(ACTIVATE_DEBUG))
         {
-            RemoveActiveItem();
+            debugActive = !debugActive;
         }
-        if (Input.GetKeyDown(REMOVE_ITEM_SLOT))
-        {
-            SetMaxItems(GetMaxItems() - 1);
-        }
-        if (Input.GetKeyDown(ADD_ITEM_SLOT))
-        {
-            SetMaxItems(GetMaxItems() + 1);
-        }*/
+        
     }
     #endregion
 

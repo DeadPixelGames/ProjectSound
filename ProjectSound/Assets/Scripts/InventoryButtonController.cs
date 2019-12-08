@@ -17,6 +17,6 @@ public class InventoryButtonController : MonoBehaviour
     public void changeActiveItemInInventory()
     {
         //if(GameManager.operatingInMobile)
-            GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>().SetActiveItem(id);
+            Inventory.instance.SetActiveItem(id);
     }
 }

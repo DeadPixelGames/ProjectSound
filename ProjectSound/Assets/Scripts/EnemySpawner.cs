@@ -15,10 +15,14 @@ public class EnemySpawner : MonoBehaviour {
     private EnemyController lastSpawnedEnemy;
 
     private void Update() {
-        if(Vector2.Distance(this.transform.position, GameManager.instance.player.transform.position) >= this.minActivationDistance && this.CanSpawn()) {
-            this.lastSpawnedEnemy = GameObject.Instantiate(this.enemyPrefab.gameObject, this.transform.position, Quaternion.Euler(0, orientationWhenSpawned, 0)).GetComponent<EnemyController>();
-            this.lastSpawnedEnemy.SetLayer(this.layer);
+        if(GameManager.instance != null)
+        {
+            if(Vector2.Distance(this.transform.position, GameManager.instance.player.transform.position) >= this.minActivationDistance && this.CanSpawn()) {
+                this.lastSpawnedEnemy = GameObject.Instantiate(this.enemyPrefab.gameObject, this.transform.position, Quaternion.Euler(0, orientationWhenSpawned, 0)).GetComponent<EnemyController>();
+                this.lastSpawnedEnemy.SetLayer(this.layer);
+            }
         }
+        
     }
 
     private void OnDrawGizmosSelected() {

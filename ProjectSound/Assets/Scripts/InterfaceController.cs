@@ -124,5 +124,8 @@ public class InterfaceController : MonoBehaviour
         optionsUIElements.SetActive(active);
     }
 
-
+    public void test()
+    {
+        Debug.Log("UwU");
+    }
 }
