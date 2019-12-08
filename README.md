@@ -426,3 +426,12 @@ Ejemplo rápido del desarrollo de un nivel y de la utilización de algunos sonid
  - Charcos: Los depósitos de agua que habrá por el mapa tendrán un charco cerca que nos permitirá sacar onomatopeyas splash siempre que pasemos por encima, por lo que son una fuente fija de este tipo de onomatopeyas que necesitaremos para varios puzles a lo largo del recorrido.
 
 ![](https://lh5.googleusercontent.com/yfy0YtDAmoD0FIxc_Ch4kij4eE4830tZ-1bupGJCkqdfJ9IoU2tBaG4V0k80Kvgf5JN3oJ3ZwGtz2qMqUg5bC6Ksi2EEJ519S98b0QcPc4B5_AHpVz136GMmdsKmuZLHhSdC7Gfp)
+
+Links de interés:
+=================
+
+GitHub: <https://github.com/DeadPixelGames/ProjectSound>
+
+PortFolio: <https://github.com/DeadPixelGames/deadpixelgames.github.io> y <https://deadpixelgames.github.io/>
+
+Itch.io: <https://deadpixelgames.itch.io/from-scratch>
