@@ -95,7 +95,7 @@ Material:
     m_Colors:
     - Color_57564A28: {r: 0, g: 0, b: 0, a: 0}
     - Color_66E7718E: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 0.28235295, g: 0.23921569, b: 0.54509807, a: 1}
+    - _Color: {r: 0.23747739, g: 0.18689926, b: 0.5283019, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _ToonLightDirection: {r: 0.5, g: 0, b: -0.5, a: 0}
