@@ -403,7 +403,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: CONTACTS
+  m_Text: CONTACTOS
 --- !u!222 &17103987
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: SHOP
+  m_Text: TIENDA
 --- !u!222 &91879205
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2470,7 +2470,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: EXIT
+  m_Text: SALIR
 --- !u!222 &517707756
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6368,7 +6368,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: PLAY
+  m_Text: JUGAR
 --- !u!222 &1211512753
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9794,7 +9794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f958c95106d324a8944136c06f1a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlowColor: {r: 0.3469651, g: 0.6509434, b: 0.36190674, a: 0}
+  GlowColor: {r: 1, g: 0.21559656, b: 0.1745283, a: 0}
   LerpFactor: 10
 --- !u!1 &2135971920
 GameObject:
@@ -9964,7 +9964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f958c95106d324a8944136c06f1a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlowColor: {r: 0.9339623, g: 0.7505852, b: 0.2599235, a: 0}
+  GlowColor: {r: 0.19326274, g: 0.88235295, b: 0.9528302, a: 0}
   LerpFactor: 10
 --- !u!1 &2135971934
 GameObject:
