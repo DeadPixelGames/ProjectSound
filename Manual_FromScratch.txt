@@ -1,0 +1,27 @@
+Guia de uso From: Scratch
+//Por Sustituto :3
+
+#Objetivo:
+ Llegar al final del nivel utilizando el menor número de onomatopeyas posible.
+
+#Mecanicas:
+ El jugador se puede mover en 4 capas de profundidad.
+ El jugador puede coger y usar las onomatopeyas para pasarse las zonas.
+ Caer de una gran altura o ser asesinado por los enemigos nos hará perder.
+ El jugador puede curarse usando los botes de tinta.
+
+#Controles: Ordenador/Móvil
+ Movimiento: WASD y Joystick
+  W/S y Arriba/Abajo: Moverse entre capas.
+  A/D y Izqwuierda/Derecha: Movimiento horizontal.
+
+ Acciónes:
+  Espacio y B: Saltar.
+  O y A: Recoger/Usar onomatopeya.
+
+#Cheats:
+ M: Desbloquear el modo trucos.
+ R/Y: Añadir/Soltar items. Dependiendo de la posición del slot de inventario se genera un tipo de onomatopeya u otro.
+      En este orden: Boing, Boom, Fium, Zap, Ink. No se recomienda intentar más allá de eso porque puede dar error.
+ I/P: Añadir/Quitar huecos de inventario.
+ 
