@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 8913781215135053018}
   - component: {fileID: 8913781215135053019}
   m_Layer: 5
-  m_Name: SoundVolumeSlider
+  m_Name: MusicVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
