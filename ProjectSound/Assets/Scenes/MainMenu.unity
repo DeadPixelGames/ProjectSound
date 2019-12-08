@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1304,22 +1304,6 @@ Transform:
   m_Father: {fileID: 1254295392}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -8.379001, y: -87.898, z: -0.30600002}
---- !u!1 &226642158
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 780865848}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 780865849}
-  m_Layer: 0
-  m_Name: mug (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &240269372
 GameObject:
   m_ObjectHideFlags: 0
@@ -3640,21 +3624,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f7215a3290d8cba4ab587b7112b1e302, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5ba325313330aa448669a6b4cff496c, type: 3}
---- !u!4 &780865849
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 780865848}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226642158}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1710744871}
-  m_Father: {fileID: 1254295392}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &790283135
 GameObject:
   m_ObjectHideFlags: 0
@@ -6447,7 +6416,7 @@ Transform:
   - {fileID: 700909283714980171}
   - {fileID: 1018007220}
   - {fileID: 826519207}
-  - {fileID: 780865849}
+  - {fileID: 1710744871}
   - {fileID: 489977343}
   - {fileID: 1687556000}
   - {fileID: 10296534}
@@ -8283,21 +8252,12 @@ Transform:
   m_Father: {fileID: 378855826}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1710744871
+--- !u!4 &1710744871 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 400000, guid: a5ba325313330aa448669a6b4cff496c,
     type: 3}
   m_PrefabInstance: {fileID: 780865848}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756797285}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 780865849}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1717109703
 GameObject:
   m_ObjectHideFlags: 0
@@ -8554,22 +8514,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743061883}
   m_Mesh: {fileID: 4300034, guid: 145a198236796f14096b97cc954a4208, type: 3}
---- !u!1 &1756797285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 780865848}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1710744871}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1844578573
 GameObject:
   m_ObjectHideFlags: 0
@@ -9830,6 +9774,7 @@ GameObject:
   - component: {fileID: 2138228238}
   - component: {fileID: 2135971919}
   - component: {fileID: 2135971921}
+  - component: {fileID: 2135971923}
   m_Layer: 0
   m_Name: Comic002
   m_TagString: Untagged
@@ -9901,6 +9846,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2135971923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135971918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3d8f8b9c4924342979f672b6347706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToChange: CincoElementos
 --- !u!1 &2135971924
 GameObject:
   m_ObjectHideFlags: 0
