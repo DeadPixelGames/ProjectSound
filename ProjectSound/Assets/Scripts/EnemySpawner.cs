@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
+
+    [SerializeField] private float orientationWhenSpawned = 90;
     
     public float minActivationDistance = 5f;
 
@@ -14,7 +16,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void Update() {
         if(Vector2.Distance(this.transform.position, GameManager.instance.player.transform.position) >= this.minActivationDistance && this.CanSpawn()) {
-            this.lastSpawnedEnemy = GameObject.Instantiate(this.enemyPrefab.gameObject, this.transform.position, Quaternion.Euler(0, Random.value < 0.5 ? 90 : 270, 0)).GetComponent<EnemyController>();
+            this.lastSpawnedEnemy = GameObject.Instantiate(this.enemyPrefab.gameObject, this.transform.position, Quaternion.Euler(0, orientationWhenSpawned, 0)).GetComponent<EnemyController>();
             this.lastSpawnedEnemy.SetLayer(this.layer);
         }
     }
