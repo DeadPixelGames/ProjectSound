@@ -24,6 +24,8 @@ public class StayThroughScenesObject : MonoBehaviour
     private bool lvlSelection = false;
     private string sceneIWantToLoad = "";
 
+    private float soundVolume = 1.0f;
+
 
     private void Awake()
     {
@@ -40,4 +42,8 @@ public class StayThroughScenesObject : MonoBehaviour
 
     public void setSceneIWantToLoad(string scene) { this.sceneIWantToLoad = scene; }
     public string getSceneIWantToLoad() { return this.sceneIWantToLoad; }
+
+    public void setSoundVolume(float volume) { this.soundVolume = volume; }
+    public float getSoundVolume() { return this.soundVolume; }
+
 }

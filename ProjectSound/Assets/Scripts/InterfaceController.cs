@@ -25,6 +25,7 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private GameObject gameOverUIElements;
     [SerializeField] private GameObject victoryUIElements;
     [SerializeField] private GameObject pauseUIElements;
+    [SerializeField] private GameObject optionsUIElements;
 
     [SerializeField] private AudioClip openMenu;
     [SerializeField] private AudioClip buttonPressed;
@@ -114,6 +115,13 @@ public class InterfaceController : MonoBehaviour
     public void setActiveInput(bool active)
     {
         inputUIElements.SetActive(active);
+    }
+
+    public void setActiveOptions(bool active)
+    {
+        audioSource.clip = openMenu;
+        audioSource.Play();
+        optionsUIElements.SetActive(active);
     }
 
 
