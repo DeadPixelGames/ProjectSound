@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layer: 0
+  takeDamageClip: {fileID: 0}
   walkingSpeed: 0
   jumpSpeed: 0
   maxHealth: 1
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28f958c95106d324a8944136c06f1a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlowColor: {r: 0, g: 0.9528302, b: 0.17928766, a: 0}
+  GlowColor: {r: 0, g: 0.9310174, b: 0.9529412, a: 0}
   LerpFactor: 10
 --- !u!82 &82662652863491804
 AudioSource:
