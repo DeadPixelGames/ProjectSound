@@ -99,6 +99,7 @@ public class Inventory : MonoBehaviour {
     //For Debug Purposes Only
     void Update()
     {
+        /* DEBUG CONTROLS
         if (Input.GetKeyDown(ADD_DEFAULT_ITEM))
         {
             AddItem(bubble[activeItemIndex]);
@@ -115,7 +116,7 @@ public class Inventory : MonoBehaviour {
         if (Input.GetKeyDown(ADD_ITEM_SLOT))
         {
             SetMaxItems(GetMaxItems() + 1);
-        }
+        }*/
     }
     #endregion
 

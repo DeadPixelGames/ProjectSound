@@ -113992,14 +113992,12 @@ MonoBehaviour:
   inventoryUI: {fileID: 334010128}
   inventorySlot: {fileID: 3014880267574675238, guid: 74f5dd38fe753174795cabcb652cbe69,
     type: 3}
-  maxItems: 6
+  maxItems: 4
   bubble:
-  - {fileID: 11400000, guid: f3ca7d44e0582b840bc0df27f4e250f9, type: 2}
-  - {fileID: 11400000, guid: 0ade8456037dfb846bffd3fb2d0e9040, type: 2}
-  - {fileID: 11400000, guid: ac499efd513ea4644bddd833d9e769c1, type: 2}
-  - {fileID: 11400000, guid: 91716787076993944b5ee56bf53a60d3, type: 2}
-  - {fileID: 11400000, guid: 1b7b51e77af5baa4dbb41f8f0f31d736, type: 2}
-  - {fileID: 11400000, guid: 64ae89a8d78669e4fa008c01f71228e7, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &334010131
 MonoBehaviour:
   m_ObjectHideFlags: 0
